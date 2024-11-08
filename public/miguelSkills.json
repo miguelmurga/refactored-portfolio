@@ -1,0 +1,259 @@
+{
+  "techSkills": [
+    {
+      "language": "JavaScript",
+      "image": "https://cdn.svgporn.com/logos/javascript.svg",
+      "url": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+    },
+    {
+      "language": "TypeScript",
+      "image": "https://cdn.svgporn.com/logos/typescript-icon.svg",
+      "url": "https://www.typescriptlang.org/"
+    },
+    {
+      "language": "Node.js",
+      "image": "https://cdn.svgporn.com/logos/nodejs-icon.svg",
+      "url": "https://nodejs.org"
+    },
+    {
+      "language": "Vue.js",
+      "image": "https://cdn.svgporn.com/logos/vue.svg",
+      "url": "https://v3.vuejs.org/"
+    },
+    {
+      "language": "Nuxt.js",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/6/66/Nuxt_logo_%282021%29.svg",
+      "url": "https://nuxtjs.org/"
+    },
+    {
+      "language": "Pinia",
+      "image": "https://pinia.vuejs.kr/logo.png",
+      "url": "https://pinia.vuejs.org/"
+    },
+    {
+      "language": "Elixir",
+      "image": "https://elixir-lang.org/images/logo/logo.png",
+      "url": "https://elixir-lang.org/"
+    },
+    {
+      "language": "Python",
+      "image": "https://cdn.svgporn.com/logos/python.svg",
+      "url": "https://www.python.org/"
+    },
+    {
+      "language": "Django",
+      "image": "https://cdn.svgporn.com/logos/django.svg",
+      "url": "https://www.djangoproject.com/"
+    },
+    {
+      "language": "HTML",
+      "image": "https://cdn.svgporn.com/logos/html-5.svg",
+      "url": "https://developer.mozilla.org/es/docs/Web/HTML"
+    },
+    {
+      "language": "CSS",
+      "image": "https://cdn.svgporn.com/logos/css-3.svg",
+      "url": "https://developer.mozilla.org/es/docs/Web/CSS"
+    },
+    {
+      "language": "Tailwind CSS",
+      "image": "https://cdn.svgporn.com/logos/tailwindcss-icon.svg",
+      "url": "https://tailwindcss.com/"
+    },
+    {
+      "language": "Git",
+      "image": "https://cdn.svgporn.com/logos/git-icon.svg",
+      "url": "https://git-scm.com/"
+    },
+    {
+      "language": "GitHub",
+      "image": "https://cdn.svgporn.com/logos/github-icon.svg",
+      "url": "https://github.com/"
+    },
+    {
+      "language": "MySQL",
+      "image": "https://cdn.svgporn.com/logos/mysql.svg",
+      "url": "https://www.mysql.com/"
+    },
+    {
+      "language": "PostgreSQL",
+      "image": "https://cdn.svgporn.com/logos/postgresql.svg",
+      "url": "https://www.postgresql.org/"
+    }
+  ],
+  "itSkills": [
+    {
+      "language": "Internet of Things (IoT)",
+      "url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6488907"
+    },
+    {
+      "language": "Machine Learning",
+      "url": "https://ieeexplore.ieee.org/xpl/topics.jsp?punumber=1000007&topic=3519"
+    },
+    {
+      "language": "Artificial Intelligence (AI)",
+      "url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8782664"
+    },
+    {
+      "language": "Big Data",
+      "url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6687317"
+    },
+    {
+      "language": "Cybersecurity",
+      "url": "https://ieeexplore.ieee.org/xpl/topics.jsp?punumber=1000298&topic=3519"
+    },
+    {
+      "language": "Cloud Computing",
+      "url": "https://ieeexplore.ieee.org/xpl/topics.jsp?punumber=1000298&topic=3519"
+    },
+    {
+      "language": "Data Analytics",
+      "url": "https://ieeexplore.ieee.org/xpl/topics.jsp?punumber=1000298&topic=3519"
+    },
+    {
+      "language": "Ethical Hacking",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "NetBIOS",
+      "url": "https://www.kali.org/tools/nbtscan/"
+    },
+    {
+      "language": "SNMP",
+      "url": "https://www.kali.org/tools/snmp-check/"
+    },
+    {
+      "language": "SMTP and DNS Enumeration",
+      "url": "https://www.kali.org/tools/smtp-user-enum/"
+    },
+    {
+      "language": "IPsec Configuration Scanning",
+      "url": "https://www.kali.org/tools/ike-scan/"
+    },
+    {
+      "language": "SIP Protocol",
+      "url": "https://www.kali.org/tools/sipvicious/"
+    },
+    {
+      "language": "VoIP Analysis",
+      "url": "https://www.wireshark.org/"
+    },
+    {
+      "language": "System Hacking",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "Malware Threats",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "Sniffing Techniques",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "Denial of Service Attacks",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "Hijacking",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "Evading IDS, Firewalls, and Honeypots",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "Web Server Hacking",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "Web Application Hacking",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "Cross-Site Scripting (XSS)",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "SQL Injection",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "File and Resource Attacks",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "Wireless Network Hacking",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "Mobile Platform Hacking",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "IoT Hacking",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "language": "Cloud Computing Hacking",
+      "url": "https://www.kali.org/"
+    }
+  ],
+  "dataScienceSkills": [
+    {
+      "language": "Generative AI",
+      "image": "/img/OCIP.png",
+      "url": "https://www.r-project.org/"
+    },
+    {
+      "language": "Python",
+      "image": "https://cdn.svgporn.com/logos/python.svg",
+      "url": "https://www.python.org/"
+    },
+    {
+      "language": "R",
+      "image": "https://workingnation.com/wp-content/uploads/elementor/thumbs/R_logo.svg_-ph7v86g4lp7uq711f2l4u74qongpq74ym001zsw6bk.png",
+      "url": "https://www.r-project.org/"
+    },
+    {
+      "language": "TensorFlow",
+      "image": "https://cdn.svgporn.com/logos/tensorflow.svg",
+      "url": "https://www.tensorflow.org/"
+    },
+    {
+      "language": "PyTorch",
+      "image": "https://cdn.svgporn.com/logos/pytorch.svg",
+      "url": "https://pytorch.org/"
+    },
+    {
+      "language": "Pandas",
+      "image": "https://cdn.svgporn.com/logos/pandas.svg",
+      "url": "https://pandas.pydata.org/"
+    },
+    {
+      "language": "NumPy",
+      "image": "https://cdn.svgporn.com/logos/numpy.svg",
+      "url": "https://numpy.org/"
+    },
+    {
+      "language": "Scikit-learn",
+      "image": "https://analyticsdrift.com/wp-content/uploads/2021/04/Scikit-learn-free-course.jpg",
+      "url": "https://scikit-learn.org/stable/"
+    },
+    {
+      "language": "Jupyter",
+      "image": "https://cdn.svgporn.com/logos/jupyter.svg",
+      "url": "https://jupyter.org/"
+    },
+    {
+      "language": "Matplotlib",
+      "image": "https://cdn.svgporn.com/logos/matplotlib.svg",
+      "url": "https://matplotlib.org/"
+    },
+    {
+      "language": "OpenAI API",
+      "image": "https://www.presse-citron.net/app/uploads/2019/07/open-ai.jpg",
+      "url": "https://beta.openai.com/"
+    }
+  ]
+}
