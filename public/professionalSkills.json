@@ -1,0 +1,226 @@
+{
+  "skills": [
+    {
+      "type": "fullStack",
+      "language": "JavaScript",
+      "image": "https://cdn.svgporn.com/logos/javascript.svg",
+      "url": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+    },
+    {
+      "type": "fullStack",
+      "language": "TypeScript",
+      "image": "https://cdn.svgporn.com/logos/typescript-icon.svg",
+      "url": "https://www.typescriptlang.org/"
+    },
+    {
+      "type": "fullStack",
+      "language": "Node.js",
+      "image": "https://cdn.svgporn.com/logos/nodejs-icon.svg",
+      "url": "https://nodejs.org"
+    },
+    {
+      "type": "fullStack",
+      "language": "Vue.js",
+      "image": "https://cdn.svgporn.com/logos/vue.svg",
+      "url": "https://v3.vuejs.org/"
+    },
+    {
+      "type": "fullStack",
+      "language": "Nuxt.js",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/6/66/Nuxt_logo_%282021%29.svg",
+      "url": "https://nuxtjs.org/"
+    },
+    {
+      "type": "fullStack",
+      "language": "Pinia",
+      "image": "https://pinia.vuejs.kr/logo.png",
+      "url": "https://pinia.vuejs.org/"
+    },
+    {
+      "type": "fullStack",
+      "language": "Python",
+      "image": "https://cdn.svgporn.com/logos/python.svg",
+      "url": "https://www.python.org/"
+    },
+    {
+      "type": "fullStack",
+      "language": "Django",
+      "image": "https://cdn.svgporn.com/logos/django.svg",
+      "url": "https://www.djangoproject.com/"
+    },
+    {
+      "type": "fullStack",
+      "language": "HTML",
+      "image": "https://cdn.svgporn.com/logos/html-5.svg",
+      "url": "https://developer.mozilla.org/es/docs/Web/HTML"
+    },
+    {
+      "type": "fullStack",
+      "language": "CSS",
+      "image": "https://cdn.svgporn.com/logos/css-3.svg",
+      "url": "https://developer.mozilla.org/es/docs/Web/CSS"
+    },
+    {
+      "type": "fullStack",
+      "language": "Tailwind CSS",
+      "image": "https://cdn.svgporn.com/logos/tailwindcss-icon.svg",
+      "url": "https://tailwindcss.com/"
+    },
+    {
+      "type": "fullStack",
+      "language": "Git",
+      "image": "https://cdn.svgporn.com/logos/git-icon.svg",
+      "url": "https://git-scm.com/"
+    },
+    {
+      "type": "fullStack",
+      "language": "GitHub",
+      "image": "https://cdn.svgporn.com/logos/github-icon.svg",
+      "url": "https://github.com/"
+    },
+    {
+      "type": "fullStack",
+      "language": "MySQL",
+      "image": "https://cdn.svgporn.com/logos/mysql.svg",
+      "url": "https://www.mysql.com/"
+    },
+    {
+      "type": "fullStack",
+      "language": "PostgreSQL",
+      "image": "https://cdn.svgporn.com/logos/postgresql.svg",
+      "url": "https://www.postgresql.org/"
+    },
+    {
+      "type": "ai",
+      "language": "Generative AI",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/48/Generative_AI_logo.png",
+      "url": "https://www.oracle.com/cloud/ai/"
+    },
+    {
+      "type": "ai",
+      "language": "TensorFlow",
+      "image": "https://cdn.svgporn.com/logos/tensorflow.svg",
+      "url": "https://www.tensorflow.org/"
+    },
+    {
+      "type": "ai",
+      "language": "PyTorch",
+      "image": "https://cdn.svgporn.com/logos/pytorch.svg",
+      "url": "https://pytorch.org/"
+    },
+    {
+      "type": "ai",
+      "language": "Scikit-learn",
+      "image": "https://cdn.svgporn.com/logos/scikit-learn.svg",
+      "url": "https://scikit-learn.org/stable/"
+    },
+    {
+      "type": "ai",
+      "language": "OpenAI API",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/1e/OpenAI_logo.svg",
+      "url": "https://beta.openai.com/"
+    },
+    {
+      "type": "ai",
+      "language": "LangChain",
+      "image": "https://avatars.githubusercontent.com/u/106307994?s=200&v=4",
+      "url": "https://langchain.com/"
+    },
+    {
+      "type": "cybersecurity",
+      "language": "NetBIOS",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/0e/NetBIOS_logo.png",
+      "url": "https://www.kali.org/tools/nbtscan/"
+    },
+    {
+      "type": "cybersecurity",
+      "language": "SNMP",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Simple_Network_Management_Protocol_logo.svg",
+      "url": "https://www.kali.org/tools/snmp-check/"
+    },
+    {
+      "type": "cybersecurity",
+      "language": "SMTP and DNS Enumeration",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/91/SMTP_logo.svg",
+      "url": "https://www.kali.org/tools/smtp-user-enum/"
+    },
+    {
+      "type": "cybersecurity",
+      "language": "IPsec Configuration Scanning",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e5/IPsec_logo.svg",
+      "url": "https://www.kali.org/tools/ike-scan/"
+    },
+    {
+      "type": "cybersecurity",
+      "language": "SIP Protocol",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/36/SIP_logo.svg",
+      "url": "https://www.kali.org/tools/sipvicious/"
+    },
+    {
+      "type": "cybersecurity",
+      "language": "VoIP Analysis",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/7/72/Wireshark_Logo.svg",
+      "url": "https://www.wireshark.org/"
+    },
+    {
+      "type": "cybersecurity",
+      "language": "System Hacking",
+      "image": "https://www.kali.org/tools/system-hacking.png",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "type": "cybersecurity",
+      "language": "Web Server Hacking",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/29/Web_Server_logo.svg",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "type": "cybersecurity",
+      "language": "Web Application Hacking",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/36/Web_application_security_logo.svg",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "type": "cybersecurity",
+      "language": "Cross-Site Scripting (XSS)",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/ad/XSS_logo.svg",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "type": "cybersecurity",
+      "language": "SQL Injection",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/6/64/SQL_Injection_logo.svg",
+      "url": "https://www.kali.org/"
+    },
+    {
+      "type": "cloud",
+      "language": "Oracle Cloud Infrastructure",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/96/Oracle_Cloud_logo.svg",
+      "url": "https://www.oracle.com/cloud/"
+    },
+    {
+      "type": "cloud",
+      "language": "Cloud Computing",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/28/Cloud_computing_logo.svg",
+      "url": "https://ieeexplore.ieee.org/xpl/topics.jsp?punumber=1000298&topic=3519"
+    },
+    {
+      "type": "cloud",
+      "language": "Data Analytics",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Data_Analytics_logo.svg",
+      "url": "https://ieeexplore.ieee.org/xpl/topics.jsp?punumber=1000298&topic=3519"
+    },
+    {
+      "type": "cloud",
+      "language": "IoT",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/45/Internet_of_things_logo.svg",
+      "url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6488907"
+    },
+    {
+      "type": "cloud",
+      "language": "Big Data",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/36/Big_Data_logo.svg",
+      "url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6687317"
+    }
+  ]
+}
