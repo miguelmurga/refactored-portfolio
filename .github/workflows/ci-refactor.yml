@@ -1,0 +1,45 @@
+name: Refactor Pipeline
+
+on:
+  push:
+    branches:
+      - refactor/*
+  pull_request:
+    branches:
+      - refactor/*
+
+jobs:
+  refactor-plan:
+    name: Refactor and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Lint code to ensure quality
+      - name: Run Linter
+        run: npm run lint
+
+      # Step 5: Test the project
+      - name: Run Unit Tests
+        run: npm run test
+
+      # Step 6: Build the project to validate changes
+      - name: Build for Refactoring Validation
+        run: npm run build
+
+      # Step 7: Output status for tracking
+      - name: Refactor Checklist
+        run: echo "Refactor progress tracked for this branch"
