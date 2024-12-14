@@ -1,0 +1,34 @@
+# Azure DevOps Pipeline for Nuxt 3
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  NODE_VERSION: '18'  # Define the Node.js version
+  OUTPUT_DIR: '.output/public'  # Nuxt 3 build output directory
+
+steps:
+# Step 1: Install Node.js
+- task: UseNode@2
+  inputs:
+    version: $(NODE_VERSION)
+
+# Step 2: Install dependencies
+- script: |
+    npm install
+  displayName: 'Install dependencies'
+
+# Step 3: Build the Nuxt 3 project
+- script: |
+    npm run build
+  displayName: 'Build Nuxt 3 project'
+
+# Step 4: Deploy to Azure Static Web Apps
+- task: AzureStaticWebApp@0
+  inputs:
+    app_location: '/'
+    output_location: $(OUTPUT_DIR)
+    azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN)
+  displayName: 'Deploy to Azure Static Web Apps'
