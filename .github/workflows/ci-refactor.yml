@@ -1,45 +1,41 @@
-name: Refactor Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
-      - refactor/*
+      - imported-changes
   pull_request:
     branches:
-      - refactor/*
+      - imported-changes
 
 jobs:
-  refactor-plan:
-    name: Refactor and Test
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # Step 3: Install dependencies
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm install
 
-      # Step 4: Lint code to ensure quality
       - name: Run Linter
         run: npm run lint
 
-      # Step 5: Test the project
-      - name: Run Unit Tests
-        run: npm run test
+      - name: Run Tests
+        run: npm test
 
-      # Step 6: Build the project to validate changes
-      - name: Build for Refactoring Validation
+      - name: Build Project
         run: npm run build
 
-      # Step 7: Output status for tracking
-      - name: Refactor Checklist
-        run: echo "Refactor progress tracked for this branch"
+      - name: Deploy to Server
+        if: success()
+        run: |
+          # Comandos para desplegar la aplicación
+          # Por ejemplo, usando rsync o scp para transferir archivos al servidor
+          # ssh para reiniciar servicios, etc.
