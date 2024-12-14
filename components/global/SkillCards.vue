@@ -13,7 +13,7 @@
             <img
                 :src="item.image || '/img/static.jpg'"
                 alt="Skill Image"
-                class="object-cover w-full h-full"
+                class="object-cover w-auto h-auto"
             />
           </div>
           <h1 class="text-lg font-bold mt-3">{{ item.language }}</h1>
