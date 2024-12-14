@@ -88,7 +88,7 @@
         <div class="mt-4 space-y-2">
           <NuxtLink
               to="/"
-              class="block py-2 px-4 flex items-center space-x-2 rounded-full hover:bg-blue-100"
+              class=" py-2 px-4 flex items-center space-x-2 rounded-full hover:bg-blue-100"
               :class="{ 'text-blue-500': $route.path === '/' }"
               @click="isOpen = false"
           >
@@ -97,7 +97,7 @@
           </NuxtLink>
           <NuxtLink
               to="/aboutMe"
-              class="block py-2 px-4 flex items-center space-x-2 rounded-full hover:bg-blue-100"
+              class=" py-2 px-4 flex items-center space-x-2 rounded-full hover:bg-blue-100"
               :class="{ 'text-blue-500': $route.path === '/aboutMe' }"
               @click="isOpen = false"
           >
@@ -106,7 +106,7 @@
           </NuxtLink>
           <NuxtLink
               to="/projects"
-              class="block py-2 px-4 flex items-center space-x-2 rounded-full hover:bg-blue-100"
+              class=" py-2 px-4 flex items-center space-x-2 rounded-full hover:bg-blue-100"
               :class="{ 'text-blue-500': $route.path === '/projects' }"
               @click="isOpen = false"
           >
@@ -115,7 +115,7 @@
           </NuxtLink>
           <NuxtLink
               to="/contactMe"
-              class="block py-2 px-4 flex items-center space-x-2 rounded-full hover:bg-blue-100"
+              class=" py-2 px-4 flex items-center space-x-2 rounded-full hover:bg-blue-100"
               :class="{ 'text-blue-500': $route.path === '/contactMe' }"
               @click="isOpen = false"
           >
