@@ -2,7 +2,7 @@
   "welcome": "Welcome",
   "home": "Home",
   "shop": "Shop",
-  "aboutUs": "About Us",
+  "aboutMe": "About Me",
   "playCourseAudio": "Listen about",
   "pauseCourseAudio": "Stop",
   "application": "Enroll",
@@ -12,6 +12,8 @@
   "educationalOffer": "Educational Offer",
   "seeVideoButton": "See Video",
   "videos": "Videos",
-  "accept": "Accept"
+  "portfolio": "Portfolio",
+  "projects": "Projects",
+  "contactMe": "Contact me"
 }
 

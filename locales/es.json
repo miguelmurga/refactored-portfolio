@@ -2,7 +2,7 @@
   "welcome": "Bienvenido",
   "home": "Inicio",
   "shop": "Tienda",
-  "aboutUs": "Sobre Nosotros",
+  "aboutMe": "Sobre Mí",
   "stores": "Tiendas",
   "profile": "Perfil",
   "business": "Negocios",
@@ -13,5 +13,8 @@
   "seeVideoButton": "Ver Video",
   "videos": "Videos",
   "cookieConsent": "Este sitio utiliza cookies para mejorar la experiencia del usuario. Al hacer clic en aceptar, usted consiente el uso de todas las cookies.",
-  "accept": "Aceptar"
+  "accept": "Aceptar",
+  "portfolio": "Portafolio",
+  "projects": "Proyectos",
+  "contactMe": "Contacta conmigo"
 }
