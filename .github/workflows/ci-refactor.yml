@@ -1,41 +1,42 @@
-name: CI/CD Pipeline
+name: Azure Static Web Apps CI/CD
 
 on:
   push:
     branches:
-      - imported-changes
+      - setup-refactor-pipeline
   pull_request:
+    types: [opened, synchronize, reopened]
     branches:
-      - imported-changes
+      - setup-refactor-pipeline
 
 jobs:
-  build:
+  build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      # Step 1: Checkout the code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      # Step 2: Set up Node.js
+      - name: Set up Node.js environment
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name: Install Dependencies
+      # Step 3: Install dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: Run Linter
-        run: npm run lint
-
-      - name: Run Tests
-        run: npm test
-
-      - name: Build Project
+      # Step 4: Build the project
+      - name: Build Nuxt 3 project
         run: npm run build
 
-      - name: Deploy to Server
-        if: success()
-        run: |
-          # Comandos para desplegar la aplicación
-          # Por ejemplo, usando rsync o scp para transferir archivos al servidor
-          # ssh para reiniciar servicios, etc.
+      # Step 5: Deploy to Azure Static Web Apps
+      - name: Deploy to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          app_location: "/"
+          output_location: ".output/public"
+          api_location: ""
