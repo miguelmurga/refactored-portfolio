@@ -1,0 +1,29 @@
+trigger:
+- imported-changes  # Rama que activará el pipeline
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UseNode@1
+  inputs:
+    version: '16.x'  # Cambia si usas otra versión de Node.js
+  displayName: 'Instalar Node.js'
+
+- script: |
+    npm install
+  displayName: 'Instalar dependencias'
+
+- script: |
+    npm run build
+  displayName: 'Construir la aplicación'
+
+- script: |
+    npm run generate
+  displayName: 'Generar archivos estáticos'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '.output/public'
+    artifactName: 'nuxt-app'
+  displayName: 'Publicar artefactos'
