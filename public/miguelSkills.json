@@ -3,7 +3,8 @@
     {
       "language": "JavaScript",
       "image": "https://cdn.svgporn.com/logos/javascript.svg",
-      "url": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+      "url": "https://developer.mozilla.org/es/docs/Web/JavaScript",
+      "description" : ""
     },
     {
       "language": "TypeScript",

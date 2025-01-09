@@ -1,0 +1,204 @@
+{
+  "en": {
+    "techSkills": [
+      {
+        "language": "JavaScript",
+        "description": "A versatile programming language primarily used for creating interactive elements on websites and web applications. It is the core of web development and integrates seamlessly with frameworks like Vue.js and libraries like Node.js.",
+        "image": "https://cdn.svgporn.com/logos/javascript.svg",
+        "url": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+      },
+      {
+        "language": "TypeScript",
+        "description": "A superset of JavaScript that introduces static typing, making it ideal for large-scale applications and ensuring code quality and maintainability.",
+        "image": "https://cdn.svgporn.com/logos/typescript-icon.svg",
+        "url": "https://www.typescriptlang.org/"
+      },
+      {
+        "language": "Node.js",
+        "description": "A runtime environment that allows developers to execute JavaScript code outside of a web browser, widely used for building server-side and scalable network applications.",
+        "image": "https://cdn.svgporn.com/logos/nodejs-icon.svg",
+        "url": "https://nodejs.org"
+      },
+      {
+        "language": "Vue.js",
+        "description": "A progressive JavaScript framework used for building user interfaces and single-page applications, offering a component-based architecture.",
+        "image": "https://cdn.svgporn.com/logos/vue.svg",
+        "url": "https://v3.vuejs.org/"
+      },
+      {
+        "language": "Nuxt.js",
+        "description": "A powerful framework built on top of Vue.js, designed for server-side rendering, static site generation, and building complex, scalable applications.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/6/66/Nuxt_logo_%282021%29.svg",
+        "url": "https://nuxtjs.org/"
+      },
+      {
+        "language": "Pinia",
+        "description": "A state management library for Vue.js that simplifies state handling with a modern and intuitive API.",
+        "image": "https://pinia.vuejs.kr/logo.png",
+        "url": "https://pinia.vuejs.org/"
+      },
+      {
+        "language": "Elixir",
+        "description": "A functional, concurrent programming language designed for building scalable and maintainable applications, often used in distributed systems.",
+        "image": "https://elixir-lang.org/images/logo/logo.png",
+        "url": "https://elixir-lang.org/"
+      },
+      {
+        "language": "Python",
+        "description": "A high-level programming language known for its simplicity and versatility. It is widely used in web development, data science, machine learning, and scripting.",
+        "image": "https://cdn.svgporn.com/logos/python.svg",
+        "url": "https://www.python.org/"
+      },
+      {
+        "language": "Django",
+        "description": "A high-level Python web framework that promotes rapid development and clean, pragmatic design.",
+        "image": "https://cdn.svgporn.com/logos/django.svg",
+        "url": "https://www.djangoproject.com/"
+      },
+      {
+        "language": "HTML",
+        "description": "The standard markup language used for creating web pages, forming the structure of web content.",
+        "image": "https://cdn.svgporn.com/logos/html-5.svg",
+        "url": "https://developer.mozilla.org/es/docs/Web/HTML"
+      },
+      {
+        "language": "CSS",
+        "description": "A stylesheet language used for describing the presentation of a document written in HTML or XML, including colors, layout, and fonts.",
+        "image": "https://cdn.svgporn.com/logos/css-3.svg",
+        "url": "https://developer.mozilla.org/es/docs/Web/CSS"
+      },
+      {
+        "language": "Tailwind CSS",
+        "description": "A utility-first CSS framework that simplifies styling by providing pre-built classes, enabling faster and more consistent design.",
+        "image": "https://cdn.svgporn.com/logos/tailwindcss-icon.svg",
+        "url": "https://tailwindcss.com/"
+      },
+      {
+        "language": "Git",
+        "description": "A distributed version control system that tracks changes in code, enabling collaboration, versioning, and code management.",
+        "image": "https://cdn.svgporn.com/logos/git-icon.svg",
+        "url": "https://git-scm.com/"
+      },
+      {
+        "language": "GitHub",
+        "description": "A web-based platform for version control and collaboration, enabling developers to manage and share their code repositories.",
+        "image": "https://cdn.svgporn.com/logos/github-icon.svg",
+        "url": "https://github.com/"
+      },
+      {
+        "language": "MySQL",
+        "description": "A widely used open-source relational database management system, known for its reliability and ease of use in data storage and management.",
+        "image": "https://cdn.svgporn.com/logos/mysql.svg",
+        "url": "https://www.mysql.com/"
+      },
+      {
+        "language": "PostgreSQL",
+        "description": "An advanced, open-source relational database system renowned for its performance and extensibility in managing complex queries.",
+        "image": "https://cdn.svgporn.com/logos/postgresql.svg",
+        "url": "https://www.postgresql.org/"
+      }
+    ],
+    "itSkills": [
+      {
+        "language": "Internet of Things (IoT)",
+        "description": "The interconnection of physical devices to the internet, enabling them to send, receive, and process data.",
+        "url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6488907"
+      },
+      {
+        "language": "Machine Learning",
+        "description": "A field of artificial intelligence that uses algorithms and statistical models to enable computers to improve at tasks through experience.",
+        "url": "https://ieeexplore.ieee.org/xpl/topics.jsp?punumber=1000007&topic=3519"
+      },
+      {
+        "language": "Artificial Intelligence (AI)",
+        "description": "The simulation of human intelligence processes by machines, especially computer systems, to perform tasks such as reasoning, learning, and self-correction.",
+        "url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8782664"
+      },
+      {
+        "language": "Big Data",
+        "description": "Large and complex data sets that traditional data-processing software cannot manage, analyzed for insights and informed decision-making.",
+        "url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6687317"
+      },
+      {
+        "language": "Cybersecurity",
+        "description": "The practice of protecting systems, networks, and programs from digital attacks, ensuring data integrity, confidentiality, and availability.",
+        "url": "https://ieeexplore.ieee.org/xpl/topics.jsp?punumber=1000298&topic=3519"
+      },
+      {
+        "language": "Cloud Computing",
+        "description": "The on-demand delivery of IT resources over the internet, offering scalable and flexible solutions for data storage and processing.",
+        "url": "https://ieeexplore.ieee.org/xpl/topics.jsp?punumber=1000298&topic=3519"
+      }
+    ],
+    "dataScienceSkills": [
+      {
+        "language": "Pandas",
+        "description": "A powerful Python library for data manipulation and analysis, often used in machine learning pipelines.",
+        "image": "https://cdn.svgporn.com/logos/pandas.svg",
+        "url": "https://pandas.pydata.org/"
+      },
+      {
+        "language": "NumPy",
+        "description": "A library for the Python programming language, adding support for large, multi-dimensional arrays and matrices, along with a collection of mathematical functions.",
+        "image": "https://cdn.svgporn.com/logos/numpy.svg",
+        "url": "https://numpy.org/"
+      },
+      {
+        "language": "Scikit-learn",
+        "description": "A free software machine learning library for the Python programming language, featuring various classification, regression, and clustering algorithms.",
+        "image": "https://analyticsdrift.com/wp-content/uploads/2021/04/Scikit-learn-free-course.jpg",
+        "url": "https://scikit-learn.org/stable/"
+      },
+      {
+        "language": "Jupyter",
+        "description": "An open-source tool that allows developers to create and share live code, equations, visualizations, and narrative text.",
+        "image": "https://cdn.svgporn.com/logos/jupyter.svg",
+        "url": "https://jupyter.org/"
+      },
+      {
+        "language": "Matplotlib",
+        "description": "A comprehensive library for creating static, animated, and interactive visualizations in Python.",
+        "image": "https://cdn.svgporn.com/logos/matplotlib.svg",
+        "url": "https://matplotlib.org/"
+      },
+      {
+        "language": "OpenAI API",
+        "description": "A powerful API for accessing OpenAI’s AI models, useful for tasks like natural language processing and data analysis.",
+        "image": "https://www.presse-citron.net/app/uploads/2019/07/open-ai.jpg",
+        "url": "https://beta.openai.com/"
+      }
+    ],
+    "cybersecuritySkills": [
+      {
+        "language": "Nmap",
+        "description": "A free and open-source network scanner used to discover hosts and services on a computer network.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Nmap_logo.svg/1200px-Nmap_logo.svg.png",
+        "url": "https://nmap.org/"
+      },
+      {
+        "language": "Wireshark",
+        "description": "A widely used network protocol analyzer that allows users to see what’s happening on their network at a microscopic level.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Wireshark_Logo.svg",
+        "url": "https://www.wireshark.org/"
+      },
+      {
+        "language": "Flipper Zero",
+        "description": "A versatile tool for penetration testers, enabling the testing of hardware protocols and network security.",
+        "image": "https://flipperzero.one/assets/logo.png",
+        "url": "https://flipperzero.one/"
+      },
+      {
+        "language": "Kali Linux",
+        "description": "A Debian-based Linux distribution designed for digital forensics and penetration testing.",
+        "image": "https://www.kali.org/images/kali-dragon-icon.svg",
+        "url": "https://www.kali.org/"
+      },
+      {
+        "language": "Burp Suite",
+        "description": "An integrated platform for performing web application security testing.",
+        "image": "https://portswigger.net/cms/images/4f/6b/1b8c-badge-480x480.png",
+        "url": "https://portswigger.net/burp"
+      }
+    ]
+  }
+}
