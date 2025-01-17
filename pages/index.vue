@@ -18,7 +18,7 @@
         Hello, I'm Miguel Murga
       </h1>
       <p class="text-lg font-medium">
-        Developer | CEH | Data Scientist
+        Developer | CEH | Generative AI Professional
       </p>
     </header>
 
@@ -115,7 +115,7 @@
         ? 'bg-blue-500 hover:bg-blue-600 text-white'
         : 'bg-blue-600 hover:bg-blue-700 text-white'"
         >
-          {{ $t('Close') }}
+          {{ $t('close') }}
         </button>
       </div>
     </UModal>
@@ -139,7 +139,7 @@ async function fetchSkills() {
   skillCategories.value = {
     "Web Development": data.techSkills,
     CEH: data.itSkills,
-    "Data Science": data.dataScienceSkills,
+    "Generative AI": data.dataScienceSkills,
   };
 }
 

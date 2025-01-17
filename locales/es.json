@@ -1,5 +1,6 @@
 {
   "welcome": "Bienvenido",
+  "close": "Cerrar",
   "home": "Inicio",
   "shop": "Tienda",
   "aboutMe": "Sobre Mí",
@@ -72,5 +73,5 @@
   "Jupyter": "Permite la experimentación y el intercambio de código, visualizaciones e ideas.",
   "Matplotlib": "Ayuda a crear visualizaciones claras para análisis y presentaciones de datos.",
   "OpenAI API": "Proporciona acceso a modelos de lenguaje de última generación para tareas de procesamiento del lenguaje natural."
-
 }
+

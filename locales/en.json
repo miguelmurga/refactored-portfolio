@@ -1,5 +1,6 @@
 {
   "welcome": "Welcome",
+  "close": "Close",
   "home": "Home",
   "shop": "Shop",
   "aboutMe": "About Me",
@@ -71,4 +72,5 @@
   "MySQL": "Manages structured data storage and retrieval, essential for database-driven applications.",
   "PostgreSQL": "Handles complex queries and large datasets, improving database performance in projects."
 }
+
 
