@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/ui', '@nuxtjs/i18n', '@pinia/nuxt'],
   ui: {
-    global: true, // Para que Nuxt UI administre el tema globalmente
+    global: true,
   },
   colorMode: {
     classSuffix: '',
