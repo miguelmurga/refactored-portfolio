@@ -15,9 +15,12 @@
     "@nuxtjs/i18n": "^8.5.5",
     "@pinia/nuxt": "^0.5.4",
     "glob": "^11.0.1",
-    "nuxt": "^3.15.1",
+    "nuxt": "3.15.4",
     "pinia": "^2.2.2",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.11"
   }
 }
