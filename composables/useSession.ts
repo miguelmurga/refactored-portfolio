@@ -2,6 +2,5 @@
 import { useSessionStore } from '~/stores/session'
 
 export const useSession = () => {
-    const sessionStore = useSessionStore()
-    return sessionStore
+    return useSessionStore()
 }

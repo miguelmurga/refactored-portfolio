@@ -72,6 +72,15 @@
   "Scikit-learn": "Ofrece herramientas para construir y evaluar modelos de aprendizaje automático.",
   "Jupyter": "Permite la experimentación y el intercambio de código, visualizaciones e ideas.",
   "Matplotlib": "Ayuda a crear visualizaciones claras para análisis y presentaciones de datos.",
-  "OpenAI API": "Proporciona acceso a modelos de lenguaje de última generación para tareas de procesamiento del lenguaje natural."
+  "OpenAI API": "Proporciona acceso a modelos de lenguaje de última generación para tareas de procesamiento del lenguaje natural.",
+  "index": {
+    "welcome_back": "¡Bienvenido de nuevo! Tu token de sesión ha sido verificado.",
+    "first_time": "Hola, parece que es la primera vez que entras."
+  },
+  "projects_page": {
+    "session_notice": "La cookie de sesión ha sido almacenada junto con tus conversaciones con el bot. Estos registros se mantienen con fines de práctica para asegurar la privacidad y seguridad de tus datos. Me reservo el derecho de revisar estas conversaciones, así que ten en cuenta la privacidad de tu información.",
+    "dismiss": "Cerrar",
+    "title": "Proyectos"
+  }
 }
 

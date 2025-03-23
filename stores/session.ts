@@ -18,9 +18,9 @@ export const useSessionStore = defineStore('session', {
                 const storedToken = localStorage.getItem('sessionToken')
                 if (storedToken) {
                     this.token = storedToken
-                    console.log("Bienvenido de nuevo! Session token loaded:", storedToken)
+                    console.log("Welcome back! Session token loaded:", storedToken)
                 } else {
-                    console.log("Hola, veo que es tu primera vez aquí.")
+                    console.log("Hello, looks like it's your first time here.")
                 }
             }
         },
@@ -31,13 +31,14 @@ export const useSessionStore = defineStore('session', {
                 })
                 if (data?.session_id) {
                     this.setToken(data.session_id)
-                    console.log("Hola, veo que es tu primera vez aquí. Nuevo token creado:", data.session_id)
+                    console.log("Hello, looks like it's your first time here. New token created:", data.session_id)
                 } else {
-                    console.error("No se recibió 'session_id' en la respuesta:", data)
+                    console.error("No 'session_id' received in response:", data)
                 }
             } catch (error) {
-                console.error('Error al crear la sesión:', error)
+                console.error('Error creating session:', error)
             }
         }
     }
 })
+

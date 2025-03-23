@@ -70,7 +70,16 @@
   "Git": "Enables version control and seamless collaboration, crucial for managing project iterations.",
   "GitHub": "Provides a platform to manage code repositories and collaborate with teams effectively.",
   "MySQL": "Manages structured data storage and retrieval, essential for database-driven applications.",
-  "PostgreSQL": "Handles complex queries and large datasets, improving database performance in projects."
+  "PostgreSQL": "Handles complex queries and large datasets, improving database performance in projects.",
+  "index": {
+    "welcome_back": "Welcome back! Your session token has been verified.",
+    "first_time": "Hello, looks like it's your first time here."
+  },
+  "projects_page": {
+    "session_notice": "Your session cookie has been stored along with your bot conversations. These records are kept for practice purposes to ensure data privacy and security. I reserve the right to review these conversations, so please be mindful of your data privacy.",
+    "dismiss": "Dismiss",
+    "title": "Projects"
+  }
 }
 
 
