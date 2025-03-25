@@ -38,7 +38,7 @@
           >
             {{ category }}
           </h2>
-          <div v-for="item in skills" :key="item.language" class="mb-4">
+          <div v-for="(item, index) in skills" :key="index" class="mb-4">
             <div
                 class="flex items-center space-x-4 cursor-pointer p-2 rounded-lg transition-colors group"
                 :class="isDark ? 'hover:bg-gray-600' : 'hover:bg-gray-300'"
@@ -88,12 +88,12 @@
             class="text-2xl font-bold"
             :class="isDark ? 'text-blue-400' : 'text-blue-600'"
         >
-          {{ currentItem?.language || $t('Skill Details') }}
+          {{ currentItem?.language || 'Skill Details' }}
         </h2>
 
         <!-- Descripción -->
         <p v-if="currentItem?.language" class="mt-4">
-          {{ $t(currentItem.language) }}
+          {{ currentItem.language }}
         </p>
 
         <!-- Enlace -->
@@ -104,7 +104,7 @@
             class="mt-4 underline block"
             :class="isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-500'"
         >
-          {{ $t('Visit Documentation') }}
+          Visit Documentation
         </a>
 
         <!-- Botón de cerrar -->
@@ -115,7 +115,7 @@
         ? 'bg-blue-500 hover:bg-blue-600 text-white'
         : 'bg-blue-600 hover:bg-blue-700 text-white'"
         >
-          {{ $t('close') }}
+          close
         </button>
       </div>
     </UModal>
@@ -124,9 +124,20 @@
 </template>
 
 <script setup lang="ts">
-const skillCategories = ref({});
+// Define interfaces for type safety
+interface Skill {
+  language: string;
+  image?: string;
+  url?: string;
+}
+
+interface SkillCategories {
+  [key: string]: Skill[];
+}
+
+const skillCategories = ref<SkillCategories>({});
 const modalOpen = ref(false);
-const currentItem = ref(null);
+const currentItem = ref<Skill | null>(null);
 const colorMode = useColorMode();
 const isDark = computed(() => colorMode.value === "dark");
 
@@ -144,7 +155,7 @@ async function fetchSkills() {
 }
 
 // Handle item click to open modal
-function handleItemClick(item) {
+function handleItemClick(item: Skill) {
   currentItem.value = item;
   modalOpen.value = true;
 }
