@@ -76,9 +76,30 @@
     "first_time": "Hello, looks like it's your first time here."
   },
   "projects_page": {
-    "session_notice": "Your session cookie has been stored along with your bot conversations. These records are kept for practice purposes to ensure data privacy and security. I reserve the right to review these conversations, so please be mindful of your data privacy.",
+    "session_notice": "Your conversations and session cookie are stored for practice purposes and may be reviewed. Think carefully about what you share. Want to secure your data privacy in AI? Contact me.",
     "dismiss": "Dismiss",
     "title": "Projects"
+  },
+
+  "sections": {
+    "chatbot_cyber": "Cybersecurity Chatbot",
+    "chatbot_cyber_desc": "Interact with a chatbot specialized in cybersecurity.",
+    "chatbot_llms": "LLMs Chatbot",
+    "chatbot_llms_desc": "Get insights from a chatbot focused on LLMs.",
+    "db_query_agent": "Database Query Agent",
+    "db_query_agent_desc": "Query your database using natural language.",
+    "photos_journey": "Photos of My Journey",
+    "photos_journey_desc": "View a collection of milestone photos from my career.",
+    "integrate_whisper": "Integrate Whisper",
+    "integrate_whisper_desc": "Experience seamless audio transcription with Whisper.",
+    "youtube_videos": "YouTube Videos",
+    "youtube_videos_desc": "Watch curated videos highlighting key projects.",
+    "conversation_history": "Conversation History",
+    "conversation_history_desc": "Access the historical record of your chatbot conversations.",
+    "generative_ai_business": "Generative AI for Your Business",
+    "generative_ai_business_desc": "Discover how generative AI can transform your business.",
+    "learn_english": "Learn English",
+    "learn_english_desc": "Visit CIEX to learn English with expert guidance."
   }
 }
 

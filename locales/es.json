@@ -78,9 +78,29 @@
     "first_time": "Hola, parece que es la primera vez que entras."
   },
   "projects_page": {
-    "session_notice": "La cookie de sesión ha sido almacenada junto con tus conversaciones con el bot. Estos registros se mantienen con fines de práctica para asegurar la privacidad y seguridad de tus datos. Me reservo el derecho de revisar estas conversaciones, así que ten en cuenta la privacidad de tu información.",
+    "session_notice": "Tus conversaciones y cookie de sesión se almacenan con fines prácticos y pueden ser revisadas. Piensa bien la información que compartes. ¿Buscas proteger la privacidad de tus datos en IA? Contáctame.",
     "dismiss": "Cerrar",
     "title": "Proyectos"
+  },
+  "sections": {
+    "chatbot_cyber": "Chatbot Ciber seguridad",
+    "chatbot_cyber_desc": "Interactúa con un chatbot especializado en ciberseguridad.",
+    "chatbot_llms": "Chatbot sobre LLMs",
+    "chatbot_llms_desc": "Obtén información de un chatbot enfocado en LLMs.",
+    "db_query_agent": "Agente de consulta a una DB",
+    "db_query_agent_desc": "Consulta tu base de datos usando lenguaje natural.",
+    "photos_journey": "Fotos de mi trayectoria",
+    "photos_journey_desc": "Mira una colección de fotos clave de mi carrera profesional.",
+    "integrate_whisper": "Integrar Whisper",
+    "integrate_whisper_desc": "Experimenta la transcripción de audio de forma integrada con Whisper.",
+    "youtube_videos": "Videos de Youtube",
+    "youtube_videos_desc": "Visualiza videos seleccionados que destacan mis proyectos.",
+    "conversation_history": "Histórico de conversaciones",
+    "conversation_history_desc": "Accede al registro de tus conversaciones con el bot.",
+    "generative_ai_business": "Integra la IA generativa a tu negocio",
+    "generative_ai_business_desc": "Descubre cómo la IA generativa puede transformar tu negocio.",
+    "learn_english": "Aprende inglés",
+    "learn_english_desc": "Visita CIEX y aprende inglés con expertos."
   }
 }
 
