@@ -21,7 +21,10 @@
         Developer | CEH | Generative AI Professional
       </p>
     </header>
-    <SessionWelcome />
+
+    <!-- Optional SessionWelcome component - comment it out if causing issues -->
+    <SessionWelcome v-if="false" />
+
     <!-- Skills Section -->
     <main class="flex-grow px-4 mt-10">
       <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 max-w-screen-lg mx-auto">
@@ -29,7 +32,7 @@
         <div
             v-for="(skills, category) in skillCategories"
             :key="category"
-            class="p-6 border rounded-xl shadow-lg transition-all transform hover:scale-105 overflow-y-auto max-h-60"
+            class="p-6 border rounded-xl shadow-lg transition-all transform hover:scale-105 overflow-y-auto max-h-96"
             :class="isDark ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-200 border-gray-300'"
         >
           <h2
@@ -38,7 +41,7 @@
           >
             {{ category }}
           </h2>
-          <div v-for="(item, index) in skills" :key="index" class="mb-4">
+          <div v-for="item in skills" :key="item.language" class="mb-4">
             <div
                 class="flex items-center space-x-4 cursor-pointer p-2 rounded-lg transition-colors group"
                 :class="isDark ? 'hover:bg-gray-600' : 'hover:bg-gray-300'"
@@ -67,6 +70,7 @@
                     target="_blank"
                     class="text-sm underline"
                     :class="isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-500'"
+                    @click.stop
                 >
                   Documentation
                 </a>
@@ -88,12 +92,12 @@
             class="text-2xl font-bold"
             :class="isDark ? 'text-blue-400' : 'text-blue-600'"
         >
-          {{ currentItem?.language || 'Skill Details' }}
+          {{ currentItem?.language || $t('Skill Details') }}
         </h2>
 
         <!-- Descripción -->
         <p v-if="currentItem?.language" class="mt-4">
-          {{ currentItem.language }}
+          {{ $t(currentItem.language) }}
         </p>
 
         <!-- Enlace -->
@@ -104,7 +108,7 @@
             class="mt-4 underline block"
             :class="isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-500'"
         >
-          Visit Documentation
+          {{ $t('Visit Documentation') }}
         </a>
 
         <!-- Botón de cerrar -->
@@ -115,7 +119,7 @@
         ? 'bg-blue-500 hover:bg-blue-600 text-white'
         : 'bg-blue-600 hover:bg-blue-700 text-white'"
         >
-          close
+          {{ $t('close') }}
         </button>
       </div>
     </UModal>
@@ -124,9 +128,11 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 // Define interfaces for type safety
 interface Skill {
   language: string;
+  description?: string;
   image?: string;
   url?: string;
 }
@@ -141,21 +147,51 @@ const currentItem = ref<Skill | null>(null);
 const colorMode = useColorMode();
 const isDark = computed(() => colorMode.value === "dark");
 
+// Set up i18n if it's not already defined
+const { t } = useI18n({
+  useScope: 'global',
+  messages: {
+    en: {
+      'Skill Details': 'Skill Details',
+      'Visit Documentation': 'Visit Documentation',
+      'close': 'Close'
+    },
+    es: {
+      'Skill Details': 'Detalles de Habilidad',
+      'Visit Documentation': 'Visitar Documentación',
+      'close': 'Cerrar'
+    }
+  }
+});
+
 // Fetch skills from miguelSkills.json
 async function fetchSkills() {
-  const response = await fetch("/miguelSkills.json");
-  const data = await response.json();
+  try {
+    const response = await fetch("/miguelSkills.json");
+    if (!response.ok) {
+      console.error("Failed to fetch skills:", response.statusText);
+      return;
+    }
 
-  // Organize skills into categories
-  skillCategories.value = {
-    "Web Development": data.techSkills,
-    CEH: data.itSkills,
-    "Generative AI": data.dataScienceSkills,
-  };
+    const data = await response.json();
+    console.log("Data loaded:", data); // Debug log
+
+    // Organize skills into categories
+    skillCategories.value = {
+      "Web Development": data.techSkills || [],
+      "CEH": data.itSkills || [],
+      "Generative AI": data.dataScienceSkills || [],
+    };
+
+    console.log("Processed categories:", skillCategories.value); // Debug log
+  } catch (error) {
+    console.error("Error fetching skills:", error);
+  }
 }
 
 // Handle item click to open modal
 function handleItemClick(item: Skill) {
+  console.log("Selected item:", item); // Debug log
   currentItem.value = item;
   modalOpen.value = true;
 }
@@ -166,5 +202,7 @@ function closeModal() {
   currentItem.value = null;
 }
 
-onMounted(fetchSkills);
+onMounted(() => {
+  fetchSkills();
+});
 </script>
