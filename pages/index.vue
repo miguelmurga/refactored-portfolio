@@ -23,7 +23,7 @@
     </header>
 
     <!-- Optional SessionWelcome component - comment it out if causing issues -->
-    <SessionWelcome v-if="false" />
+    <SessionWelcome />
 
     <!-- Skills Section -->
     <main class="flex-grow px-4 mt-10">
