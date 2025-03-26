@@ -1,5 +1,4 @@
 {
-  "welcome": "Bienvenido",
   "close": "Cerrar",
   "home": "Inicio",
   "shop": "Tienda",
@@ -101,6 +100,125 @@
     "generative_ai_business_desc": "Descubre cómo la IA generativa puede transformar tu negocio.",
     "learn_english": "Aprende inglés",
     "learn_english_desc": "Visita CIEX y aprende inglés con expertos."
+  },
+  "chat": {
+    "new_chat": "Nueva conversación",
+    "search_conversations": "Buscar conversaciones",
+    "select_service": "Seleccionar servicio",
+    "select_service_to_start": "Selecciona un servicio para comenzar",
+    "select_service_description": "Elige uno de nuestros servicios de IA para iniciar una conversación",
+    "recent_conversations": "Conversaciones recientes",
+    "user_settings": "Configuración",
+    "type_message": "Escribe tu mensaje aquí...",
+    "start_conversation": "Inicia una conversación",
+    "copy": "Copiar",
+    "messages": "{count} mensajes",
+    "privacy_note": "Tus conversaciones están cifradas",
+    "confirm_delete": "Eliminar conversación",
+    "delete_confirmation": "¿Estás seguro de que quieres eliminar esta conversación? Esta acción no se puede deshacer.",
+    "powered_by_gpt4": "Impulsado por Azure OpenAI GPT-4",
+    "powered_by_gpt4_with_db": "Impulsado por Azure OpenAI GPT-4 con acceso a base de datos",
+    "powered_by_gpt4_with_kb": "Impulsado por Azure OpenAI GPT-4 con base de conocimientos",
+    "ai_assistant": "Asistente de IA",
+    "capabilities": "Capacidades"
+  },
+  "services": {
+    "cybersecurity": {
+      "name": "Chatbot de Ciberseguridad",
+      "description": "Orientación experta sobre temas de ciberseguridad, detección de amenazas y mejores prácticas"
+    },
+    "llm": {
+      "name": "Chatbot sobre LLMs",
+      "description": "Obtén información sobre modelos de lenguaje, sus capacidades y aplicaciones"
+    },
+    "db_agent": {
+      "name": "Agente de consulta a DB",
+      "description": "Consulta tu base de datos usando lenguaje natural en lugar de SQL"
+    },
+    "knowledge_base": {
+      "name": "Base de Conocimientos",
+      "description": "Accede a información y documentación de la base de conocimientos de tu organización"
+    }
+  },
+  "welcome": {
+    "cybersecurity": "¡Hola! Soy tu asistente de ciberseguridad. Puedo ayudarte con preguntas sobre mejores prácticas de seguridad, detección de amenazas, respuesta a incidentes y más. ¿Cómo puedo ayudarte hoy?",
+    "llm": "¡Bienvenido! Soy tu experto en modelos de lenguaje de IA. Puedo proporcionarte información sobre diferentes LLMs, sus arquitecturas, capacidades, limitaciones y casos de uso. ¿Qué te gustaría saber?",
+    "db_agent": "¡Hola! Puedo ayudarte a consultar tu base de datos usando lenguaje natural. Solo dime qué información estás buscando, y lo traduciré a una consulta de base de datos adecuada. ¿Qué datos te gustaría recuperar?",
+    "knowledge_base": "Bienvenido a tu asistente de base de conocimientos. Puedo ayudarte a encontrar información de la documentación, guías y recursos de tu organización. ¿Qué estás buscando hoy?"
+  },
+  "suggestions": {
+    "cybersecurity": {
+      "s1": "¿Cómo puedo protegerme contra ataques de phishing?",
+      "s2": "¿Cuáles son las mejores prácticas para la seguridad de contraseñas?",
+      "s3": "Explica la arquitectura Zero Trust",
+      "s4": "¿Cómo aseguro mi infraestructura en la nube?"
+    },
+    "llm": {
+      "s1": "¿Cuál es la diferencia entre GPT-4 y Claude?",
+      "s2": "Explica cómo funciona la arquitectura transformer",
+      "s3": "¿Para qué se utilizan los modelos de embedding?",
+      "s4": "¿Cómo puedo ajustar un LLM para mi negocio?"
+    },
+    "db_agent": {
+      "s1": "Muéstrame los 10 clientes principales por ingresos",
+      "s2": "¿Cuáles fueron nuestras ventas en Q1 comparadas con el año pasado?",
+      "s3": "¿Qué productos tienen el mayor margen de beneficio?",
+      "s4": "Muestra las métricas de rendimiento de los empleados del equipo de marketing"
+    },
+    "knowledge_base": {
+      "s1": "¿Dónde puedo encontrar nuestra política de trabajo remoto?",
+      "s2": "¿Cuál es el proceso para solicitar nuevo equipo?",
+      "s3": "Muéstrame la hoja de ruta del producto más reciente",
+      "s4": "¿Cómo envío un ticket de soporte?"
+    },
+    "default": {
+      "s1": "¿Cómo puedo ayudarte hoy?",
+      "s2": "¿Qué información estás buscando?",
+      "s3": "¿Tienes alguna pregunta para mí?",
+      "s4": "¿Qué te gustaría saber?"
+    }
+  },
+  "capabilities": {
+    "cybersecurity": {
+      "c1": "Responder preguntas sobre vulnerabilidades y amenazas de seguridad",
+      "c2": "Proporcionar orientación sobre mejores prácticas de seguridad",
+      "c3": "Ayudar con configuraciones y ajustes de seguridad",
+      "c4": "Explicar conceptos y tecnologías de seguridad"
+    },
+    "llm": {
+      "c1": "Explicar diferentes modelos de lenguaje y sus capacidades",
+      "c2": "Proporcionar información sobre arquitecturas y entrenamiento de LLM",
+      "c3": "Comparar diferentes modelos y su rendimiento",
+      "c4": "Sugerir estrategias de implementación para aplicaciones de IA"
+    },
+    "db_agent": {
+      "c1": "Convertir lenguaje natural a consultas SQL",
+      "c2": "Visualizar resultados de consultas con tablas y gráficos",
+      "c3": "Analizar tendencias y patrones en tus datos",
+      "c4": "Acceder a información a través de múltiples tablas y bases de datos"
+    },
+    "knowledge_base": {
+      "c1": "Buscar en la documentación de tu organización",
+      "c2": "Encontrar políticas, procedimientos y directrices relevantes",
+      "c3": "Acceder a información y especificaciones de productos",
+      "c4": "Recuperar información de wikis internos y bases de conocimiento"
+    }
+  },
+  "responses": {
+    "cybersecurity": "Basado en tu pregunta sobre ataques de phishing, recomiendo implementar una estrategia de defensa de múltiples capas. Primero, utiliza soluciones de filtrado de correo electrónico para bloquear mensajes sospechosos. Segundo, capacita a tus empleados para reconocer intentos de phishing a través de programas regulares de concientización de seguridad. Tercero, implementa DMARC, SPF y DKIM para verificar la autenticidad del correo electrónico. Finalmente, usa complementos de navegador que puedan detectar sitios de phishing y considera implementar una puerta de enlace de correo electrónico segura con capacidades de reescritura de URL.",
+    "llm": "Las principales diferencias entre GPT-4 y versiones anteriores son capacidades de razonamiento significativamente mejoradas, conocimiento general más amplio y mejor comprensión del contexto. GPT-4 muestra capacidades mejoradas en escritura creativa, resolución de problemas técnicos y manejo de instrucciones complejas. También demuestra mejor precisión y reducción de alucinaciones en comparación con GPT-3.5. El modelo tiene una ventana de contexto de hasta 32k tokens, lo que permite procesar documentos y conversaciones mucho más largas.",
+    "db_agent": "Basado en tu consulta sobre ventas del Q3, aquí están las 10 principales ventas por monto para el tercer trimestre:",
+    "knowledge_base": "Encontré información sobre nuestra política de trabajo remoto en el Manual del Empleado. Según la política actualizada en enero de 2023, los empleados pueden trabajar de forma remota hasta 3 días por semana con la aprobación del gerente. El trabajo remoto a tiempo completo requiere aprobación adicional del jefe de departamento. Todos los trabajadores remotos deben mantener horas de disponibilidad central de 10 am a 3 pm en su zona horaria local y asistir a reuniones virtuales de equipo según lo programado. El equipo para oficinas domésticas se puede solicitar a través del portal de TI con un paquete estándar que incluye una laptop, monitor, teclado, mouse y auriculares."
+  },
+  "time": {
+    "just_now": "Ahora mismo",
+    "minutes_ago": "hace {minutes} min",
+    "hours_ago": "hace {hours} hr"
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "close": "Cerrar"
   }
 }
 

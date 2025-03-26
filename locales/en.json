@@ -1,5 +1,4 @@
 {
-  "welcome": "Welcome",
   "close": "Close",
   "home": "Home",
   "shop": "Shop",
@@ -100,6 +99,125 @@
     "generative_ai_business_desc": "Discover how generative AI can transform your business.",
     "learn_english": "Learn English",
     "learn_english_desc": "Visit CIEX to learn English with expert guidance."
+  },
+  "chat": {
+    "new_chat": "New Chat",
+    "search_conversations": "Search conversations",
+    "select_service": "Select a service",
+    "select_service_to_start": "Select a service to start",
+    "select_service_description": "Choose one of our AI services to begin a conversation",
+    "recent_conversations": "Recent conversations",
+    "user_settings": "Settings",
+    "type_message": "Type your message here...",
+    "start_conversation": "Start a conversation",
+    "copy": "Copy",
+    "messages": "{count} messages",
+    "privacy_note": "Your conversations are encrypted",
+    "confirm_delete": "Delete conversation",
+    "delete_confirmation": "Are you sure you want to delete this conversation? This action cannot be undone.",
+    "powered_by_gpt4": "Powered by Azure OpenAI GPT-4",
+    "powered_by_gpt4_with_db": "Powered by Azure OpenAI GPT-4 with database access",
+    "powered_by_gpt4_with_kb": "Powered by Azure OpenAI GPT-4 with knowledge base",
+    "ai_assistant": "AI Assistant",
+    "capabilities": "Capabilities"
+  },
+  "services": {
+    "cybersecurity": {
+      "name": "Cybersecurity Chatbot",
+      "description": "Expert guidance on cybersecurity topics, threat detection, and best practices"
+    },
+    "llm": {
+      "name": "LLM Chatbot",
+      "description": "Get information about large language models, their capabilities, and applications"
+    },
+    "db_agent": {
+      "name": "Database Query Agent",
+      "description": "Query your database using natural language instead of SQL"
+    },
+    "knowledge_base": {
+      "name": "Knowledge Base",
+      "description": "Access information and documentation from your organization's knowledge base"
+    }
+  },
+  "welcome": {
+    "cybersecurity": "Hello! I'm your cybersecurity assistant. I can help with questions about security best practices, threat detection, incident response, and more. How can I assist you today?",
+    "llm": "Welcome! I'm your AI language model expert. I can provide information about different LLMs, their architectures, capabilities, limitations, and use cases. What would you like to know?",
+    "db_agent": "Hi there! I can help you query your database using natural language. Just tell me what information you're looking for, and I'll translate it into a proper database query. What data would you like to retrieve?",
+    "knowledge_base": "Welcome to your knowledge base assistant. I can help you find information from your organization's documentation, guides, and resources. What are you looking for today?"
+  },
+  "suggestions": {
+    "cybersecurity": {
+      "s1": "How can I protect against phishing attacks?",
+      "s2": "What are best practices for password security?",
+      "s3": "Explain zero trust architecture",
+      "s4": "How do I secure my cloud infrastructure?"
+    },
+    "llm": {
+      "s1": "What's the difference between GPT-4 and Claude?",
+      "s2": "Explain how transformer architecture works",
+      "s3": "What are embedding models used for?",
+      "s4": "How can I fine-tune an LLM for my business?"
+    },
+    "db_agent": {
+      "s1": "Show me the top 10 customers by revenue",
+      "s2": "What were our sales in Q1 compared to last year?",
+      "s3": "Which products have the highest profit margin?",
+      "s4": "Show employee performance metrics for the marketing team"
+    },
+    "knowledge_base": {
+      "s1": "Where can I find our remote work policy?",
+      "s2": "What's the process for requesting new equipment?",
+      "s3": "Show me the latest product roadmap",
+      "s4": "How do I submit a support ticket?"
+    },
+    "default": {
+      "s1": "How can I help you today?",
+      "s2": "What information are you looking for?",
+      "s3": "Do you have any questions for me?",
+      "s4": "What would you like to know?"
+    }
+  },
+  "capabilities": {
+    "cybersecurity": {
+      "c1": "Answer questions about security vulnerabilities and threats",
+      "c2": "Provide guidance on security best practices",
+      "c3": "Help with security configurations and settings",
+      "c4": "Explain security concepts and technologies"
+    },
+    "llm": {
+      "c1": "Explain different language models and their capabilities",
+      "c2": "Provide insights on LLM architectures and training",
+      "c3": "Compare different models and their performance",
+      "c4": "Suggest implementation strategies for AI applications"
+    },
+    "db_agent": {
+      "c1": "Convert natural language to SQL queries",
+      "c2": "Visualize query results with tables and charts",
+      "c3": "Analyze trends and patterns in your data",
+      "c4": "Access information across multiple tables and databases"
+    },
+    "knowledge_base": {
+      "c1": "Search through your organization's documentation",
+      "c2": "Find relevant policies, procedures, and guidelines",
+      "c3": "Access product information and specifications",
+      "c4": "Retrieve information from internal wikis and knowledge bases"
+    }
+  },
+  "responses": {
+    "cybersecurity": "Based on your question about phishing attacks, I recommend implementing a multi-layered defense strategy. First, use email filtering solutions to block suspicious messages. Second, train your employees to recognize phishing attempts through regular security awareness programs. Third, implement DMARC, SPF, and DKIM to verify email authenticity. Finally, use browser plugins that can detect phishing sites and consider deploying a secure email gateway with URL rewriting capabilities.",
+    "llm": "The main differences between GPT-4 and previous versions are significantly improved reasoning capabilities, broader general knowledge, and better understanding of context. GPT-4 shows enhanced capabilities in creative writing, technical problem-solving, and handling complex instructions. It also demonstrates better accuracy and reduced hallucinations compared to GPT-3.5. The model has a context window of up to 32k tokens, allowing it to process much longer documents and conversations.",
+    "db_agent": "Based on your query about Q3 sales, here are the top 10 sales by amount for the third quarter:",
+    "knowledge_base": "I found information about our remote work policy in the Employee Handbook. According to the policy updated in January 2023, employees can work remotely up to 3 days per week with manager approval. Full-time remote work requires additional approval from the department head. All remote workers must maintain core availability hours from 10am-3pm in their local time zone and attend virtual team meetings as scheduled. Equipment for home offices can be requested through the IT portal with a standard package including a laptop, monitor, keyboard, mouse, and headset."
+  },
+  "time": {
+    "just_now": "Just now",
+    "minutes_ago": "{minutes} min ago",
+    "hours_ago": "{hours} hr ago"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "close": "Close"
   }
 }
 
