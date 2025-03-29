@@ -1,5 +1,9 @@
 {
   "close": "Cerrar",
+  "work_in_progress_title": "Trabajo en progreso",
+  "work_in_progress_desc": "El trabajo sigue en progreso, igual que todos nosotros.",
+  "estimated_mid_april": "Esperado para mediados de abril de 2025",
+  "go_back_home": "Volver al inicio",
   "home": "Inicio",
   "shop": "Tienda",
   "aboutMe": "Sobre Mí",
