@@ -1,16 +1,33 @@
-// server/api/create-session.post.ts
-import { defineEventHandler } from 'h3'
+import jwt from 'jsonwebtoken'
 
 export default defineEventHandler(async (event) => {
-    // Usamos 127.0.0.1 para evitar problemas con IPv6 (::1)
-    const backendUrl = process.env.BACKEND_URL || 'http://127.0.0.1:8000/api/create-session/'
-    try {
-        const response = await $fetch(backendUrl, { method: 'POST' })
-        return response
-    } catch (error) {
-        console.error('Error fetching backend session endpoint:', error)
-        // Se establece el código de estado a 500 y se retorna un objeto de error
+    const config = useRuntimeConfig() // No se importa desde 'h3'; Nuxt lo inyecta automáticamente
+    const backendUrl = `${config.public.apiUrl}/create-session/`
+    const secret = config.jwtSecret  // Este debe ser "tu_clave_secreta_super_segura"
+
+    if (!secret) {
         event.res.statusCode = 500
-        return { error: 'Error connecting to backend session endpoint.' }
+        return { error: 'JWT secret is not defined in runtimeConfig.' }
+    }
+
+    // Genera el token usando el mismo secreto
+    const token = jwt.sign({ client: 'nuxt' }, secret, { expiresIn: '1h' })
+
+    try {
+        const response = await $fetch(backendUrl, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        return response
+    } catch (error: any) {
+        console.error('Error fetching backend session endpoint:', error)
+        event.res.statusCode = error?.response?.status || 500
+        return {
+            error: error?.data?.error ||
+                error?.message ||
+                'Error connecting to backend session endpoint.',
+        }
     }
 })

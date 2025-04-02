@@ -9,5 +9,10 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
-
+  runtimeConfig: {
+    jwtSecret: process.env.NUXT_JWT_SECRET, // Esto toma el valor de NUXT_JWT_SECRET
+    public: {
+      apiUrl: process.env.NUXT_API_URL,      // Esto toma el valor de NUXT_API_URL
+    },
+  },
 })
