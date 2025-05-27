@@ -8,27 +8,35 @@
       <img
           src="/img/miguel.jpg"
           alt="Miguel Murga"
-          class="rounded-full h-40 w-40 mx-auto mb-4 shadow-lg"
-          :class="isDark ? 'ring-4 ring-blue-500' : 'ring-4 ring-gray-500'"
+          class="rounded-full h-40 w-40 mx-auto mb-4 shadow-lg ring-4"
+          :class="$colorMode.value === 'dark' ? 'ring-blue-500' : 'ring-gray-500'"
       />
+
       <h1
           class="text-4xl font-extrabold mb-2 transition-all"
-          :class="isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-500'"
+          :class="$colorMode.value === 'dark' ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-500'"
       >
-        Hello, I'm Miguel Murga
+        {{ $t('intro.greeting') }}
       </h1>
-      <p class="text-lg font-medium">
-        Developer | CEH | Generative AI Professional
+
+      <p class="text-lg font-medium text-center text-gray-700 dark:text-gray-300 max-w-xl mx-auto">
+        {{ $t('intro.role1') }} | {{ $t('intro.role2') }} | {{ $t('intro.role3') }}
       </p>
+
+      <!-- Botón muy sutil debajo -->
+      <button
+          @click="lineageModalOpen = true"
+          class="mt-2 text-sm text-gray-500 hover:text-primary underline underline-offset-2 transition"
+      >
+        {{ $t('lineage.button') }}
+      </button>
     </header>
 
-    <!-- Optional SessionWelcome component - comment it out if causing issues -->
     <SessionWelcome />
 
     <!-- Skills Section -->
     <main class="flex-grow px-4 mt-10">
       <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 max-w-screen-lg mx-auto">
-        <!-- Categories -->
         <div
             v-for="(skills, category) in skillCategories"
             :key="category"
@@ -81,26 +89,21 @@
       </div>
     </main>
 
-    <!-- Modal -->
+    <!-- Modal existente -->
     <UModal v-model="modalOpen">
       <div
           class="p-6 rounded-xl shadow-xl transition-all transform"
           :class="isDark ? 'bg-gray-800 text-gray-300' : 'bg-white text-gray-900'"
       >
-        <!-- Título -->
         <h2
             class="text-2xl font-bold"
             :class="isDark ? 'text-blue-400' : 'text-blue-600'"
         >
           {{ currentItem?.language || $t('Skill Details') }}
         </h2>
-
-        <!-- Descripción -->
         <p v-if="currentItem?.language" class="mt-4">
           {{ $t(currentItem.language) }}
         </p>
-
-        <!-- Enlace -->
         <a
             v-if="currentItem?.url"
             :href="currentItem.url"
@@ -110,8 +113,6 @@
         >
           {{ $t('Visit Documentation') }}
         </a>
-
-        <!-- Botón de cerrar -->
         <button
             @click="closeModal"
             class="mt-4 py-2 px-4 rounded-lg shadow-md transition-all"
@@ -124,19 +125,56 @@
       </div>
     </UModal>
 
+    <!-- ✅ NUEVO MODAL DE LINEAGE -->
+    <UModal v-model="lineageModalOpen">
+      <UCard>
+        <template #header>
+          <h2 class="text-lg font-semibold">
+            {{ $t('lineage.title') }}
+          </h2>
+        </template>
+
+        <div class="space-y-4">
+          <UButton
+              block
+              color="blue"
+              variant="soft"
+              to="https://www.academia.edu/28750241/Exploring_challenges_in_the_process_of_young_language_learners_a_case_study_at_CIEX_?auto=download"
+              target="_blank"
+          >
+            {{ $t('lineage.miguelSecond') }}
+          </UButton>
+
+          <UButton
+              block
+              color="rose"
+              variant="soft"
+              to="https://www.youtube.com/watch?v=D1hvhTdPo5Q"
+              target="_blank"
+          >
+            {{ $t('lineage.miguelFirst') }}
+          </UButton>
+        </div>
+
+        <template #footer>
+          <UButton @click="lineageModalOpen = false">
+            {{ $t('close') }}
+          </UButton>
+        </template>
+      </UCard>
+    </UModal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-// Define interfaces for type safety
+import { useI18n } from 'vue-i18n'
+
 interface Skill {
   language: string;
   description?: string;
   image?: string;
   url?: string;
 }
-
 interface SkillCategories {
   [key: string]: Skill[];
 }
@@ -144,10 +182,11 @@ interface SkillCategories {
 const skillCategories = ref<SkillCategories>({});
 const modalOpen = ref(false);
 const currentItem = ref<Skill | null>(null);
+const lineageModalOpen = ref(false);
+
 const colorMode = useColorMode();
 const isDark = computed(() => colorMode.value === "dark");
 
-// Set up i18n if it's not already defined
 const { t } = useI18n({
   useScope: 'global',
   messages: {
@@ -164,7 +203,6 @@ const { t } = useI18n({
   }
 });
 
-// Fetch skills from miguelSkills.json
 async function fetchSkills() {
   try {
     const response = await fetch("/miguelSkills.json");
@@ -172,31 +210,22 @@ async function fetchSkills() {
       console.error("Failed to fetch skills:", response.statusText);
       return;
     }
-
     const data = await response.json();
-    console.log("Data loaded:", data); // Debug log
-
-    // Organize skills into categories
     skillCategories.value = {
       "Web Development": data.techSkills || [],
       "CEH": data.itSkills || [],
       "Generative AI": data.dataScienceSkills || [],
     };
-
-    console.log("Processed categories:", skillCategories.value); // Debug log
   } catch (error) {
     console.error("Error fetching skills:", error);
   }
 }
 
-// Handle item click to open modal
 function handleItemClick(item: Skill) {
-  console.log("Selected item:", item); // Debug log
   currentItem.value = item;
   modalOpen.value = true;
 }
 
-// Close modal
 function closeModal() {
   modalOpen.value = false;
   currentItem.value = null;

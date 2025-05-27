@@ -1,11 +1,11 @@
-<!-- components/global/SectionSelector.vue -->
+<!-- components/global/SectionSelector.vue - Project cards grid for the Projects page -->
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 gap-8 p-4">
     <div
         v-for="section in sections"
         :key="section.id"
-        @click="navigate(section.link)"
-        class="cursor-pointer"
+        @click="navigate(section.link, section)"
+        class="cursor-pointer project-card"
     >
       <div class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:translate-y-[-5px] group relative bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
         <!-- Cabecera con gradiente e icono -->
@@ -23,7 +23,7 @@
             {{ t(section.descriptionKey) }}
           </p>
           <div class="inline-flex items-center text-indigo-600 dark:text-indigo-400 text-sm font-medium">
-            Explorar
+            {{ t('common.explore') }}
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
             </svg>
@@ -37,6 +37,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const router = useRouter()
+import { useChatStore } from '~/stores/chatStore';
 
 // Función para obtener gradientes de colores basados en ID
 const getSectionGradient = (id: number) => {
@@ -111,19 +112,22 @@ const sections = ref([
     id: 1,
     titleKey: 'sections.chatbot_cyber',
     descriptionKey: 'sections.chatbot_cyber_desc',
-    link: '/chatbot-cyber',
+    link: '/chat',
+    serviceId: 'security_expert'
   },
   {
     id: 2,
     titleKey: 'sections.chatbot_llms',
     descriptionKey: 'sections.chatbot_llms_desc',
-    link: '/chatbot-cyber',
+    link: '/chat',
+    serviceId: 'ia_generativa'
   },
   {
     id: 3,
-    titleKey: 'sections.db_query_agent',
-    descriptionKey: 'sections.db_query_agent_desc',
-    link: '/chatbot-cyber',
+    titleKey: 'sections.mongodb_rag',
+    descriptionKey: 'sections.mongodb_rag_desc',
+    link: '/chat',
+    serviceId: 'rag_conversation'
   },
   {
     id: 4,
@@ -147,7 +151,7 @@ const sections = ref([
     id: 7,
     titleKey: 'sections.conversation_history',
     descriptionKey: 'sections.conversation_history_desc',
-    link: '/chatbot-cyber',
+    link: '/ai-chat',
   },
   {
     id: 8,
@@ -163,11 +167,27 @@ const sections = ref([
   }
 ])
 
-const navigate = (link: string) => {
+const navigate = (link: string, section?: any) => {
   if (link.startsWith('http')) {
-    window.open(link, '_blank')
+    window.open(link, '_blank');
+    return;
+  }
+  
+  // Si tenemos un serviceId, primero creamos una conversación
+  if (link === '/chat' && section?.serviceId) {
+    const chatStore = useChatStore();
+    
+    // Crear una nueva conversación con el servicio especificado
+    chatStore.startNewConversation(section.serviceId).then(conversationId => {
+      if (conversationId) {
+        router.push(`/chat/${conversationId}`);
+      } else {
+        // Si falla, ir a la página principal de chat
+        router.push(link);
+      }
+    });
   } else {
-    router.push(link)
+    router.push(link);
   }
 }
 </script>

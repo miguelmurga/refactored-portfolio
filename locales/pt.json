@@ -1,0 +1,268 @@
+{
+  "lineage": {
+    "button": "Ver legado",
+    "title": "Saiba mais sobre os Miguéis anteriores",
+    "miguelSecond": "Miguel Segundo (Artigo acadêmico)",
+    "miguelFirst": "Miguel Primeiro (Vídeo documental)"
+  },
+  "intro": {
+    "greeting": "Olá! Sou Miguel, o Terceiro.",
+    "role1": "Desenvolvedor",
+    "role2": "CEH",
+    "role3": "Profissional de IA Generativa"
+  },
+  "models": {
+    "title": "Modelos de Linguagem de Grande Escala",
+    "subtitle": "Documento técnico sobre IA Generativa",
+    "modalTitle": "Particularidades dos Modelos de Linguagem de Grande Escala",
+    "description": "Este documento analisa as características técnicas, arquitetônicas e funcionais dos LLMs (Large Language Models) no contexto da IA generativa."
+  },
+  "report": {
+    "title": "Aplicação de Técnicas de Hacking Ético",
+    "subtitle": "Versão web do relatório",
+    "modalTitle": "Visualizador do Relatório",
+    "description": "Este relatório documenta a aplicação prática de técnicas de hacking ético para avaliar vulnerabilidades em sistemas reais. Inclui objetivos, ferramentas utilizadas, metodologia, descobertas e conclusões.",
+    "viewOnline": "Ver relatório online",
+    "download": "Baixar PDF"
+  },
+  "close": "Fechar",
+  "work_in_progress_title": "Trabalho em andamento",
+  "work_in_progress_desc": "O trabalho continua em andamento, assim como todos nós.",
+  "estimated_mid_april": "Estimado para meados de abril de 2025",
+  "go_back_home": "Voltar para o início",
+  "home": "Início",
+  "shop": "Loja",
+  "aboutMeTitle": "Sobre Mim",
+  "stores": "Lojas",
+  "profile": "Perfil",
+  "business": "Negócios",
+  "educationalOffer": "Oferta educacional",
+  "playCourseAudio": "Ouvir áudio",
+  "pauseCourseAudio": "Parar",
+  "application": "Inscrever-se",
+  "seeVideoButton": "Ver Vídeo",
+  "videos": "Vídeos",
+  "cookieConsent": "Este site utiliza cookies para melhorar a experiência do usuário. Ao clicar em aceitar, você concorda com o uso de todos os cookies.",
+  "accept": "Aceitar",
+  "portfolio": "Portfólio",
+  "projects": "Projetos",
+  "contactMe": "Contate-me",
+  "chat": {
+    "new_chat": "Nova conversa",
+    "recent_conversations": "Conversas recentes",
+    "no_conversations_yet": "Nenhuma conversa ainda",
+    "long_conversation_title": "Conversa Extensa",
+    "long_conversation_description": "Esta conversa tem {count} mensagens. Conversas longas podem perder precisão e confiabilidade.",
+    "scientific_reference": "Referência científica",
+    "processing": "Processando...",
+    "type_message": "Digite uma mensagem...",
+    "send": "Enviar",
+    "delete_conversation": "Excluir conversa",
+    "confirm_delete": "Tem certeza de que deseja excluir esta conversa?",
+    "cancel": "Cancelar",
+    "delete": "Excluir"
+  },
+  "index": {
+    "welcome_back": "Bem-vindo de volta! Seu token de sessão foi verificado.",
+    "first_time": "Olá, parece que é a primeira vez aqui."
+  },
+  "projects_page": {
+    "session_notice": "Suas conversas e cookie de sessão são armazenados para fins práticos e podem ser revisados. Pense bem nas informações que compartilha. Procura proteger a privacidade de seus dados em IA? Entre em contato comigo.",
+    "dismiss": "Fechar",
+    "title": "Projetos"
+  },
+  "sections": {
+    "chatbot_cyber": "Chatbot de Cibersegurança",
+    "chatbot_cyber_desc": "Interaja com um chatbot especializado em cibersegurança.",
+    "chatbot_llms": "Chatbot sobre LLMs",
+    "chatbot_llms_desc": "Obtenha informações de um chatbot focado em LLMs.",
+    "db_query_agent": "Agente de consulta de BD",
+    "db_query_agent_desc": "Consulte seu banco de dados usando linguagem natural.",
+    "photos_journey": "Fotos da minha trajetória",
+    "photos_journey_desc": "Veja uma coleção de fotos importantes da minha carreira profissional.",
+    "integrate_whisper": "Integrar Whisper",
+    "integrate_whisper_desc": "Experimente a transcrição de áudio integrada com Whisper.",
+    "youtube_videos": "Vídeos do Youtube",
+    "youtube_videos_desc": "Assista a vídeos selecionados que destacam meus projetos.",
+    "conversation_history": "Histórico de conversas",
+    "conversation_history_desc": "Acesse o registro de suas conversas com o bot.",
+    "generative_ai_business": "Integre a IA generativa ao seu negócio",
+    "generative_ai_business_desc": "Descubra como a IA generativa pode transformar seu negócio.",
+    "learn_english": "Aprenda inglês",
+    "learn_english_desc": "Visite CIEX e aprenda inglês com especialistas."
+  },
+  "chat": {
+    "new_chat": "Nova conversa",
+    "search_conversations": "Buscar conversas",
+    "select_service": "Selecionar serviço",
+    "select_service_to_start": "Selecione um serviço para começar",
+    "select_service_description": "Escolha um de nossos serviços de IA para iniciar uma conversa",
+    "recent_conversations": "Conversas recentes",
+    "user_settings": "Configurações",
+    "type_message": "Digite sua mensagem aqui...",
+    "start_conversation": "Inicie uma conversa",
+    "copy": "Copiar",
+    "messages": "{count} mensagens",
+    "privacy_note": "Suas conversas são criptografadas",
+    "confirm_delete": "Excluir conversa",
+    "delete_confirmation": "Tem certeza de que deseja excluir esta conversa? Esta ação não pode ser desfeita.",
+    "powered_by_gpt4": "Desenvolvido por Azure OpenAI GPT-4",
+    "powered_by_gpt4_with_db": "Desenvolvido por Azure OpenAI GPT-4 com acesso ao banco de dados",
+    "powered_by_gpt4_with_kb": "Desenvolvido por Azure OpenAI GPT-4 com base de conhecimento",
+    "ai_assistant": "Assistente de IA",
+    "capabilities": "Capacidades"
+  },
+  "services": {
+    "cybersecurity": {
+      "name": "Chatbot de Cibersegurança",
+      "description": "Orientação especializada sobre tópicos de cibersegurança, detecção de ameaças e melhores práticas"
+    },
+    "llm": {
+      "name": "Chatbot de LLMs",
+      "description": "Obtenha informações sobre modelos de linguagem, suas capacidades e aplicações"
+    },
+    "db_agent": {
+      "name": "Agente de consulta de BD",
+      "description": "Consulte seu banco de dados usando linguagem natural em vez de SQL"
+    },
+    "knowledge_base": {
+      "name": "Base de Conhecimento",
+      "description": "Acesse informações e documentação da base de conhecimento de sua organização"
+    }
+  },
+  "welcome": {
+    "cybersecurity": "Olá! Sou seu assistente de cibersegurança. Posso ajudar com perguntas sobre melhores práticas de segurança, detecção de ameaças, resposta a incidentes e muito mais. Como posso ajudá-lo hoje?",
+    "llm": "Bem-vindo! Sou seu especialista em modelos de linguagem de IA. Posso fornecer informações sobre diferentes LLMs, suas arquiteturas, capacidades, limitações e casos de uso. O que você gostaria de saber?",
+    "db_agent": "Olá! Posso ajudá-lo a consultar seu banco de dados usando linguagem natural. Apenas me informe quais informações você está buscando, e traduzirei isso para uma consulta de banco de dados adequada. Quais dados você gostaria de recuperar?",
+    "knowledge_base": "Bem-vindo ao seu assistente de base de conhecimento. Posso ajudá-lo a encontrar informações da documentação, guias e recursos de sua organização. O que você está procurando hoje?"
+  },
+  "suggestions": {
+    "cybersecurity": {
+      "s1": "Como posso me proteger contra ataques de phishing?",
+      "s2": "Quais são as melhores práticas para segurança de senhas?",
+      "s3": "Explique a arquitetura Zero Trust",
+      "s4": "Como proteger minha infraestrutura na nuvem?"
+    },
+    "llm": {
+      "s1": "Qual é a diferença entre GPT-4 e Claude?",
+      "s2": "Explique como funciona a arquitetura transformer",
+      "s3": "Para que são usados os modelos de embedding?",
+      "s4": "Como posso ajustar um LLM para o meu negócio?"
+    },
+    "db_agent": {
+      "s1": "Mostre-me os 10 principais clientes por receita",
+      "s2": "Quais foram nossas vendas no Q1 em comparação com o ano passado?",
+      "s3": "Quais produtos têm a maior margem de lucro?",
+      "s4": "Mostre as métricas de desempenho dos funcionários da equipe de marketing"
+    },
+    "knowledge_base": {
+      "s1": "Onde posso encontrar nossa política de trabalho remoto?",
+      "s2": "Qual é o processo para solicitar novos equipamentos?",
+      "s3": "Mostre-me o roteiro mais recente do produto",
+      "s4": "Como envio um ticket de suporte?"
+    },
+    "default": {
+      "s1": "Como posso ajudá-lo hoje?",
+      "s2": "Que informações você está procurando?",
+      "s3": "Você tem alguma pergunta para mim?",
+      "s4": "O que você gostaria de saber?"
+    }
+  },
+  "capabilities": {
+    "cybersecurity": {
+      "c1": "Responder perguntas sobre vulnerabilidades e ameaças de segurança",
+      "c2": "Fornecer orientação sobre melhores práticas de segurança",
+      "c3": "Ajudar com configurações e ajustes de segurança",
+      "c4": "Explicar conceitos e tecnologias de segurança"
+    },
+    "llm": {
+      "c1": "Explicar diferentes modelos de linguagem e suas capacidades",
+      "c2": "Fornecer informações sobre arquiteturas e treinamento de LLM",
+      "c3": "Comparar diferentes modelos e seu desempenho",
+      "c4": "Sugerir estratégias de implementação para aplicações de IA"
+    },
+    "db_agent": {
+      "c1": "Converter linguagem natural para consultas SQL",
+      "c2": "Visualizar resultados de consultas com tabelas e gráficos",
+      "c3": "Analisar tendências e padrões em seus dados",
+      "c4": "Acessar informações em várias tabelas e bancos de dados"
+    },
+    "knowledge_base": {
+      "c1": "Pesquisar na documentação de sua organização",
+      "c2": "Encontrar políticas, procedimentos e diretrizes relevantes",
+      "c3": "Acessar informações e especificações de produtos",
+      "c4": "Recuperar informações de wikis internos e bases de conhecimento"
+    }
+  },
+  "responses": {
+    "cybersecurity": "Com base na sua pergunta sobre ataques de phishing, recomendo implementar uma estratégia de defesa em múltiplas camadas. Primeiro, use soluções de filtragem de e-mail para bloquear mensagens suspeitas. Segundo, treine seus funcionários para reconhecer tentativas de phishing através de programas regulares de conscientização de segurança. Terceiro, implemente DMARC, SPF e DKIM para verificar a autenticidade do e-mail. Finalmente, use plugins de navegador que possam detectar sites de phishing e considere implementar um gateway de e-mail seguro com capacidades de reescrita de URL.",
+    "llm": "As principais diferenças entre o GPT-4 e versões anteriores são capacidades de raciocínio significativamente melhoradas, conhecimento geral mais amplo e melhor compreensão do contexto. O GPT-4 mostra capacidades aprimoradas em escrita criativa, resolução de problemas técnicos e manipulação de instruções complexas. Também demonstra melhor precisão e redução de alucinações em comparação com o GPT-3.5. O modelo tem uma janela de contexto de até 32k tokens, permitindo processar documentos e conversas muito mais longos.",
+    "db_agent": "Com base na sua consulta sobre vendas do Q3, aqui estão as 10 principais vendas por valor para o terceiro trimestre:",
+    "knowledge_base": "Encontrei informações sobre nossa política de trabalho remoto no Manual do Funcionário. De acordo com a política atualizada em janeiro de 2023, os funcionários podem trabalhar remotamente até 3 dias por semana com a aprovação do gerente. O trabalho remoto em tempo integral requer aprovação adicional do chefe de departamento. Todos os trabalhadores remotos devem manter horários de disponibilidade central das 10h às 15h em seu fuso horário local e participar de reuniões virtuais de equipe conforme programado. Equipamentos para escritórios domésticos podem ser solicitados através do portal de TI com um pacote padrão que inclui um laptop, monitor, teclado, mouse e fones de ouvido."
+  },
+  "time": {
+    "just_now": "Agora mesmo",
+    "minutes_ago": "há {minutes} min",
+    "hours_ago": "há {hours} hr"
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "close": "Fechar",
+    "ai_chat": "Chat de IA",
+    "yes": "Sim",
+    "no": "Não",
+    "save": "Salvar",
+    "explore": "Explorar"
+  },
+  "error": {
+    "404_title": "Página não encontrada",
+    "404_message": "A página que você está procurando não existe ou foi movida.",
+    "generic_title": "Ocorreu um erro",
+    "generic_message": "Ocorreu um erro inesperado. Por favor, tente novamente.",
+    "go_home": "Voltar para a página inicial",
+    "check_system": "Verificar status do sistema",
+    "rag_title": "Erro no Sistema RAG",
+    "rag_generic_title": "Erro no sistema RAG",
+    "rag_generic_message": "Ocorreu um erro no sistema de recuperação aumentada. Por favor, tente novamente mais tarde.",
+    "rag_embedding_title": "Erro no serviço de embeddings",
+    "rag_embedding_message": "Não foi possível conectar ao serviço de embeddings. Verifique a chave API da Jina AI ou tente mais tarde.",
+    "rag_rerank_title": "Erro no serviço de reranking",
+    "rag_rerank_message": "Não foi possível conectar ao serviço de reranking. Verifique a chave API da Cohere ou tente mais tarde.",
+    "rag_db_title": "Erro no banco de dados",
+    "rag_db_message": "Erro ao conectar ao banco de dados MongoDB. Por favor, tente novamente mais tarde."
+  },
+  "system_status": {
+    "title": "Status do Sistema",
+    "description": "Verifique o status dos componentes e serviços do RAG do MongoDB",
+    "components": "Componentes do Sistema",
+    "refresh": "Atualizar",
+    "checking": "Verificando status do sistema...",
+    "error_title": "Erro de Conexão",
+    "overall": "Status Geral do Sistema",
+    "all_systems_operational": "Todos os sistemas operacionais",
+    "service_disruption": "Interrupção de serviço detectada",
+    "operational": "Operacional",
+    "disrupted": "Interrompido",
+    "database": "Conexão com Banco de Dados",
+    "connected": "Conectado",
+    "disconnected": "Desconectado",
+    "embedding_service": "Serviço de Embeddings",
+    "rerank_service": "Serviço de Reranking",
+    "llm_service": "Serviço de Modelo de Linguagem",
+    "available": "Disponível",
+    "unavailable": "Indisponível",
+    "last_checked": "Última verificação",
+    "go_to_chat": "Ir para o Chat",
+    "go_to_home": "Ir para o Início"
+  },
+  "session": {
+    "connected": "Conectado",
+    "disconnected": "Desconectado",
+    "reconnect": "Reconectar",
+    "initializing": "Inicializando",
+    "token_invalid": "Sessão expirada",
+    "error": "Erro de conexão",
+    "reconnected": "Reconectado com sucesso"
+  }
+}

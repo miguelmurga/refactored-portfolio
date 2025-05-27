@@ -1,4 +1,30 @@
 {
+  "lineage": {
+    "button": "Ver legado",
+    "title": "Conoce más sobre Migueles anteriores",
+    "miguelSecond": "Miguel Segundo (Artículo académico)",
+    "miguelFirst": "Miguel Primero (Video documental)"
+  },
+  "intro": {
+    "greeting": "¡Hola! Soy Miguel tercero.",
+    "role1": "Desarrollador",
+    "role2": "CEH",
+    "role3": "Profesional en IA Generativa"
+  },
+  "models": {
+    "title": "Modelos de Lenguaje Grandes",
+    "subtitle": "Documento técnico sobre IA Generativa",
+    "modalTitle": "Particularidades de los Modelos de Lenguaje Grandes",
+    "description": "Este documento analiza las características técnicas, arquitectónicas y funcionales de los LLMs en el contexto de la IA generativa."
+  },
+  "report": {
+    "title": "Aplicación de Técnicas de Hacking Ético",
+    "subtitle": "Versión web del informe",
+    "modalTitle": "Visualizador del Informe",
+    "description": "Este informe documenta la aplicación práctica de técnicas de hacking ético para evaluar vulnerabilidades en sistemas reales. Incluye objetivos, herramientas utilizadas, metodología, hallazgos y conclusiones.",
+    "viewOnline": "Ver informe en línea",
+    "download": "Descargar PDF"
+  },
   "close": "Cerrar",
   "work_in_progress_title": "Trabajo en progreso",
   "work_in_progress_desc": "El trabajo sigue en progreso, igual que todos nosotros.",
@@ -6,7 +32,7 @@
   "go_back_home": "Volver al inicio",
   "home": "Inicio",
   "shop": "Tienda",
-  "aboutMe": "Sobre Mí",
+  "aboutMeTitle": "Sobre Mí",
   "stores": "Tiendas",
   "profile": "Perfil",
   "business": "Negocios",
@@ -21,6 +47,33 @@
   "portfolio": "Portafolio",
   "projects": "Proyectos",
   "contactMe": "Contacta conmigo",
+  "Jina Embeddings": "Genera incrustaciones (embeddings) a partir de diversas fuentes de datos para búsqueda semántica y aplicaciones de IA.",
+  "chat": {
+    "new_chat": "Nueva conversación",
+    "recent_conversations": "Conversaciones recientes",
+    "no_conversations_yet": "No hay conversaciones aún",
+    "long_conversation_title": "Conversación Extensa",
+    "long_conversation_description": "Esta conversación tiene {count} mensajes. Las conversaciones largas pueden perder certeza y fiabilidad.",
+    "scientific_reference": "Referencia científica",
+    "processing": "Procesando...",
+    "type_message": "Escribe un mensaje...",
+    "send": "Enviar",
+    "delete_conversation": "Eliminar conversación",
+    "confirm_delete": "¿Estás seguro de que quieres eliminar esta conversación?",
+    "cancel": "Cancelar",
+    "delete": "Eliminar"
+  },
+  "Oracle DB": "Un sistema de gestión de bases de datos relacionales ampliamente utilizado, conocido por su escalabilidad y fiabilidad.",
+  "Coherence": "Una rejilla de datos distribuida en memoria que proporciona acceso de alta velocidad a datos utilizados frecuentemente.",
+  "DeepSeek": "Una empresa de investigación en IA que desarrolla modelos de lenguaje avanzados y herramientas de IA.",
+  "Mistral AI": "Desarrolla modelos de lenguaje grandes (LLMs) de vanguardia, tanto abiertos como comerciales.",
+  "Anthropic": "Una empresa de investigación y seguridad en IA centrada en construir sistemas de IA fiables, interpretables y dirigibles.",
+  "GitHub Copilot": "Un programador en pareja con IA que asiste en la escritura de código sugiriendo líneas o funciones completas.",
+  "Atlas MongoDB": "Un servicio de base de datos en la nube totalmente gestionado para MongoDB, que ofrece escalabilidad y automatización.",
+  "Chroma DB": "Una base de datos de incrustaciones (embeddings) de código abierto diseñada para almacenar y buscar incrustaciones para aplicaciones de IA.",
+  "Pinecone": "Un servicio de base de datos vectorial gestionado para construir aplicaciones de búsqueda vectorial de alto rendimiento.",
+  "MCP": "Protocolo de Contexto del Modelo (PCM)\": \"Un nuevo estándar abierto que permite a los desarrolladores construir conexiones seguras y bidireccionales entre sus fuentes de datos y herramientas impulsadas por IA, ayudando a los modelos de vanguardia a producir respuestas mejores y más relevantes.",
+  "Agents": "Entidades autónomas que perciben su entorno y toman acciones para alcanzar objetivos específicos en el ámbito de la inteligencia artificial.",
   "JavaScript": "Permite crear aplicaciones web dinámicas e interactivas, crucial para desarrollar interfaces fáciles de usar.",
   "TypeScript": "Mejora la confiabilidad y escalabilidad del código, esencial para trabajar en proyectos complejos.",
   "Node.js": "Soporta operaciones de backend al permitir soluciones escalables y eficientes del lado del servidor.",
@@ -83,7 +136,8 @@
   "projects_page": {
     "session_notice": "Tus conversaciones y cookie de sesión se almacenan con fines prácticos y pueden ser revisadas. Piensa bien la información que compartes. ¿Buscas proteger la privacidad de tus datos en IA? Contáctame.",
     "dismiss": "Cerrar",
-    "title": "Proyectos"
+    "title": "Proyectos",
+    "description": "Explora mis proyectos. Cada tarjeta te llevará a un proyecto o servicio diferente."
   },
   "sections": {
     "chatbot_cyber": "Chatbot Ciber seguridad",
@@ -103,7 +157,9 @@
     "generative_ai_business": "Integra la IA generativa a tu negocio",
     "generative_ai_business_desc": "Descubre cómo la IA generativa puede transformar tu negocio.",
     "learn_english": "Aprende inglés",
-    "learn_english_desc": "Visita CIEX y aprende inglés con expertos."
+    "learn_english_desc": "Visita CIEX y aprende inglés con expertos.",
+    "mongodb_rag": "Chat RAG con MongoDB",
+    "mongodb_rag_desc": "Chatbot con soporte de embeddings de MongoDB para búsqueda semántica basada en IA."
   },
   "chat": {
     "new_chat": "Nueva conversación",
@@ -214,6 +270,52 @@
     "db_agent": "Basado en tu consulta sobre ventas del Q3, aquí están las 10 principales ventas por monto para el tercer trimestre:",
     "knowledge_base": "Encontré información sobre nuestra política de trabajo remoto en el Manual del Empleado. Según la política actualizada en enero de 2023, los empleados pueden trabajar de forma remota hasta 3 días por semana con la aprobación del gerente. El trabajo remoto a tiempo completo requiere aprobación adicional del jefe de departamento. Todos los trabajadores remotos deben mantener horas de disponibilidad central de 10 am a 3 pm en su zona horaria local y asistir a reuniones virtuales de equipo según lo programado. El equipo para oficinas domésticas se puede solicitar a través del portal de TI con un paquete estándar que incluye una laptop, monitor, teclado, mouse y auriculares."
   },
+  "rag": {
+    "rag_on": "RAG: ON",
+    "rag_off": "RAG: OFF",
+    "reasoner_on": "Razonador: ON",
+    "reasoner_off": "Razonador: OFF",
+    "configure": "Configurar",
+    "upload_document": "Subir Documento",
+    "current_config": "Configuración Actual",
+    "model": "Modelo",
+    "use_rag": "Usar RAG",
+    "use_reasoner": "Usar Razonador",
+    "domain": "Dominio",
+    "similarity": "Métrica de Similitud",
+    "use_mmr": "Usar MMR",
+    "use_rerank": "Usar ReRank",
+    "config_title": "Configuración RAG",
+    "top_k": "Top K Resultados",
+    "min_score": "Puntuación Mínima",
+    "min_rerank_score": "Puntuación Mínima ReRank",
+    "use_mmr_label": "Usar Relevancia Marginal Máxima",
+    "use_rerank_label": "Usar Cohere ReRank",
+    "select_model": "Seleccionar Modelo",
+    "model_chat_desc": "Modelo de chat estándar para respuestas rápidas",
+    "model_reasoner_desc": "Modelo con capacidades de razonamiento paso a paso",
+    "document_title": "Título del Documento",
+    "document_domain": "Dominio del Documento",
+    "document_file": "Archivo del Documento",
+    "upload": "Subir",
+    "advanced": "Configuración Avanzada",
+    "all_domains": "Todos los dominios",
+    "generative_ai": "IA Generativa",
+    "cybersecurity": "Ciberseguridad",
+    "reset": "Restablecer",
+    "general_options": "Opciones Generales",
+    "ranking_techniques": "Técnicas de Clasificación",
+    "show_sources": "Mostrar Fuentes",
+    "hide_sources": "Ocultar Fuentes",
+    "drag_file": "Arrastra un archivo o haz clic para seleccionar",
+    "file_types": "PDF, DOCX, TXT (máx. 10MB)",
+    "select_file": "Seleccionar Archivo",
+    "selected_file": "Archivo seleccionado",
+    "title_placeholder": "Dejar en blanco para usar el nombre del archivo",
+    "system_description": "Sistema de chat inteligente que utiliza embeddings vectoriales de MongoDB para proporcionar respuestas precisas y contextualizadas a consultas en diferentes dominios.",
+    "base_model": "Modelo Base",
+    "reasoner": "Razonador"
+  },
   "time": {
     "just_now": "Ahora mismo",
     "minutes_ago": "hace {minutes} min",
@@ -222,7 +324,150 @@
   "common": {
     "cancel": "Cancelar",
     "delete": "Eliminar",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "ai_chat": "Chat IA",
+    "yes": "Sí",
+    "no": "No",
+    "save": "Guardar",
+    "explore": "Explorar"
+  },
+  "error": {
+    "404_title": "Página no encontrada",
+    "404_message": "La página que buscas no existe o ha sido movida.",
+    "generic_title": "Ha ocurrido un error",
+    "generic_message": "Ha ocurrido un error inesperado. Por favor intenta nuevamente.",
+    "go_home": "Volver al inicio",
+    "check_system": "Verificar estado del sistema",
+    "rag_title": "Error en Sistema RAG",
+    "rag_generic_title": "Error en sistema RAG",
+    "rag_generic_message": "Se ha producido un error en el sistema de recuperación aumentada. Intente nuevamente más tarde.",
+    "rag_embedding_title": "Error en servicio de embeddings",
+    "rag_embedding_message": "No se ha podido conectar con el servicio de embeddings. Verifique la API key de Jina AI o intente más tarde.",
+    "rag_rerank_title": "Error en servicio de reranking",
+    "rag_rerank_message": "No se ha podido conectar con el servicio de reranking. Verifique la API key de Cohere o intente más tarde.",
+    "rag_db_title": "Error en la base de datos",
+    "rag_db_message": "Error al conectar con la base de datos MongoDB. Intente nuevamente más tarde."
+  },
+  "system_status": {
+    "title": "Estado del Sistema",
+    "description": "Verifica el estado de los componentes y servicios del RAG de MongoDB",
+    "components": "Componentes del Sistema",
+    "refresh": "Actualizar",
+    "checking": "Verificando estado del sistema...",
+    "error_title": "Error de Conexión",
+    "overall": "Estado General del Sistema",
+    "all_systems_operational": "Todos los sistemas operativos",
+    "service_disruption": "Interrupción de servicio detectada",
+    "operational": "Operativo",
+    "disrupted": "Interrumpido",
+    "database": "Conexión a Base de Datos",
+    "connected": "Conectado",
+    "disconnected": "Desconectado",
+    "embedding_service": "Servicio de Embeddings",
+    "rerank_service": "Servicio de Reranking",
+    "llm_service": "Servicio de Modelo de Lenguaje",
+    "available": "Disponible",
+    "unavailable": "No Disponible",
+    "last_checked": "Última verificación",
+    "go_to_chat": "Ir al Chat",
+    "go_to_home": "Ir al Inicio"
+  },
+  "session": {
+    "connected": "Conectado",
+    "disconnected": "Desconectado",
+    "reconnect": "Reconectar",
+    "initializing": "Inicializando",
+    "token_invalid": "Sesión expirada",
+    "error": "Error de conexión",
+    "reconnected": "Reconectado con éxito"
+  },
+  "language": "Idioma",
+  "aboutMe": {
+    "title": "Miguel Murga Guevara",
+    "subtitle": "Desarrollador Full Stack | Ingeniero en Electrónica y Telecomunicaciones | Entusiasta de Industria 4.0",
+    "description": "Desarrollador Full Stack entusiasta especializado en Nuxt 3, Vue 3 y Python. Ingeniero en Electrónica y Telecomunicaciones con pasión por la Industria 4.0. Aprendizaje rápido y liderazgo efectivo, con experiencia en servicio al cliente y educación.",
+    "experience_title": "Experiencia Profesional",
+    "education_title": "Educación",
+    "courses_title": "Cursos",
+    "hobbies_title": "Pasatiempos e Intereses",
+    "hobbies": "Impresión 3D, Manualidades 3D",
+    "interests": "Industria 4.0, Ciencia de Datos, Aprendizaje Automático, Inteligencia Artificial, IoT, Sistemas Embebidos y Robótica",
+    "copyright": "Todos los derechos reservados",
+    "hobbies_label": "Pasatiempos",
+    "interests_label": "Intereses",
+    "experiences": [
+      {
+        "title": "Full Stack Developer, Harlan Research Hari Harlan Online",
+        "description": "Junio 2023 - Febrero 2024. Especializado en soluciones avanzadas usando Nuxt 3, Vue 3, VueRouter, Pinia, TypeScript, Tailwind y Elixir.",
+        "url": "https://github.com/Harlan-Research",
+        "urlText": "GitHub"
+      },
+      {
+        "title": "OCI Generative AI Professional",
+        "description": "La certificación Oracle Cloud Infrastructure 2024 Generative AI Professional valida la experiencia en la creación e implementación de soluciones impulsadas por IA. Diseñada para Desarrolladores de Software, Ingenieros de Aprendizaje Automático/IA, y Profesionales de IA Generativa, esta certificación destaca la capacidad para utilizar los Servicios de IA Generativa de OCI de manera efectiva.\n\n*Responsabilidades*:\n- Diseño e implementación de chatbots con Generación Aumentada por Recuperación (RAG) utilizando Servicios de IA Generativa de OCI para mejorar la recuperación de conocimiento y la participación del usuario.\n- Desarrollo de sistemas de búsqueda avanzados con Búsqueda Semántica y bases de datos vectoriales, integrando frameworks como LangChain para una orquestación eficiente de modelos.\n- Construcción, evaluación e implementación de aplicaciones LLM en Oracle 23AI, asegurando escalabilidad y optimización para desafíos empresariales del mundo real.\n- Colaboración con equipos multifuncionales para definir flujos de trabajo de IA y agilizar canales de entrenamiento de modelos, permitiendo una integración eficiente en sistemas empresariales.\n- Proporcionamiento de soporte técnico durante el ciclo de vida de la implementación, incluyendo fases de prueba (E2E, UAT) y mantenimiento posterior a la implementación.\n\n*Habilidades y Herramientas*:\n- Competencia en el aprovechamiento de Servicios de IA Generativa de OCI y Oracle 23AI para implementaciones de IA a gran escala.\n- Experiencia en Machine Learning (ML) y Deep Learning (DL), incluyendo arquitecturas como CNNs, RNNs y LSTMs.\n- Experiencia práctica con flujos de trabajo RAG, LangChain y soluciones de bases de datos vectoriales como Pinecone y Weaviate.\n- Familiaridad con Oracle Select AI y Soluciones de IA de OCI para abordar desafíos complejos de datos.\n\n*Logros*:\n- Automatización de procesos de recuperación de documentos, mejorando la eficiencia organizacional y reduciendo el esfuerzo manual.\n- Entrega de modelos de IA de alto rendimiento que abordaron necesidades específicas del cliente, mejorando la fiabilidad general del sistema.\n- Habilitación de una integración fluida de sistemas de IA en infraestructuras existentes a través de documentación clara y componentes reutilizables.\n\n*Detalles de la Certificación*:\n- Emitida por Oracle, válida hasta el *30 de julio de 2026*.",
+        "url": "https://catalog-education.oracle.com",
+        "urlText": "Enlace de Certificación"
+      },
+      {
+        "title": "Certified Ethical Hacker (CEH)",
+        "description": "Febrero 2024 - Presente. Experiencia en técnicas de ciberseguridad y pruebas de penetración, incluyendo:\n- Enumeración NetBIOS, SNMP, SMTP, DNS.\n- Escaneo de configuración IPsec, Protocolo SIP, Análisis VoIP.\n- Hacking de sistemas, Amenazas de malware y Técnicas de sniffing.\n- Ataques de Denegación de Servicio, Secuestro y Evasión de IDS/Firewalls.\n- Hacking de Computación en la Nube e Inyección SQL.",
+        "url": "https://www.credential.net",
+        "urlText": "Enlace de Certificación"
+      },
+      {
+        "title": "Prácticas profesionales, BMW Group, Coapa CDMX",
+        "description": "Rol: Serví como Técnico Electrónico en BMW Coapa, enfocándome en varios aspectos técnicos en un rol de tiempo completo desde enero."
+      },
+      {
+        "title": "Prácticas profesionales, Universidad Politécnica de Puebla, Puebla, México",
+        "description": "Participé en dos prácticas profesionales bajo la dirección del Profesor Javier Lemus López:\n- Enfocadas en 'Amplificadores Operacionales' e 'IoT como solución actual para medidas preventivas'.\n- Desarrollo de soluciones para control de acceso a ubicaciones utilizando semáforos basados en códigos QR."
+      },
+      {
+        "title": "Freelancer",
+        "description": "Junio 2022 - Presente. Desarrollo de soluciones Frontend y Backend con:\n- Frontend: Nuxt 3, Vue 3, VueRouter, Pinia, TypeScript, Tailwind CSS.\n- Backend: Django (API REST), GraphQL con Elixir para manejo de datos a gran escala.\n- Control de versiones usando Git."
+      },
+      {
+        "title": "Profesor de Matemáticas, CEMYC, Acapulco de Juárez",
+        "description": "Apasionado por la enseñanza de matemáticas e inglés:\n- Utilicé fuertes habilidades de comunicación e instrucción.\n- Diseñé planes de lección atractivos para fomentar el aprendizaje de los estudiantes."
+      }
+    ],
+    "education": [
+      {
+        "title": "Universidad Politécnica de Puebla",
+        "description": "Ingeniero en Electrónica y Telecomunicaciones (Agosto 2018 - Abril 2023)",
+        "image": "/img/uppue.png"
+      },
+      {
+        "title": "Curso de Hacking Ético",
+        "description": "Programa de Credenciales IEEE (Septiembre 2023 - Enero 2024)",
+        "image": "/img/ieee.png"
+      },
+      {
+        "title": "Diplomado en Ciencia de Datos",
+        "description": "ITPE Mérida (Septiembre 2020 - Diciembre 2020)",
+        "image": "https://gtotech.mx/assets/img/proyectos/itpe_logo.png",
+        "url": "https://itpe.mx/"
+      },
+      {
+        "title": "Técnico Básico e Intermedio en SolidWorks",
+        "description": "CECATY 83, Ciudad Juárez (Agosto 2020 - Marzo 2021)",
+        "image": "/img/OIP.jpg"
+      },
+      {
+        "title": "Oracle Cloud Infrastructure 2024 Generative AI Certified Professional",
+        "description": "Oracle University (Julio 2024)",
+        "image": "/img/OCIU.png",
+        "url": "https://mylearn.oracle.com/ou/home"
+      }
+    ],
+    "courses": [
+      "Nuxt.js: Aplicaciones Universales con Vue.js - Udemy",
+      "Aprende Vue 3, Vite, VueRouter, Vuetify, Pinia y TypeScript - Udemy",
+      "ESP8266 & Micro Python para Internet de las Cosas - Udemy",
+      "Elixir y Phoenix: Programación Funcional para el Mundo Real - Udemy",
+      "Proyecto Node-RED y ESP32 - Udemy",
+      "Programación Bare-Metal de Sistemas Embebidos (STM32) - Udemy"
+    ]
   }
 }
 

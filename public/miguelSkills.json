@@ -204,7 +204,32 @@
     {
       "language": "Generative AI",
       "image": "/img/OCIP.png",
-      "url": "https://www.r-project.org/"
+      "url": "https://drive.google.com/file/d/1TyGAWtKGrZRH9JA-Y7sEDuuazH_hVFv2/view?usp=sharing"
+    },
+    {
+      "language": "Agents",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+      "url": "https://www.ibm.com/topics/ai-agents"
+    },
+    {
+      "language": "DeepSeek",
+      "image": "/img/genai/deepseek.png",
+      "url": "https://www.deepseek.com/"
+    },
+    {
+      "language": "Mistral AI",
+      "image": "/img/genai/mistral.jpeg",
+      "url": "https://mistral.ai/"
+    },
+    {
+      "language": "Anthropic",
+      "image": "/img/genai/anthropic.png",
+      "url": "https://www.anthropic.com/"
+    },
+    {
+      "language": "OpenAI API",
+      "image": "/img/genai/openai.png",
+      "url": "https://beta.openai.com/"
     },
     {
       "language": "Python",
@@ -217,6 +242,26 @@
       "url": "https://www.r-project.org/"
     },
     {
+      "language": "NumPy",
+      "image": "https://cdn.svgporn.com/logos/numpy.svg",
+      "url": "https://numpy.org/"
+    },
+    {
+      "language": "Pandas",
+      "image": "https://cdn.svgporn.com/logos/pandas.svg",
+      "url": "https://pandas.pydata.org/"
+    },
+    {
+      "language": "Scikit-learn",
+      "image": "https://analyticsdrift.com/wp-content/uploads/2021/04/Scikit-learn-free-course.jpg",
+      "url": "https://scikit-learn.org/stable/"
+    },
+    {
+      "language": "Matplotlib",
+      "image": "https://cdn.svgporn.com/logos/matplotlib.svg",
+      "url": "https://matplotlib.org/"
+    },
+    {
       "language": "TensorFlow",
       "image": "https://cdn.svgporn.com/logos/tensorflow.svg",
       "url": "https://www.tensorflow.org/"
@@ -227,34 +272,49 @@
       "url": "https://pytorch.org/"
     },
     {
-      "language": "Pandas",
-      "image": "https://cdn.svgporn.com/logos/pandas.svg",
-      "url": "https://pandas.pydata.org/"
-    },
-    {
-      "language": "NumPy",
-      "image": "https://cdn.svgporn.com/logos/numpy.svg",
-      "url": "https://numpy.org/"
-    },
-    {
-      "language": "Scikit-learn",
-      "image": "https://analyticsdrift.com/wp-content/uploads/2021/04/Scikit-learn-free-course.jpg",
-      "url": "https://scikit-learn.org/stable/"
-    },
-    {
       "language": "Jupyter",
       "image": "https://cdn.svgporn.com/logos/jupyter.svg",
       "url": "https://jupyter.org/"
     },
     {
-      "language": "Matplotlib",
-      "image": "https://cdn.svgporn.com/logos/matplotlib.svg",
-      "url": "https://matplotlib.org/"
+      "language": "GitHub Copilot",
+      "image": "/img/genai/copilot.png",
+      "url": "https://github.com/features/copilot"
     },
     {
-      "language": "OpenAI API",
-      "image": "https://www.presse-citron.net/app/uploads/2019/07/open-ai.jpg",
-      "url": "https://beta.openai.com/"
+      "language": "Jina Embeddings",
+      "image": "/img/genai/jina.png",
+      "url": "https://jina.ai/"
+    },
+    {
+      "language": "Chroma DB",
+      "image": "/img/genai/chroma.png",
+      "url": "https://www.trychroma.com/"
+    },
+    {
+      "language": "Pinecone",
+      "image": "/img/genai/pinecone.jpg",
+      "url": "https://www.pinecone.io/"
+    },
+    {
+      "language": "Atlas MongoDB",
+      "image": "/img/genai/mongo.jpg",
+      "url": "https://www.mongodb.com/atlas"
+    },
+    {
+      "language": "Oracle DB",
+      "image": "/img/genai/oci.png",
+      "url": "https://www.oracle.com/database/"
+    },
+    {
+      "language": "Coherence",
+      "image": "/img/genai/cohere.png",
+      "url": "https://www.oracle.com/java/coherence/"
+    },
+    {
+      "language": "MCP",
+      "image": "/img/genai/MCP.jpg",
+      "url": "https://metaflow.org/"
     }
   ]
 }

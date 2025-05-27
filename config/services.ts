@@ -1,71 +1,69 @@
 export interface AIService {
-    id: string;
+    id: string;         // ID lógico usado en nuestra aplicación
+    apiId: string;      // ID del servicio tal como se utiliza en las API de Django
     name: string;
     description: string;
     icon: string;
     color: string;
     welcomeMessage: string;
+    model?: string;      // Nombre del modelo usado (DeepSeek-Coder)
+    reasoner?: string;   // Descripción del razonador usado por el servicio
 }
 
 export const AI_SERVICES: AIService[] = [
     {
-        id: 'cybersecurity',
-        name: 'Chatbot Ciber seguridad',
-        description: 'Interactúa con un chatbot especializado en ciberseguridad.',
+        id: 'security_expert',
+        apiId: 'security_expert', // Este ID debe coincidir con el usado en el backend Django
+        name: 'Experto en Ciberseguridad',
+        description: 'Obtén asesoramiento especializado en temas de seguridad informática y hacking ético',
         icon: 'i-heroicons-shield-check',
-        color: 'bg-indigo-600',
-        welcomeMessage: 'Bienvenido al servicio de Ciberseguridad. ¿En qué puedo ayudarte hoy?'
+        color: 'bg-green-700',
+        welcomeMessage: 'Bienvenido al servicio de Ciberseguridad. ¿En qué puedo ayudarte hoy?',
+        model: 'DeepSeek-Coder',
+        reasoner: 'Razonador especializado en análisis de vulnerabilidades y evaluación de riesgos de seguridad. Utiliza un enfoque estructurado para identificar posibles brechas de seguridad y recomendar medidas de mitigación adecuadas.'
     },
     {
-        id: 'llm',
-        name: 'Chatbot sobre LLMs',
-        description: 'Obtén información de un chatbot enfocado en LLMs.',
+        id: 'ia_generativa',
+        apiId: 'ia_generativa', // Este ID debe coincidir con el usado en el backend Django
+        name: 'Experto en IA Generativa',
+        description: 'Obtén información avanzada sobre modelos de lenguaje y tecnologías de IA generativa',
         icon: 'i-heroicons-cpu-chip',
-        color: 'bg-emerald-600',
-        welcomeMessage: 'Bienvenido al servicio de información sobre LLMs. ¿Qué te gustaría saber?'
-    },
-    {
-        id: 'db-agent',
-        name: 'Agente de consulta a una DB',
-        description: 'Consulta tu base de datos usando lenguaje natural.',
-        icon: 'i-heroicons-database',
-        color: 'bg-amber-600',
-        welcomeMessage: 'Bienvenido al servicio de consulta de bases de datos. ¿Qué información necesitas recuperar?'
-    },
-    {
-        id: 'knowledge-base',
-        name: 'Base de Conocimientos',
-        description: 'Consulta nuestra base de conocimientos corporativa.',
-        icon: 'i-heroicons-book-open',
         color: 'bg-blue-600',
-        welcomeMessage: 'Bienvenido a la Base de Conocimientos. Puedo ayudarte a encontrar información en nuestros documentos internos.'
+        welcomeMessage: 'Bienvenido al servicio de información sobre IA Generativa. ¿Qué te gustaría saber?',
+        model: 'DeepSeek-Coder',
+        reasoner: 'Razonador especializado en conceptos de inteligencia artificial, modelos de lenguaje y procesamiento de datos. Proporciona explicaciones detalladas sobre arquitecturas de modelos y técnicas avanzadas de IA.'
+    },
+    {
+        id: 'rag_conversation',
+        apiId: 'rag_conversation', // Este ID debe coincidir con el usado en el backend Django
+        name: 'Asistente RAG con MongoDB',
+        description: 'Consulta basada en documentos con búsqueda semántica alimentada por MongoDB',
+        icon: 'i-heroicons-document-magnifying-glass',
+        color: 'bg-emerald-600',
+        welcomeMessage: 'Bienvenido al servicio de Generación Aumentada por Recuperación (RAG). Puedo responder preguntas basadas en la información de nuestra base de conocimientos.',
+        model: 'DeepSeek-Coder',
+        reasoner: 'Sistema de Generación Aumentada por Recuperación que utiliza embeddings de Jina AI y reordenamiento de Cohere para proporcionar respuestas precisas basadas en documentos de la base de conocimientos.'
     }
 ];
 
 export const SUGGESTIONS = {
-    'cybersecurity': [
+    'security_expert': [
         '¿Cómo puedo proteger mi red contra ataques ransomware?',
         '¿Cuáles son las mejores prácticas para contraseñas seguras?',
         'Explica qué es un ataque de phishing',
         '¿Cómo implementar Zero Trust en mi organización?'
     ],
-    'llm': [
-        '¿Cuál es la diferencia entre GPT-3 y GPT-4?',
+    'ia_generativa': [
+        '¿Cuál es la diferencia entre GPT-4 y DeepSeek-Coder?',
         'Explica cómo funciona la arquitectura transformer',
         '¿Qué son los embeddings vectoriales?',
-        '¿Cómo puedo hacer fine-tuning de un modelo?'
+        '¿Cómo puedo hacer fine-tuning de un modelo de lenguaje?'
     ],
-    'db-agent': [
-        'Muestra los 10 clientes con mayor facturación',
-        '¿Cuáles son las ventas del último trimestre?',
-        'Compara ventas de este año con el anterior',
-        'Encuentra productos con poco inventario'
-    ],
-    'knowledge-base': [
-        '¿Cuál es nuestra política de vacaciones?',
-        'Muestra el proceso de onboarding para nuevos empleados',
-        'Encuentra documentación sobre nuestros productos',
-        '¿Dónde puedo encontrar plantillas para presentaciones?'
+    'rag_conversation': [
+        '¿Qué son los sistemas RAG y cómo funcionan?',
+        '¿Cómo mejora MongoDB la búsqueda semántica?',
+        'Explica el proceso de generación de embeddings',
+        '¿Cuáles son las ventajas de utilizar Jina AI para embeddings?'
     ]
 };
 

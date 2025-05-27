@@ -21,7 +21,7 @@
             :class="[ $route.path === '/aboutMe' ? 'text-blue-500 flex items-center space-x-2 bg-blue-100 px-3 py-1 rounded-full shadow-sm' : 'flex items-center space-x-2', 'hover:text-blue-500 hover:bg-blue-100 px-3 py-1 rounded-xl']"
         >
           <Icon name="heroicons-outline:user" class="w-5 h-5" />
-          <span>{{ $t('aboutMe') }}</span>
+          <span>{{ $t('aboutMeTitle') }}</span>
         </NuxtLink>
         <NuxtLink
             to="/projects"
@@ -31,11 +31,25 @@
           <span>{{ $t('projects') }}</span>
         </NuxtLink>
         <NuxtLink
+            to="/chat"
+            :class="[ $route.path.startsWith('/chat') ? 'text-blue-500 flex items-center space-x-2 bg-blue-100 px-3 py-1 rounded-full shadow-sm' : 'flex items-center space-x-2', 'hover:text-blue-500 hover:bg-blue-100 px-3 py-1 rounded-xl']"
+        >
+          <Icon name="heroicons-outline:chat-bubble-left-right" class="w-5 h-5" />
+          <span>{{ $t('common.ai_chat') }}</span>
+        </NuxtLink>
+        <NuxtLink
             to="/contactMe"
             :class="[ $route.path === '/contactMe' ? 'text-blue-500 flex items-center space-x-2 bg-blue-100 px-3 py-1 rounded-full shadow-sm' : 'flex items-center space-x-2', 'hover:text-blue-500 hover:bg-blue-100 px-3 py-1 rounded-xl']"
         >
           <Icon name="heroicons-outline:mail" class="w-5 h-5" />
           <span>{{ $t('contactMe') }}</span>
+        </NuxtLink>
+        <NuxtLink
+            to="/system-status"
+            :class="[ $route.path === '/system-status' ? 'text-blue-500 flex items-center space-x-2 bg-blue-100 px-3 py-1 rounded-full shadow-sm' : 'flex items-center space-x-2', 'hover:text-blue-500 hover:bg-blue-100 px-3 py-1 rounded-xl']"
+        >
+          <Icon name="heroicons-outline:server" class="w-5 h-5" />
+          <span class="text-xs">{{ $t('system_status.title') }}</span>
         </NuxtLink>
         <!-- Language Selector -->
         <div class="flex items-center">
@@ -46,6 +60,7 @@
           >
             <option value="en">EN</option>
             <option value="es">ES</option>
+            <option value="pt">PT</option>
           </select>
         </div>
         <ThemeToggle />
@@ -81,6 +96,7 @@
             >
               <option value="en">EN</option>
               <option value="es">ES</option>
+              <option value="pt">PT</option>
             </select>
           </div>
           <ThemeToggle />
@@ -102,7 +118,7 @@
               @click="isOpen = false"
           >
             <Icon name="heroicons-outline:user" class="w-5 h-5" />
-            <span>{{ $t('aboutMe') }}</span>
+            <span>{{ $t('aboutMeTitle') }}</span>
           </NuxtLink>
           <NuxtLink
               to="/projects"
@@ -114,6 +130,15 @@
             <span>{{ $t('projects') }}</span>
           </NuxtLink>
           <NuxtLink
+              to="/chat"
+              class=" py-2 px-4 flex items-center space-x-2 rounded-full hover:bg-blue-100"
+              :class="{ 'text-blue-500': $route.path.startsWith('/chat') }"
+              @click="isOpen = false"
+          >
+            <Icon name="heroicons-outline:chat-bubble-left-right" class="w-5 h-5" />
+            <span>{{ $t('common.ai_chat') }}</span>
+          </NuxtLink>
+          <NuxtLink
               to="/contactMe"
               class=" py-2 px-4 flex items-center space-x-2 rounded-full hover:bg-blue-100"
               :class="{ 'text-blue-500': $route.path === '/contactMe' }"
@@ -122,6 +147,15 @@
             <Icon name="heroicons-outline:mail" class="w-5 h-5" />
             <span>{{ $t('contactMe') }}</span>
           </NuxtLink>
+          <NuxtLink
+              to="/system-status"
+              class=" py-2 px-4 flex items-center space-x-2 rounded-full hover:bg-blue-100"
+              :class="{ 'text-blue-500': $route.path === '/system-status' }"
+              @click="isOpen = false"
+          >
+            <Icon name="heroicons-outline:server" class="w-5 h-5" />
+            <span>{{ $t('system_status.title') }}</span>
+          </NuxtLink>
         </div>
       </div>
     </USlideover>
@@ -129,6 +163,8 @@
 </template>
 
 <script setup lang="ts">
+import SystemStatus from '~/components/global/SystemStatus.vue';
+
 const isOpen = ref(false);
 const colorMode = useColorMode();
 const isDark = computed(() => colorMode.value === 'dark');

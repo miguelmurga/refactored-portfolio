@@ -9,10 +9,32 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
-  runtimeConfig: {
-    jwtSecret: process.env.NUXT_JWT_SECRET, // Esto toma el valor de NUXT_JWT_SECRET
-    public: {
-      apiUrl: process.env.NUXT_API_URL,      // Esto toma el valor de NUXT_API_URL
+  i18n: {
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
     },
+    locales: ['en', 'es', 'pt'],
+    defaultLocale: 'es',
+    skipSettingLocaleOnNavigate: true,
+    vueI18n: './i18n.config.ts',
+  },
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.NUXT_API_URL || 'http://localhost:8000/api',
+      devMode: process.env.NUXT_DEV_MODE === 'true',
+    },
+  },
+  // Configuración de redirecciones para mantener compatibilidad
+  routeRules: {
+    '/mongodb-ai-chat': { redirect: '/chat' },
+    '/.well-known/**': { cors: true, swr: 600 }, // Manejar rutas well-known con CORS y caché de 10 minutos
+    '/system-status': { swr: 60 }, // Cache system status page for 1 minute
+  },
+  
+  // Mejorar rendimiento con compresión gzip
+  nitro: {
+    compressPublicAssets: true,
   },
 })

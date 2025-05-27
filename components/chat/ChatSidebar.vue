@@ -38,7 +38,7 @@
     <!-- Lista de conversaciones -->
     <div class="flex-1 overflow-y-auto p-2">
       <p v-if="isLoading" class="text-center text-gray-500 py-4">
-        <ULoader />
+        <UProgress class="w-16 mx-auto" color="primary" :model-value="null" />
       </p>
 
       <p v-else-if="filteredConversations.length === 0" class="text-center text-gray-500 dark:text-gray-400 py-4 text-sm">
@@ -58,7 +58,9 @@
               <UIcon :name="getServiceIcon(chat.service)" class="text-white" />
             </div>
             <div class="flex-1 min-w-0">
-              <div class="font-medium truncate">{{ chat.title }}</div>
+              <div class="font-medium truncate">
+                {{ getConversationTitle(chat) }}
+              </div>
               <div class="text-xs text-gray-500 dark:text-gray-400">
                 {{ formatDate(new Date(chat.lastUpdated)) }}
               </div>
@@ -126,6 +128,29 @@ function getServiceColor(serviceId: string): string {
 function getServiceIcon(serviceId: string): string {
   const service = getServiceById(serviceId);
   return service?.icon || 'i-heroicons-chat-bubble-left-right';
+}
+
+// Obtener título significativo para la conversación
+function getConversationTitle(chat: Conversation): string {
+  // Si tiene título, usarlo
+  if (chat.title && chat.title.trim() !== '') {
+    return chat.title;
+  }
+  
+  // Si no tiene título, pero tiene mensajes, mostrar el primer mensaje del usuario
+  if (chat.messages && chat.messages.length > 0) {
+    // Buscar el primer mensaje del usuario
+    const userMessage = chat.messages.find(m => m.role === 'user' && m.content?.trim() !== '');
+    if (userMessage && userMessage.content) {
+      // Limitar a 25 caracteres
+      const content = userMessage.content.trim();
+      return content.length > 25 ? content.substring(0, 25) + '...' : content;
+    }
+  }
+  
+  // Si no hay título ni mensajes, mostrar el nombre del servicio
+  const serviceName = getServiceById(chat.service)?.name || chat.service;
+  return `Nueva conversación - ${serviceName}`;
 }
 
 // Formatear fecha
