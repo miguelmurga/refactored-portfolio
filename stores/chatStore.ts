@@ -134,6 +134,24 @@ export const useChatStore = defineStore('chat', () => {
             }
         }
     }
+
+    /**
+     * 🍪 COOKIE NOTICE: Mostrar aviso de cookies al iniciar nuevas conversaciones
+     */
+    function showCookieNoticeForNewConversation() {
+        // Solo en el cliente (no en server-side rendering)
+        if (typeof window !== 'undefined') {
+            try {
+                // Disparar evento global para mostrar el CookieNotice
+                window.dispatchEvent(new CustomEvent('showCookieNotice', {
+                    detail: { source: 'newConversation' }
+                }));
+                console.log('[COOKIE] Cookie notice triggered for new conversation');
+            } catch (error) {
+                console.log('[COOKIE] Error showing cookie notice:', error);
+            }
+        }
+    }
     
     /**
      * ✅ INSTRUCCIÓN 7: Establecer conversación actual correctamente

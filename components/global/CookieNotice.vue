@@ -31,5 +31,17 @@ onMounted(() => {
   if (dismissed === 'true') {
     visible.value = false
   }
+  
+  // Escuchar eventos globales para mostrar el cookie notice
+  window.addEventListener('showCookieNotice', () => {
+    if (dismissed !== 'true') {
+      visible.value = true
+    }
+  })
+})
+
+onUnmounted(() => {
+  // Limpiar event listener
+  window.removeEventListener('showCookieNotice', () => {})
 })
 </script>

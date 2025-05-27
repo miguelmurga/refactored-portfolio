@@ -91,6 +91,7 @@
 import { ref, computed } from 'vue';
 import { getServiceById, AI_SERVICES } from '~/config/services';
 import { Conversation } from '~/composables/useApiService';
+const { t } = useI18n();
 
 const props = defineProps<{
   conversations: Conversation[];
@@ -150,7 +151,7 @@ function getConversationTitle(chat: Conversation): string {
   
   // Si no hay título ni mensajes, mostrar el nombre del servicio
   const serviceName = getServiceById(chat.service)?.name || chat.service;
-  return `Nueva conversación - ${serviceName}`;
+  return `${t('chat.new_conversation')} - ${serviceName}`;
 }
 
 // Formatear fecha
@@ -163,13 +164,13 @@ function formatDate(date: Date): string {
   const day = 24 * hour;
 
   if (diff < minute) {
-    return 'Ahora';
+    return t('time.just_now');
   } else if (diff < hour) {
     const minutes = Math.floor(diff / minute);
-    return `hace ${minutes}m`;
+    return t('time.minutes_ago', { minutes });
   } else if (diff < day) {
     const hours = Math.floor(diff / hour);
-    return `hace ${hours}h`;
+    return t('time.hours_ago', { hours });
   } else {
     return date.toLocaleDateString();
   }
