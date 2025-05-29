@@ -335,21 +335,21 @@ const mobileMenuOpen = ref(false);
 const selectedLanguage = ref(locale.value);
 const confirmDelete = ref(false);
 
-// Asegurarnos de que el estado de carga es visible al usuario
-const isLoadingChats = computed(() => chatStore.isLoading);
+// Estado de carga local para este componente
+const isLoadingChats = ref(false);
 
 // Define ALL available services - specialized endpoints have fixed RAG, only /api/chat/ is configurable
 const mainServices = [
   {
     id: 'ia_generativa',
-    apiId: 'ia_generativa',
+    apiId: 'llm_expert',
     name: 'Experto en IA Generativa',
     description: 'Experto en inteligencia artificial y modelos de lenguaje con documentos especializados',
     icon: 'i-heroicons-cpu-chip',
     color: 'bg-blue-600',
     model: 'DeepSeek-Coder',
-    reasoner: 'Especializado en transformers, attention, redes neuronales. RAG siempre activado con documentos de IA.',
-    endpoint: '/api/llm-expert/',
+    reasoner: 'Especializado en transformers, attention, redes neuronales. Solo dominio IA Generativa.',
+    endpoint: '/api/ai-expert/',
     ragFixed: true,
     ragAlwaysOn: true
   },
@@ -368,15 +368,15 @@ const mainServices = [
   },
   {
     id: 'chat_general',
-    apiId: 'llm',
+    apiId: 'unified_agent',
     name: 'Chat General',
-    description: 'LLM general con RAG configurable para conversaciones con o sin documentos',
+    description: 'Agente unificado que busca en TODOS los dominios (IA + Seguridad)',
     icon: 'i-heroicons-chat-bubble-left-right',
     color: 'bg-gray-600',
     model: 'DeepSeek-Coder',
-    reasoner: 'Modelo de lenguaje general. Único endpoint que permite configurar RAG (use_rag: true/false).',
-    endpoint: '/api/ai-expert/',
-    ragFixed: false, // RAG configurable
+    reasoner: 'Agente modular con acceso a todos los dominios. Permite intercambio dinámico de razonamiento.',
+    endpoint: '/api/unified-agent/',
+    ragFixed: false, // Modular configurable
     ragAlwaysOn: false
   }
 ];
@@ -419,7 +419,7 @@ async function createConversation(serviceId: string, useRag?: boolean) {
   console.log(`[ChatIndex] → useRag param: ${useRag}`);
   
   // Solo asignar use_rag para chat general, los endpoints especializados no lo necesitan
-  const finalUseRag = service?.ragAlwaysOn ? undefined : (useRag !== undefined ? useRag : false);
+  const finalUseRag = service?.ragAlwaysOn ? undefined : (useRag !== undefined ? useRag : true); // Default TRUE para Chat General
   console.log(`[ChatIndex] → RAG final: ${finalUseRag} (undefined = endpoint no configura RAG)`);
   
   // Deshabilitar UI durante la creación

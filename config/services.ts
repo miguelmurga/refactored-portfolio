@@ -23,15 +23,26 @@ export const AI_SERVICES: AIService[] = [
         reasoner: 'Razonador especializado en análisis de vulnerabilidades y evaluación de riesgos de seguridad. Utiliza un enfoque estructurado para identificar posibles brechas de seguridad y recomendar medidas de mitigación adecuadas.'
     },
     {
-        id: 'ia_generativa',
-        apiId: 'ia_generativa', // Este ID debe coincidir con el usado en el backend Django
+        id: 'llm_expert',
+        apiId: 'llm_expert', // Agente IA Especializado
         name: 'Experto en IA Generativa',
         description: 'Obtén información avanzada sobre modelos de lenguaje y tecnologías de IA generativa',
         icon: 'i-heroicons-cpu-chip',
         color: 'bg-blue-600',
         welcomeMessage: 'Bienvenido al servicio de información sobre IA Generativa. ¿Qué te gustaría saber?',
         model: 'DeepSeek-Coder',
-        reasoner: 'Razonador especializado en conceptos de inteligencia artificial, modelos de lenguaje y procesamiento de datos. Proporciona explicaciones detalladas sobre arquitecturas de modelos y técnicas avanzadas de IA.'
+        reasoner: 'Especializado en conceptos de IA. Solo dominio IA Generativa.'
+    },
+    {
+        id: 'unified_agent',
+        apiId: 'unified_agent', // Agente Unificado (Chat General)
+        name: 'Chat General',
+        description: 'Agente unificado que busca en TODOS los dominios (IA + Seguridad)',
+        icon: 'i-heroicons-chat-bubble-left-right',
+        color: 'bg-gray-600',
+        welcomeMessage: 'Bienvenido al Agente Unificado. Puedo ayudarte con consultas de cualquier dominio.',
+        model: 'DeepSeek-Coder',
+        reasoner: 'Agente modular con acceso a todos los dominios. Razonamiento configurable.'
     },
     {
         id: 'rag_conversation',
@@ -53,11 +64,17 @@ export const SUGGESTIONS = {
         'Explica qué es un ataque de phishing',
         '¿Cómo implementar Zero Trust en mi organización?'
     ],
-    'ia_generativa': [
+    'llm_expert': [
         '¿Cuál es la diferencia entre GPT-4 y DeepSeek-Coder?',
         'Explica cómo funciona la arquitectura transformer',
         '¿Qué son los embeddings vectoriales?',
         '¿Cómo puedo hacer fine-tuning de un modelo de lenguaje?'
+    ],
+    'unified_agent': [
+        '¿Cómo puedo aprender programación desde cero?',
+        'Explica qué es la inteligencia artificial',
+        '¿Cuáles son las mejores prácticas de desarrollo?',
+        'Ayúdame a resolver un problema de código'
     ],
     'rag_conversation': [
         '¿Qué son los sistemas RAG y cómo funcionan?',

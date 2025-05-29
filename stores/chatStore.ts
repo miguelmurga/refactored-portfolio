@@ -689,7 +689,7 @@ export const useChatStore = defineStore('chat', () => {
                 use_rag: true,
                 use_deepseek_reasoning: false,
                 domain: service.apiId === 'security_expert' ? 'ciberseguridad' : 
-                       (service.apiId === 'ia_generativa' || service.apiId === 'ai_expert') ? 'ia_generativa' : 'todos',
+                       (service.apiId === 'ia_generativa' || service.apiId === 'ai_expert' || service.apiId === 'llm_expert') ? 'ia_generativa' : 'todos',
                 title: `Nueva conversación ${service.name}`,
                 // Combinar con las opciones proporcionadas
                 ...(options || {})
@@ -717,8 +717,8 @@ export const useChatStore = defineStore('chat', () => {
                         if (serviceId === 'ia_generativa') {
                             return {
                                 use_rag: true,
-                                endpoint: '/api/llm-expert/',
-                                service_backend: 'ia_generativa',
+                                endpoint: '/api/ai-expert/',
+                                service_backend: 'llm_expert',
                                 agent_type: 'ia_generativa'
                             };
                         } else if (serviceId === 'security_expert') {
@@ -736,11 +736,11 @@ export const useChatStore = defineStore('chat', () => {
                                 agent_type: 'rag_conversation'
                             };
                         } else {
-                            // Chat general - RAG configurable
+                            // Chat general - RAG configurable (Unified Agent)
                             return {
                                 use_rag: useRag,
-                                endpoint: '/api/chat/',
-                                service_backend: 'llm',
+                                endpoint: '/api/unified-agent/',
+                                service_backend: 'unified_agent',
                                 agent_type: 'chat_general'
                             };
                         }

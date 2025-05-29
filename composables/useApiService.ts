@@ -702,47 +702,40 @@ export function useApiService() {
             console.log(`[API] → domain: ${domain}`);
             console.log(`[API] → conversation_id: ${conversationId} → ${numericConversationId}`);
             
-            // ✅ DECISIÓN MODULAR: Endpoint basado en configuración RAG y dominio
-            // 🎯 MODULARIDAD SIN PERDER CONTEXTO: Mismo conversation_id, diferente agente
-            const useRag = options?.use_rag !== undefined ? options.use_rag : false;
+            // ✅ DECISIÓN MODULAR: Configuración de razonamiento
+            const useDeepSeekReasoning = options?.use_reasoner !== undefined ? Boolean(options.use_reasoner) : false;
             
             console.log(`[API] 🎛️ SISTEMA MODULAR ACTIVADO:`);
             console.log(`[API] → Conversación ID: ${numericConversationId} (mantener contexto)`);
-            console.log(`[API] → RAG: ${useRag ? 'ON' : 'OFF'}`);
+            console.log(`[API] → DeepSeek Reasoning: ${useDeepSeekReasoning ? 'ON' : 'OFF'}`);
             console.log(`[API] → Dominio: ${domain}`);
             
             // ✅ DEBUGGING ADICIONAL REQUERIDO (CLAUDE_DEBUGGING_HISTORY.md)
-            console.log('DEBUG routing:', { useRag, domain, service });
+            console.log('DEBUG routing:', { useDeepSeekReasoning, domain, service });
             
-            if (service === 'ia_generativa') {
-                // IA GENERATIVA con RAG → usar endpoint ai-expert
+            if (service === 'llm_expert') {
+                // IA GENERATIVA especializado
                 endpoint = `${apiUrl}/ai-expert/`;
-                serviceId = 'ia_generativa';
-                console.log(`[API] 🤖 AGENTE: IA Generativa CON RAG → ${endpoint}`);
+                serviceId = 'llm_expert';
+                console.log(`[API] 🤖 AGENTE: IA Generativa → ${endpoint}`);
                 
             } else if (service === 'security_expert') {
-                // CIBERSEGURIDAD con RAG → usar endpoint especializado
+                // CIBERSEGURIDAD especializado
                 endpoint = `${apiUrl}/security-expert/`;
                 serviceId = 'security_expert';
-                console.log(`[API] 🛡️ AGENTE: Ciberseguridad CON RAG → ${endpoint}`);
-                
-            } else if (service === 'llm') {
-                // CHAT GENERAL (RAG configurable) → usar endpoint ai-expert
-                endpoint = `${apiUrl}/ai-expert/`;
-                serviceId = 'llm';
-                console.log(`[API] 💬 AGENTE: Chat General ${useRag ? 'CON' : 'SIN'} RAG → ${endpoint}`);
+                console.log(`[API] 🛡️ AGENTE: Ciberseguridad → ${endpoint}`);
                 
             } else if (service === 'unified_agent') {
-                // AGENTE UNIFICADO → usar endpoint unified-agent
+                // CHAT GENERAL (Agente Unificado)
                 endpoint = `${apiUrl}/unified-agent/`;
                 serviceId = 'unified_agent';
-                console.log(`[API] 🔄 AGENTE: Unified Agent → ${endpoint}`);
+                console.log(`[API] 💬 AGENTE: Chat General (Unified Agent) → ${endpoint}`);
                 
             } else {
-                // FALLBACK: Chat básico
-                endpoint = `${apiUrl}/ai-expert/`;
-                serviceId = 'llm';
-                console.log(`[API] 📝 AGENTE: Chat Básico → ${endpoint}`);
+                // FALLBACK: Agente Unificado
+                endpoint = `${apiUrl}/unified-agent/`;
+                serviceId = 'unified_agent';
+                console.log(`[API] 🔄 AGENTE: Fallback Unified Agent → ${endpoint}`);
             }
             
             // ✅ DEBUGGING ADICIONAL: Verificar que domain llegue correctamente
@@ -770,50 +763,18 @@ export function useApiService() {
             // ✅ CONSTRUIR PAYLOAD SEGÚN EL ENDPOINT SELECCIONADO
             let payload;
             
-            if (endpoint.includes('/ai-expert/')) {
-                // ✅ PAYLOAD PARA /api/ai-expert/ (IA GENERATIVA Y CHAT GENERAL)
-                payload = {
-                    message,
-                    conversation_id: numericConversationId,
-                    user_id: 'usuario_test',
-                    language: userLanguage,
-                    use_deepseek_reasoning: options?.use_reasoner !== undefined ? options.use_reasoner : false
-                };
-                console.log(`[API] 🤖💬 PAYLOAD PARA AI-EXPERT (${endpoint}) - Service: ${serviceId}`);
-                
-            } else if (endpoint.includes('/security-expert/')) {
-                // ✅ PAYLOAD PARA /api/security-expert/ (CIBERSEGURIDAD CON RAG)
-                payload = {
-                    message,
-                    conversation_id: numericConversationId,
-                    user_id: 'usuario_test',
-                    language: userLanguage,
-                    use_deepseek_reasoning: options?.use_reasoner !== undefined ? options.use_reasoner : false
-                };
-                console.log(`[API] 🛡️ PAYLOAD PARA CIBERSEGURIDAD (${endpoint})`);
-                
-            } else if (endpoint.includes('/unified-agent/')) {
-                // ✅ PAYLOAD PARA /api/unified-agent/ (AGENTE UNIFICADO)
-                payload = {
-                    message,
-                    conversation_id: numericConversationId,
-                    user_id: 'usuario_test',
-                    language: userLanguage,
-                    use_deepseek_reasoning: options?.use_reasoner !== undefined ? options.use_reasoner : false
-                };
-                console.log(`[API] 🔄 PAYLOAD PARA UNIFIED AGENT (${endpoint})`);
-                
-            } else {
-                // ✅ FALLBACK
-                payload = {
-                    message,
-                    conversation_id: numericConversationId,
-                    user_id: 'usuario_test',
-                    language: userLanguage,
-                    use_deepseek_reasoning: options?.use_reasoner !== undefined ? options.use_reasoner : false
-                };
-                console.log(`[API] 📝 PAYLOAD FALLBACK (${endpoint})`);
-            }
+            // ✅ PAYLOAD UNIVERSAL MODULAR - Todos los endpoints usan la misma estructura
+            payload = {
+                message,
+                conversation_id: numericConversationId,
+                user_id: 'usuario_test',
+                language: userLanguage,
+                use_deepseek_reasoning: useDeepSeekReasoning
+            };
+            
+            console.log(`[API] 🔄 PAYLOAD MODULAR PARA ${endpoint}:`);
+            console.log(`[API] → use_deepseek_reasoning: ${useDeepSeekReasoning} (tipo: ${typeof useDeepSeekReasoning})`);
+            console.log(`[API] → service: ${serviceId}`);
             
             // ✅ VALIDACIÓN FINAL: Verificar que conversation_id sea un número válido
             if (typeof payload.conversation_id !== 'number') {
@@ -1512,41 +1473,30 @@ export function useApiService() {
             
             console.log(`[API] 🔍 CREANDO CONVERSACIÓN PARA SERVICIO: ${service}`);
             
-            if (service === 'ia_generativa') {
-                serviceForBackend = 'ia_generativa';
+            if (service === 'llm_expert') {
+                serviceForBackend = 'llm_expert';
                 domain = 'ia_generativa';
-                useRag = true; // ✅ IA Generativa SIEMPRE con RAG
                 console.log(`[API] 🤖 CONFIGURADO: IA Generativa → /api/ai-expert/`);
                 
             } else if (service === 'security_expert') {
                 serviceForBackend = 'security_expert';
                 domain = 'ciberseguridad';
-                useRag = true; // ✅ Ciberseguridad SIEMPRE con RAG
                 console.log(`[API] 🛡️ CONFIGURADO: Ciberseguridad → /api/security-expert/`);
-                
-            } else if (service === 'llm') {
-                serviceForBackend = 'llm';
-                domain = 'todos';
-                useRag = options?.use_rag !== undefined ? options.use_rag : true; // ✅ Default true para Chat General
-                console.log(`[API] 💬 CONFIGURADO: Chat General ${useRag ? 'CON' : 'SIN'} RAG → /api/ai-expert/`);
                 
             } else if (service === 'unified_agent') {
                 serviceForBackend = 'unified_agent';
                 domain = 'todos';
-                useRag = options?.use_rag !== undefined ? options.use_rag : true; // ✅ Default true para unified_agent
-                console.log(`[API] 🔄 CONFIGURADO: Unified Agent → /api/unified-agent/`);
+                console.log(`[API] 💬 CONFIGURADO: Chat General (Unified Agent) → /api/unified-agent/`);
                 
             } else if (service === 'rag_conversation') {
                 serviceForBackend = 'rag_conversation';
                 domain = 'todos';
-                useRag = true; // ✅ RAG Conversation SIEMPRE con RAG
                 console.log(`[API] 📚 CONFIGURADO: RAG Conversation → /api/unified-agent/`);
                 
             } else {
-                serviceForBackend = 'llm';
+                serviceForBackend = 'unified_agent';
                 domain = 'todos';
-                useRag = options?.use_rag !== undefined ? options.use_rag : false; // ✅ Chat básico
-                console.log(`[API] 📝 CONFIGURADO: Chat Básico → /api/ai-expert/`);
+                console.log(`[API] 🔄 CONFIGURADO: Fallback Unified Agent → /api/unified-agent/`);
             }
             
             // Construir el payload para la creación

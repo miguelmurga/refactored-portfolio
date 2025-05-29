@@ -174,7 +174,7 @@ class ConversationController {
             use_deepseek_reasoning: options.use_deepseek_reasoning || false,
             use_rag: options.use_rag !== undefined ? options.use_rag : true,
             domain: options.domain || (service === 'security_expert' ? 'ciberseguridad' : 
-                   service === 'ia_generativa' || service === 'ai_expert' ? 'ia_generativa' : 'todos'),
+                   service === 'ia_generativa' || service === 'ai_expert' || service === 'llm_expert' ? 'ia_generativa' : 'todos'),
             title: options.title || `Nueva conversación ${service}`,
             ...options
         };

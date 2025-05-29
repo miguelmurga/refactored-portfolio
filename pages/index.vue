@@ -179,6 +179,11 @@
       </UCard>
     </UModal>
   </div>
+  <footer class="mt-10 text-center py-4">
+    <p class="text-sm">
+      &copy; {{ new Date().getFullYear() }} Miguel Murga Guevara. {{ $t('aboutMe.copyright') }}.
+    </p>
+  </footer>
 </template>
 
 <script setup lang="ts">

@@ -16,9 +16,9 @@
             {{ t('work_in_progress_desc') }}
           </p>
 
-          <!-- Fecha esperada -->
+          <!-- Fecha esperada actualizada -->
           <p class="text-sm text-rose-500 dark:text-rose-300 font-medium">
-            {{ t('estimated_mid_april') }}
+            {{ t('estimated_mid_july') }}
           </p>
 
           <!-- Cuenta regresiva -->
@@ -70,7 +70,8 @@ const countdown = ref({
   seconds: '00',
 })
 
-const targetDate = new Date('2025-04-15T00:00:00')
+// Cambia aquí la fecha a julio 2025
+const targetDate = new Date('2025-07-15T00:00:00')
 
 let interval: ReturnType<typeof setInterval>
 
