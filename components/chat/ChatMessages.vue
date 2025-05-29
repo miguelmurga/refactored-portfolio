@@ -157,56 +157,17 @@ const props = defineProps<{
   suggestions: string[];
 }>();
 
-// 🔄 COMPUTED: Ordenar mensajes localmente en el componente
+// ✅ FIXED: NO REORDENAR - El store ya envía en el orden correcto del backend
 const sortedMessages = computed(() => {
-  console.log(`[ChatMessages] 🔄 COMPUTED sortedMessages called with ${props.messages.length} messages`);
-  console.log(`[ChatMessages] 📨 Raw messages:`, props.messages.map(m => ({ role: m.role, id: m.id, content: m.content?.substring(0, 30) })));
-  
-  const sorted = [...props.messages].sort((a, b) => {
-    // Priorizar created_at del backend, luego _timestamp, luego _time
-    let timestampA = 0;
-    let timestampB = 0;
-    
-    // Para mensaje A
-    if (a.created_at) {
-      timestampA = new Date(a.created_at).getTime();
-    } else if (a._timestamp) {
-      timestampA = new Date(a._timestamp).getTime();
-    } else if (a._time) {
-      timestampA = typeof a._time === 'number' ? a._time : new Date(a._time).getTime();
-    }
-    
-    // Para mensaje B
-    if (b.created_at) {
-      timestampB = new Date(b.created_at).getTime();
-    } else if (b._timestamp) {
-      timestampB = new Date(b._timestamp).getTime();
-    } else if (b._time) {
-      timestampB = typeof b._time === 'number' ? b._time : new Date(b._time).getTime();
-    }
-    
-    // Si los timestamps son iguales o muy cercanos (< 100ms), usar ID para determinismo
-    if (Math.abs(timestampA - timestampB) < 100) {
-      return Number(a.id) - Number(b.id);
-    }
-    
-    // Si no hay timestamps válidos, usar ID como fallback
-    if (!timestampA && !timestampB) {
-      return Number(a.id) - Number(b.id);
-    }
-    if (!timestampA) return 1;
-    if (!timestampB) return -1;
-    
-    return timestampA - timestampB; // Orden ascendente (más antiguo primero)
-  });
-  
-  console.log(`[ChatMessages] 🔄 ORDENADOS: ${sorted.length} mensajes`);
-  sorted.forEach((msg, idx) => {
+  console.log(`[ChatMessages] ✅ RECIBIENDO ${props.messages.length} mensajes del store (SIN reordenar)`);
+  console.log(`[ChatMessages] 📨 Mensajes en orden original del backend:`);
+  props.messages.forEach((msg, idx) => {
     const timestamp = msg.created_at || msg._timestamp || msg._time || 'Sin timestamp';
     console.log(`[ChatMessages] ${idx+1}. Role=${msg.role}, ID=${msg.id}, Timestamp=${timestamp}, Content="${msg.content?.substring(0, 30)}..."`);
   });
   
-  return sorted;
+  // ✅ RETORNAR EXACTAMENTE LO QUE ENVÍA EL STORE (backend order)
+  return props.messages;
 });
 
 const emit = defineEmits<{

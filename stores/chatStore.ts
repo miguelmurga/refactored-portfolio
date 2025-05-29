@@ -851,12 +851,9 @@ export const useChatStore = defineStore('chat', () => {
             _temp_id: tempId // Guardar el ID temporal para poder reemplazarlo después
         }, currentConversation.value.id);
 
-        // ✅ FIX CRÍTICO: Aplicar la misma lógica de reordenamiento al mensaje del usuario
+        // ✅ FIXED: NO REORDENAR - Solo agregar mensaje sin reordenar
         if (currentConversation.value) {
             currentConversation.value.messages.push(userMessage);
-            
-            // 🔄 REORDENAR INMEDIATAMENTE usando la función auxiliar estándar
-            currentConversation.value.messages = sortMessagesByTimestampAndId(currentConversation.value.messages);
             currentConversation.value.lastUpdated = new Date().toISOString();
 
             // Actualizar título si es el primer mensaje
@@ -1090,12 +1087,9 @@ export const useChatStore = defineStore('chat', () => {
                     if (currentConversation.value) {
                         // Añadir el mensaje del asistente
                         currentConversation.value.messages.push(assistantMessage);
-                        
-                        // 🔄 REORDENAR INMEDIATAMENTE usando la función auxiliar estándar
-                        currentConversation.value.messages = sortMessagesByTimestampAndId(currentConversation.value.messages);
                         currentConversation.value.lastUpdated = new Date().toISOString();
                         
-                        console.log(`[Chat] ✅ Mensajes reordenados después de añadir respuesta individual`);
+                        console.log(`[Chat] ✅ Mensaje del asistente añadido (sin reordenar)`);
                         
                         // 🔄 FORZAR REACTIVIDAD
                         messagesUpdateTrigger.value++;
@@ -1150,9 +1144,6 @@ export const useChatStore = defineStore('chat', () => {
 
         if (currentConversation.value) {
             currentConversation.value.messages.push(userMessage);
-            
-            // 🔄 REORDENAR INMEDIATAMENTE para mantener orden cronológico
-            currentConversation.value.messages = sortMessagesByTimestampAndId(currentConversation.value.messages);
             currentConversation.value.lastUpdated = now.toISOString();
             
             // Actualizar título si es el primer mensaje
@@ -1189,9 +1180,6 @@ export const useChatStore = defineStore('chat', () => {
 
         if (currentConversation.value) {
             currentConversation.value.messages.push(assistantMessage);
-            
-            // 🔄 REORDENAR INMEDIATAMENTE para mantener orden cronológico
-            currentConversation.value.messages = sortMessagesByTimestampAndId(currentConversation.value.messages);
             currentConversation.value.lastUpdated = now.toISOString();
             
             // Guardar en caché para preservar el mensaje
