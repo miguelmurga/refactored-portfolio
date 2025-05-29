@@ -1,171 +1,215 @@
-# Portfolio con Chat AI basado en MongoDB
+# 🎯 Portfolio con Chat AI basado en MongoDB
 
-Este proyecto es un portafolio profesional con funcionalidades de chat AI avanzadas. La aplicación está construida con Nuxt 3 y se integra con un backend de Django que utiliza MongoDB para almacenar embeddings vectoriales.
+> **Portafolio profesional con funcionalidades de chat AI avanzadas**
 
-## Características Principales
+Este proyecto es un portafolio profesional moderno construido con **Nuxt 3** que integra servicios de inteligencia artificial especializados. La aplicación frontend se conecta a un backend privado con MongoDB para búsqueda semántica y RAG (Retrieval-Augmented Generation).
 
-- **Interfaz de Chat AI**: Sistema de chat con diferentes servicios de IA
-- **Embeddings MongoDB**: Búsqueda semántica con embeddings vectoriales
-- **Multilingüe**: Soporte completo para español, inglés y portugués
-- **RAG (Retrieval-Augmented Generation)**: Mejora las respuestas con contexto de documentos
-- **Integración con MongoDB**: Almacenamiento eficiente de vectores para búsqueda semántica
+## ✨ Características Principales
 
-## Servicios de IA Disponibles
+- 🤖 **Chat AI Especializado**: Servicios de IA para ciberseguridad e IA generativa
+- 🔍 **Búsqueda Semántica**: Sistema RAG con embeddings vectoriales
+- 🌐 **Multilingüe**: Soporte completo para español, inglés y portugués  
+- 🎨 **Interfaz Moderna**: UI responsiva con Nuxt UI y Tailwind CSS
+- 🔒 **Autenticación JWT**: Sesiones seguras con tokens persistentes
+- ⚡ **Optimizado para Producción**: Build optimizado con headers de seguridad
 
-1. **Experto en Ciberseguridad**: Asesoramiento especializado en temas de seguridad informática
-2. **Experto en IA Generativa**: Información sobre modelos de lenguaje y tecnologías de IA
-3. **Consulta RAG con MongoDB**: Sistema que combina búsqueda semántica y generación de texto
+## 🤖 Servicios de IA Disponibles
 
-## Setup
+| Servicio | Descripción | Especialización |
+|----------|-------------|-----------------|
+| 🛡️ **Experto en Ciberseguridad** | Asesoramiento especializado en seguridad informática | Pentesting, vulnerabilidades, hardening |
+| 🧠 **Experto en IA Generativa** | Información sobre modelos de lenguaje y tecnologías de IA | LLMs, embeddings, RAG, frameworks |
+| 🔄 **Agente RAG Unificado** | Sistema que combina búsqueda semántica y generación | Acceso a todos los documentos |
 
-Asegúrate de instalar las dependencias:
+## 🏗️ Arquitectura
+
+```mermaid
+graph LR
+    A[Frontend Nuxt 3] --> B[Backend Django]
+    B --> C[MongoDB + Embeddings]
+    B --> D[Jina AI API]
+    B --> E[Cohere ReRank]
+    B --> F[LLM Services]
+```
+
+## 🚀 Inicio Rápido
+
+### Prerrequisitos
+
+- Node.js 18+
+- npm/yarn/pnpm/bun
+
+### Instalación
 
 ```bash
-# npm
+# Clona el repositorio
+git clone https://github.com/miguelmurga/refactored-portfolio.git
+cd refactored-portfolio
+
+# Instala dependencias
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
+# o
 yarn install
-
-# bun
-bun install
 ```
 
-## Configuración del Backend
+### Configuración
 
-Esta aplicación frontend se conecta a un backend Django con MongoDB. Asegúrate de que el backend esté configurado correctamente:
+1. **Copia el archivo de configuración:**
+   ```bash
+   cp .env.example .env.local
+   ```
 
-1. Clona el repositorio del backend Django
-2. Configura las variables de entorno para MongoDB
-3. Inicia el servicio de Django con la API REST activa
-4. Verifica que los endpoints de la API estén disponibles en `http://localhost:8000/api/`
+2. **Configura las variables de entorno:**
+   ```env
+   # Backend API URL - contacta al propietario para acceso
+   NUXT_API_URL=https://tu-backend-url.com/api
+   
+   # Variables de desarrollo
+   NODE_ENV=development
+   NUXT_DEV_MODE=true
+   ```
 
-### Variables de Entorno
-
-El proyecto utiliza un archivo `.env` para configurar la conexión con el backend:
-
-```
-# URL del backend Django
-NUXT_API_URL=http://localhost:8000/api
-
-# Secreto para JWT (solo para desarrollo)
-NUXT_JWT_SECRET=tu_clave_secreta_super_segura
-```
-
-Para modificar la URL del backend, simplemente cambia el valor de `NUXT_API_URL` en el archivo `.env` y reinicia la aplicación. Esto actualizará automáticamente todas las llamadas API en la aplicación.
-
-#### Configuración en producción
-
-En entornos de producción, puedes configurar la URL del backend de varias formas:
-
-1. **Variables de entorno en el servidor**: Configura directamente la variable `NUXT_API_URL` en el servidor donde se aloja la aplicación.
-
-2. **Durante el despliegue**: Muchas plataformas de hosting como Vercel, Netlify o Azure permiten configurar variables de entorno a través de su interfaz.
-
-3. **Contenedores Docker**: Si utilizas Docker, puedes pasar la variable como un argumento al contenedor:
+### Desarrollo
 
 ```bash
-docker run -e NUXT_API_URL=https://api.tudominio.com/api tu-imagen-nuxt
-```
-
-4. **Archivo .env.production**: Puedes crear un archivo `.env.production` con la configuración específica para producción.
-
-**Importante**: La aplicación siempre utilizará la URL especificada en `NUXT_API_URL` para todas las llamadas al backend, por lo que es esencial que esta variable esté correctamente configurada.
-
-## API Endpoints Requeridos
-
-El frontend espera los siguientes endpoints:
-
-- `/api/create-session/`: Crear una nueva sesión de usuario
-- `/api/conversations/`: Gestionar conversaciones
-- `/api/chat/`: Endpoint principal para el chat con IA generativa
-- `/api/security-expert/`: Servicio de chatbot especializado en ciberseguridad
-- `/api/rag-conversation/`: Servicio RAG con embeddings MongoDB
-- `/api/semantic-search/`: Búsqueda semántica directa en la base de conocimiento
-- `/api/message-status/:id`: Verificar estado de mensajes procesados asincrónicamente
-- `/api/upload-document`: Subir documentos a la base de conocimiento
-
-## Páginas Disponibles
-
-- `/`: Página principal del portafolio
-- `/ai-chat`: Interfaz de chat original
-- `/mongodb-ai-chat`: Nueva interfaz de chat con MongoDB y embeddings
-
-## Desarrollo
-
-Inicia el servidor de desarrollo:
-
-```bash
-# npm
+# Inicia el servidor de desarrollo
 npm run dev
 
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+# La aplicación estará disponible en http://localhost:3000
 ```
 
-## Producción
+## 🔐 Acceso al Backend
 
-Compila la aplicación para producción:
+> **⚠️ IMPORTANTE**: Este repositorio contiene **solo el frontend**. El backend es privado y requiere autorización.
+
+### Para Desarrolladores
+
+Si necesitas acceso al backend completo para desarrollo:
+
+1. **Contacta al propietario del repositorio** para solicitar acceso
+2. Proporciona información sobre:
+   - Propósito del acceso (desarrollo, investigación, colaboración)
+   - Tu experiencia técnica relevante
+   - GitHub username para invitación al repositorio privado
+
+### Para Usuarios Finales
+
+La aplicación está diseñada para funcionar con el backend en producción:
+
+- ✅ **Frontend público**: Interfaz de usuario disponible
+- 🔒 **Backend privado**: API y base de datos protegidas
+- 📧 **Soporte**: Contacta para consultas o colaboraciones
+
+## 🛠️ Scripts Disponibles
 
 ```bash
-# npm
-npm run build
+# Desarrollo
+npm run dev                 # Servidor de desarrollo
+npm run build              # Build de producción  
+npm run build:prod         # Build optimizado para producción
+npm run preview            # Preview del build
 
-# pnpm
-pnpm run build
+# Producción
+npm run start              # Servidor de producción
+npm run start:prod         # Servidor optimizado para producción
 
-# yarn
-yarn build
-
-# bun
-bun run build
+# Utilidades
+npm run typecheck          # Verificación de tipos TypeScript
 ```
 
-Vista previa local de la compilación de producción:
+## 📁 Estructura del Proyecto
+
+```
+refactored-portfolio/
+├── components/            # Componentes Vue reutilizables
+│   ├── chat/             # Componentes del sistema de chat
+│   ├── global/           # Componentes globales
+│   └── ui/               # Componentes de interfaz
+├── composables/          # Composables de Vue
+├── pages/                # Páginas de la aplicación
+├── stores/               # Estado global (Pinia)
+├── utils/                # Utilidades y helpers
+├── locales/              # Archivos de internacionalización
+└── public/               # Assets estáticos
+```
+
+## 🌐 Páginas Disponibles
+
+| Ruta | Descripción |
+|------|-------------|
+| `/` | Página principal del portafolio |
+| `/chat` | Interfaz principal de chat AI |
+| `/chat/[id]` | Conversación específica |
+| `/projects` | Galería de proyectos |
+| `/aboutMe` | Información personal |
+| `/contactMe` | Formulario de contacto |
+| `/system-status` | Estado del sistema y APIs |
+
+## 🔧 Tecnologías
+
+### Frontend
+- **Framework**: Nuxt 3, Vue 3, TypeScript
+- **Estilos**: Tailwind CSS, Nuxt UI
+- **Estado**: Pinia
+- **Internacionalización**: @nuxtjs/i18n
+
+### Backend (Privado)
+- **API**: Django REST Framework
+- **Base de Datos**: MongoDB
+- **Embeddings**: Jina AI
+- **ReRanking**: Cohere
+- **LLM**: DeepSeek, OpenAI
+
+## 🚢 Despliegue
+
+### Build para Producción
 
 ```bash
-# npm
-npm run preview
+# Build optimizado
+npm run build:prod
 
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+# Generar sitio estático
+npm run generate:prod
 ```
 
-## Funcionalidades MongoDB Chat
+### Variables de Entorno de Producción
 
-La implementación del chat con MongoDB incluye:
+```env
+# Configuración de producción
+NODE_ENV=production
+NUXT_DEV_MODE=false
+NUXT_DEBUG_LOGS=false
 
-- **Búsqueda Semántica**: Encuentra información relevante en documentos utilizando embeddings vectoriales
-- **Opciones RAG Configurables**: Ajusta parámetros como métrica de similitud (coseno/euclídea), MMR y ReRank
-- **Subida de Documentos**: Añade nuevos documentos a la base de conocimiento
-- **Soporte Multilingüe**: Plena compatibilidad con es, en, pt
-- **Procesamiento Asíncrono**: Manejo de mensajes de larga duración con polling de estado
-- **Contexto Enriquecido**: Visualización de fuentes de información en las respuestas
+# URL del backend en producción
+NUXT_API_URL=https://api.tudominio.com/api
+```
 
-## Tecnologías Utilizadas
+## 📄 Documentación Adicional
 
-- **Frontend**: Nuxt 3, Vue 3, TypeScript, Tailwind CSS
-- **Backend**: Django (API REST)
-- **Base de Datos**: MongoDB (almacenamiento de embeddings)
-- **Embeddings**: Jina AI, Cohere ReRank
-- **Modelos de IA**: DeepSeek-Coder
+- 📖 [Estrategia de Ramas](./BRANCHING_STRATEGY.md)
+- 🚀 [Guía de Despliegue](./DEPLOYMENT.md)
+- 🐛 [Historial de Debugging](./CLAUDE_DEBUGGING_HISTORY.md)
 
-## Recursos Adicionales
+## 🤝 Contribuciones
 
-- [Documentación de Nuxt 3](https://nuxt.com/docs/getting-started/introduction)
-- [Despliegue de Nuxt](https://nuxt.com/docs/getting-started/deployment)
+Las contribuciones son bienvenidas. Para cambios importantes:
+
+1. Fork el repositorio
+2. Crea una rama feature (`git checkout -b feature/nueva-funcionalidad`)
+3. Commit tus cambios (`git commit -m 'feat: añadir nueva funcionalidad'`)
+4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
+5. Abre un Pull Request
+
+## 📞 Contacto
+
+- **GitHub**: [@miguelmurga](https://github.com/miguelmurga)
+- **LinkedIn**: [Miguel Murga](https://linkedin.com/in/miguelmurga)
+- **Email**: [Contacto directo](mailto:contacto@miguelmurga.com)
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+---
+
+**🛡️ Nota de Seguridad**: Este repositorio es público pero el backend es privado por razones de seguridad. No expone APIs keys, secrets, o datos sensibles.
