@@ -29,7 +29,7 @@
   "close": "Fechar",
   "work_in_progress_title": "Trabalho em andamento",
   "work_in_progress_desc": "O trabalho continua em andamento, assim como todos nós.",
-  "estimated_mid_april": "Estimado para meados de abril de 2025",
+  "estimated_mid_july": "Previsto para meados de julho de 2025",
   "go_back_home": "Voltar para o início",
   "home": "Início",
   "shop": "Loja",
@@ -127,7 +127,14 @@
     "powered_by_gpt4_with_db": "Desenvolvido por Azure OpenAI GPT-4 com acesso ao banco de dados",
     "powered_by_gpt4_with_kb": "Desenvolvido por Azure OpenAI GPT-4 com base de conhecimento",
     "ai_assistant": "Assistente de IA",
-    "capabilities": "Capacidades"
+    "capabilities": "Capacidades",
+    "loading_conversations": "Carregando conversas...",
+    "no_conversations_yet_message": "Nenhuma conversa ainda",
+    "specialized_agents": "Agentes Especializados (RAG Sempre ON)",
+    "general_chat": "Chat Geral (RAG Configurável)",
+    "general_chat_description": "Único endpoint que permite ativar/desativar RAG",
+    "rag_always_on": "RAG SEMPRE ON",
+    "rag_configurable": "RAG Configurável"
   },
   "services": {
     "cybersecurity": {
@@ -281,5 +288,19 @@
     "token_invalid": "Sessão expirada",
     "error": "Erro de conexão",
     "reconnected": "Reconectado com sucesso"
+  },
+  "services": {
+    "ia_generativa": {
+      "name": "Especialista em IA Generativa",
+      "description": "Especialista em inteligência artificial e modelos de linguagem com documentos especializados"
+    },
+    "security_expert": {
+      "name": "Especialista em Cibersegurança", 
+      "description": "Especialista em segurança da informação e hacking ético com documentos ETHPA"
+    },
+    "chat_general": {
+      "name": "Chat Geral",
+      "description": "LLM geral com RAG configurável para conversas com ou sem documentos"
+    }
   }
 }

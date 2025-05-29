@@ -29,7 +29,7 @@
   "close": "Close",
   "work_in_progress_title": "Work in Progress",
   "work_in_progress_desc": "Work is still in progress, just like all of us.",
-  "estimated_mid_april": "Estimated for mid-April 2025",
+  "estimated_mid_july": "Estimated for mid July 2025",
   "go_back_home": "Go back home",
   "home": "Home",
   "shop": "Shop",
@@ -196,7 +196,14 @@
     "powered_by_gpt4_with_db": "Powered by Azure OpenAI GPT-4 with database access",
     "powered_by_gpt4_with_kb": "Powered by Azure OpenAI GPT-4 with knowledge base",
     "ai_assistant": "AI Assistant",
-    "capabilities": "Capabilities"
+    "capabilities": "Capabilities",
+    "loading_conversations": "Loading conversations...",
+    "no_conversations_yet_message": "No conversations yet",
+    "specialized_agents": "Specialized Agents (RAG Always ON)",
+    "general_chat": "General Chat (Configurable RAG)",
+    "general_chat_description": "Only endpoint that allows enabling/disabling RAG",
+    "rag_always_on": "RAG ALWAYS ON",
+    "rag_configurable": "RAG Configurable"
   },
   "services": {
     "cybersecurity": {
@@ -402,6 +409,20 @@
     "reconnected": "Reconnected successfully"
   },
   "language": "Language",
+  "services": {
+    "ia_generativa": {
+      "name": "Generative AI Expert",
+      "description": "Expert in artificial intelligence and language models with specialized documents"
+    },
+    "security_expert": {
+      "name": "Cybersecurity Expert", 
+      "description": "Expert in computer security and ethical hacking with ETHPA documents"
+    },
+    "chat_general": {
+      "name": "General Chat",
+      "description": "General LLM with configurable RAG for conversations with or without documents"
+    }
+  },
   "aboutMe": {
     "title": "Miguel Murga Guevara",
     "subtitle": "Full Stack Developer | Electronics & Telecom Engineer | Industry 4.0 Enthusiast",

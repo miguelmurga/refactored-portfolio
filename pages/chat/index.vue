@@ -23,11 +23,11 @@
         </h3>
         <div v-if="isLoadingChats" class="py-4 text-center">
           <UProgress class="w-20 mx-auto" color="primary" :model-value="null" />
-          <div class="text-sm text-gray-400 mt-2">Cargando conversaciones...</div>
+          <div class="text-sm text-gray-400 mt-2">{{ $t('chat.loading_conversations') }}</div>
         </div>
         <template v-else-if="chatStore.conversations.length === 0">
           <p class="text-gray-400 text-sm text-center py-4">
-            No hay conversaciones aún
+            {{ $t('chat.no_conversations_yet_message') }}
           </p>
         </template>
         <template v-else>
@@ -118,13 +118,13 @@
                 <div class="w-12 h-12 rounded-full flex items-center justify-center mb-3 mx-auto" :class="service.color">
                   <UIcon :name="service.icon" class="text-white text-lg" />
                 </div>
-                <h3 class="text-lg font-semibold mb-2">{{ service.name }}</h3>
+                <h3 class="text-lg font-semibold mb-2">{{ $t(`services.${service.id}.name`) || service.name }}</h3>
                 <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                  {{ service.description }}
+                  {{ $t(`services.${service.id}.description`) || service.description }}
                 </p>
                 <div class="flex flex-col gap-1">
                   <div class="flex gap-1">
-                    <UBadge size="sm" color="emerald" variant="solid">RAG SIEMPRE ON</UBadge>
+                    <UBadge size="sm" color="emerald" variant="solid">{{ $t('chat.rag_always_on') }}</UBadge>
                     <UBadge size="sm" color="gray" variant="subtle">{{ service.model }}</UBadge>
                   </div>
                   <div class="text-xs text-gray-400 mt-1">{{ service.endpoint }}</div>
@@ -141,13 +141,13 @@
                 <div class="w-12 h-12 rounded-full flex items-center justify-center mb-3 mx-auto" :class="service.color">
                   <UIcon :name="service.icon" class="text-white text-lg" />
                 </div>
-                <h3 class="text-lg font-semibold mb-2">{{ service.name }}</h3>
+                <h3 class="text-lg font-semibold mb-2">{{ $t(`services.${service.id}.name`) || service.name }}</h3>
                 <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                  {{ service.description }}
+                  {{ $t(`services.${service.id}.description`) || service.description }}
                 </p>
                 <div class="flex flex-col gap-1">
                   <div class="flex gap-1">
-                    <UBadge size="sm" color="blue" variant="subtle">RAG Configurable</UBadge>
+                    <UBadge size="sm" color="blue" variant="subtle">{{ $t('chat.rag_configurable') }}</UBadge>
                     <UBadge size="sm" color="gray" variant="subtle">{{ service.model }}</UBadge>
                   </div>
                   <div class="text-xs text-gray-400 mt-1">{{ service.endpoint }}</div>
@@ -181,7 +181,7 @@
         <div class="space-y-4">
           <!-- Agentes Especializados (RAG siempre activado) -->
           <div>
-            <h5 class="text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">🤖 Agentes Especializados (RAG Siempre ON)</h5>
+            <h5 class="text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">🤖 {{ $t('chat.specialized_agents') }}</h5>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <template v-for="service in mainServices.filter(s => s.ragAlwaysOn)" :key="service.id">
                 <div
@@ -192,10 +192,10 @@
                     <div class="w-12 h-12 rounded-full flex items-center justify-center mb-3 mx-auto" :class="service.color">
                       <UIcon :name="service.icon" class="text-white text-lg" />
                     </div>
-                    <h4 class="font-medium mb-1">{{ service.name }}</h4>
-                    <UBadge size="sm" color="emerald" variant="solid" class="mb-2">RAG SIEMPRE ON</UBadge>
+                    <h4 class="font-medium mb-1">{{ $t(`services.${service.id}.name`) || service.name }}</h4>
+                    <UBadge size="sm" color="emerald" variant="solid" class="mb-2">{{ $t('chat.rag_always_on') }}</UBadge>
                     <p class="text-xs text-gray-500 dark:text-gray-400 line-clamp-2">
-                      {{ service.description }}
+                      {{ $t(`services.${service.id}.description`) || service.description }}
                     </p>
                     <div class="text-xs text-gray-400 mt-1">→ {{ service.endpoint }}</div>
                   </div>
@@ -206,8 +206,8 @@
           
           <!-- Chat General (RAG configurable) -->
           <div class="border-t border-gray-200 dark:border-gray-700 pt-3">
-            <h5 class="text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">💬 Chat General (RAG Configurable)</h5>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Único endpoint que permite activar/desactivar RAG</p>
+            <h5 class="text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">💬 {{ $t('chat.general_chat') }}</h5>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">{{ $t('chat.general_chat_description') }}</p>
             
             <template v-for="service in mainServices.filter(s => !s.ragAlwaysOn)" :key="service.id">
               <div
@@ -218,10 +218,10 @@
                   <div class="w-12 h-12 rounded-full flex items-center justify-center mb-3 mx-auto" :class="service.color">
                     <UIcon :name="service.icon" class="text-white text-lg" />
                   </div>
-                  <h4 class="font-medium mb-1">{{ service.name }}</h4>
-                  <UBadge size="sm" color="blue" variant="subtle" class="mb-2">RAG Configurable</UBadge>
+                  <h4 class="font-medium mb-1">{{ $t(`services.${service.id}.name`) || service.name }}</h4>
+                  <UBadge size="sm" color="blue" variant="subtle" class="mb-2">{{ $t('chat.rag_configurable') }}</UBadge>
                   <p class="text-xs text-gray-500 dark:text-gray-400">
-                    {{ service.description }}
+                    {{ $t(`services.${service.id}.description`) || service.description }}
                   </p>
                   <div class="text-xs text-gray-400 mt-1">{{ service.endpoint }}</div>
                 </div>
@@ -264,11 +264,11 @@
           </h3>
           <div v-if="isLoadingChats" class="py-4 text-center">
             <UProgress class="w-20 mx-auto" color="primary" :model-value="null" />
-            <div class="text-sm text-gray-400 mt-2">Cargando conversaciones...</div>
+            <div class="text-sm text-gray-400 mt-2">{{ $t('chat.loading_conversations') }}</div>
           </div>
           <template v-else-if="chatStore.conversations.length === 0">
             <p class="text-gray-400 text-sm text-center py-4">
-              No hay conversaciones aún
+              {{ $t('chat.no_conversations_yet_message') }}
             </p>
           </template>
           <template v-else>
