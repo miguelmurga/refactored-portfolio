@@ -672,9 +672,9 @@ export function useApiService() {
                 }
             }
             
-            // ✅ NUEVA LÓGICA: Selección de endpoint basada en TIPO DE SERVICIO + RAG
-            let endpoint = `${apiUrl}/chat/`; // ✅ Valor por defecto
-            let serviceId = service;
+            // ✅ NUEVA LÓGICA MODULAR: Selección dinámica de endpoint basada en RAG + DOMINIO
+            let endpoint;
+            let serviceId;
             let domain = options?.domain || 'todos';
             
             // 🚨 DEBUGGING EXHAUSTIVO: Verificar parámetro recibido
@@ -696,47 +696,50 @@ export function useApiService() {
             console.log('→ numericConversationId:', numericConversationId);
             console.log('→ tipo después de conversión:', typeof numericConversationId);
             
-            console.log(`[API] 🔍 CONFIGURACIÓN MODULAR RECIBIDA:`);
-            console.log(`[API] → service: ${service}`);
-            console.log(`[API] → use_rag: ${options?.use_rag}`);
-            console.log(`[API] → domain: ${domain}`);
-            console.log(`[API] → conversation_id: ${conversationId} → ${numericConversationId}`);
-            
-            // ✅ DECISIÓN MODULAR: Configuración de razonamiento
+            // ✅ DECISIÓN MODULAR: Configuración de razonamiento y RAG
+            const useRag = options?.use_rag !== undefined ? Boolean(options.use_rag) : false;
             const useDeepSeekReasoning = options?.use_reasoner !== undefined ? Boolean(options.use_reasoner) : false;
             
-            console.log(`[API] 🎛️ SISTEMA MODULAR ACTIVADO:`);
-            console.log(`[API] → Conversación ID: ${numericConversationId} (mantener contexto)`);
-            console.log(`[API] → DeepSeek Reasoning: ${useDeepSeekReasoning ? 'ON' : 'OFF'}`);
-            console.log(`[API] → Dominio: ${domain}`);
+            console.log(`[API] 🔍 CONFIGURACIÓN MODULAR RECIBIDA:`);
+            console.log(`[API] → service inicial: ${service}`);
+            console.log(`[API] → use_rag: ${useRag}`);
+            console.log(`[API] → domain: ${domain}`);
+            console.log(`[API] → use_reasoner: ${useDeepSeekReasoning}`);
+            console.log(`[API] → conversation_id: ${conversationId} → ${numericConversationId}`);
             
-            // ✅ DEBUGGING ADICIONAL REQUERIDO (CLAUDE_DEBUGGING_HISTORY.md)
-            console.log('DEBUG routing:', { useDeepSeekReasoning, domain, service });
-            
-            if (service === 'llm_expert') {
-                // IA GENERATIVA especializado
+            // 🚀 LÓGICA MODULAR DINÁMICA: INTERCAMBIO DE AGENTES EN TIEMPO REAL
+            if (useRag && domain === 'ia_generativa') {
+                // RAG ACTIVADO + DOMINIO IA → Usar agente especializado en IA
                 endpoint = `${apiUrl}/ai-expert/`;
                 serviceId = 'llm_expert';
-                console.log(`[API] 🤖 AGENTE: IA Generativa → ${endpoint}`);
+                console.log(`[API] 🤖 AGENTE ESPECIALIZADO: IA Generativa (RAG ON) → ${endpoint}`);
                 
-            } else if (service === 'security_expert') {
-                // CIBERSEGURIDAD especializado
+            } else if (useRag && domain === 'ciberseguridad') {
+                // RAG ACTIVADO + DOMINIO SEGURIDAD → Usar agente especializado en seguridad
                 endpoint = `${apiUrl}/security-expert/`;
                 serviceId = 'security_expert';
-                console.log(`[API] 🛡️ AGENTE: Ciberseguridad → ${endpoint}`);
+                console.log(`[API] 🛡️ AGENTE ESPECIALIZADO: Ciberseguridad (RAG ON) → ${endpoint}`);
                 
-            } else if (service === 'unified_agent') {
-                // CHAT GENERAL (Agente Unificado)
+            } else if (useRag && domain === 'todos') {
+                // RAG ACTIVADO + TODOS LOS DOMINIOS → Usar agente unificado
                 endpoint = `${apiUrl}/unified-agent/`;
                 serviceId = 'unified_agent';
-                console.log(`[API] 💬 AGENTE: Chat General (Unified Agent) → ${endpoint}`);
+                console.log(`[API] 💬 AGENTE UNIFICADO: Todos los dominios (RAG ON) → ${endpoint}`);
                 
             } else {
-                // FALLBACK: Agente Unificado
+                // RAG DESACTIVADO → SIEMPRE usar agente unificado (sin RAG)
                 endpoint = `${apiUrl}/unified-agent/`;
                 serviceId = 'unified_agent';
-                console.log(`[API] 🔄 AGENTE: Fallback Unified Agent → ${endpoint}`);
+                console.log(`[API] 🔄 AGENTE UNIFICADO: RAG desactivado → ${endpoint}`);
             }
+            
+            console.log(`[API] 🎛️ SISTEMA MODULAR FINAL:`);
+            console.log(`[API] → Conversación ID: ${numericConversationId} (mantener contexto)`);
+            console.log(`[API] → Endpoint seleccionado: ${endpoint}`);
+            console.log(`[API] → Service ID: ${serviceId}`);
+            console.log(`[API] → RAG: ${useRag ? 'ON' : 'OFF'}`);
+            console.log(`[API] → DeepSeek Reasoning: ${useDeepSeekReasoning ? 'ON' : 'OFF'}`);
+            console.log(`[API] → Dominio: ${domain}`);
             
             // ✅ DEBUGGING ADICIONAL: Verificar que domain llegue correctamente
             console.log('Agente seleccionado:', { service: serviceId, domain, endpoint });

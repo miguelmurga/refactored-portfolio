@@ -887,26 +887,46 @@ export const useChatStore = defineStore('chat', () => {
             console.log('→ conversationId es número?', typeof conversationId === 'number');
             console.log('→ conversationId es UUID?', typeof conversationId === 'string' && conversationId.includes('-'));
             
-            // ✅ USAR CONFIGURACIÓN ACTUAL PASADA COMO PARÁMETRO (NO LA GUARDADA)
+            // ✅ LÓGICA MODULAR DINÁMICA: Determinar service según opciones RAG
             const serviceForMessage = currentConversation.value.service;
             
-            console.log('[Chat] 🔍 PREPARANDO ENVÍO DE MENSAJE:');
+            console.log('[Chat] 🔍 PREPARANDO ENVÍO DE MENSAJE MODULAR:');
             console.log(`[Chat] → conversation_id: ${conversationId}`);
             console.log(`[Chat] → currentConversationId.value: ${currentConversationId.value}`);
-            console.log(`[Chat] → service_backend: ${serviceForMessage}`);
+            console.log(`[Chat] → service_backend original: ${serviceForMessage}`);
             console.log(`[Chat] → options recibidas:`, options);
             console.log(`[Chat] → mensaje: "${content}"`);
             
-            // 🎯 DEBUGGING: Verificar SERVICIO y ENDPOINT esperado para los 3 servicios
-            if (serviceForMessage === 'ia_generativa') {
-                console.log(`[Chat] 🤖 SERVICIO: IA Generativa → debería usar /api/llm-expert/`);
-            } else if (serviceForMessage === 'security_expert') {
-                console.log(`[Chat] 🛡️ SERVICIO: Ciberseguridad → debería usar /api/security-expert/`);
-            } else if (serviceForMessage === 'llm') {
-                console.log(`[Chat] 💬 SERVICIO: Chat General → debería usar /api/chat/`);
+            // 🚀 NUEVA LÓGICA MODULAR: Detectar que agente usar basado en RAG + DOMINIO
+            let dynamicService = serviceForMessage;
+            const useRag = options?.use_rag !== undefined ? Boolean(options.use_rag) : false;
+            const domain = options?.domain || 'todos';
+            
+            console.log('[Chat] 🎛️ ANÁLISIS MODULAR:');
+            console.log(`[Chat] → use_rag: ${useRag}`);
+            console.log(`[Chat] → domain: ${domain}`);
+            console.log(`[Chat] → service original: ${serviceForMessage}`);
+            
+            // 🔄 INTERCAMBIO DINÁMICO DE AGENTES SEGÚN CONFIGURACIÓN
+            if (useRag && domain === 'ia_generativa') {
+                dynamicService = 'llm_expert';
+                console.log(`[Chat] 🤖 INTERCAMBIO → Agente IA Generativa (RAG ON)`);
+            } else if (useRag && domain === 'ciberseguridad') {
+                dynamicService = 'security_expert';
+                console.log(`[Chat] 🛡️ INTERCAMBIO → Agente Ciberseguridad (RAG ON)`);
+            } else if (useRag && domain === 'todos') {
+                dynamicService = 'unified_agent';
+                console.log(`[Chat] 💬 INTERCAMBIO → Agente Unificado (RAG ON)`);
             } else {
-                console.log(`[Chat] ❓ SERVICIO DESCONOCIDO: ${serviceForMessage}`);
+                dynamicService = 'unified_agent';
+                console.log(`[Chat] 🔄 INTERCAMBIO → Agente Unificado (RAG OFF)`);
             }
+            
+            console.log('[Chat] 🎯 SERVICIO FINAL SELECCIONADO:');
+            console.log(`[Chat] → service original: ${serviceForMessage}`);
+            console.log(`[Chat] → service dinámico: ${dynamicService}`);
+            console.log(`[Chat] → RAG: ${useRag ? 'ON' : 'OFF'}`);
+            console.log(`[Chat] → Dominio: ${domain}`);
             
             if (!conversationId || conversationId <= 0) {
                 console.error('[Chat] ERROR CRÍTICO: conversation_id inválido antes de enviar mensaje');
@@ -918,24 +938,26 @@ export const useChatStore = defineStore('chat', () => {
                 ...options
             };
             
-            console.log('[Chat] 🔍 ENVIANDO MENSAJE CON CONFIGURACIÓN:');
+            console.log('[Chat] 🔍 ENVIANDO MENSAJE CON CONFIGURACIÓN MODULAR:');
             console.log(`[Chat] → Opciones finales:`, finalOptions);
+            console.log(`[Chat] → Service dinámico: ${dynamicService}`);
             
             // ✅ DEBUGGING ESPECÍFICO SOLICITADO: Verificar exactamente qué se va a enviar
-            console.log('🚨 ANTES DE ENVIAR:');
+            console.log('🚨 ANTES DE ENVIAR (MODULAR):');
             console.log('conversation_id que voy a enviar:', conversationId);
             console.log('tipo:', typeof conversationId);
+            console.log('service que se usará:', dynamicService);
             
             // También verificar session token para asegurar que no se confundan
             const session = useSession();
             console.log('session_id (para headers):', session.token);
             console.log('✅ VERIFICATION: conversation_id !== session_id:', conversationId !== session.token);
             
-            console.log('[Chat] Enviando mensaje a través del servicio API...');
+            console.log('[Chat] Enviando mensaje a través del servicio API modular...');
             const response = await sendMessage(
                 conversationId,
                 content,
-                serviceForMessage, // ✅ Usar service_backend de ragConfig
+                dynamicService, // ✅ Usar service dinámico basado en RAG + dominio
                 finalOptions
             );
 

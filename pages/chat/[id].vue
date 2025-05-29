@@ -1856,6 +1856,55 @@ watch(() => [currentMessages.value, isTyping.value, isPollingMessageStatus.value
   scrollToBottom();
 }, { deep: true });
 
+// 🚀 WATCHER MODULAR: Auto-selección de agentes según dominio
+watch(() => ragConfig.value.domain, (newDomain, oldDomain) => {
+  if (!newDomain || newDomain === oldDomain) return;
+  
+  console.log(`[Chat] 🎛️ CAMBIO DE DOMINIO: ${oldDomain} → ${newDomain}`);
+  
+  // Implementar selección automática de agente según dominio cuando RAG está activado
+  if (ragConfig.value.use_rag) {
+    console.log(`[Chat] 🚀 RAG ACTIVADO: Auto-seleccionando agente especializado para dominio "${newDomain}"`);
+    
+    if (newDomain === 'ia_generativa') {
+      console.log(`[Chat] 🤖 Auto-seleccionando agente especializado IA Generativa`);
+      // El intercambio se hace dinámicamente en sendMessage, no necesitamos cambiar el service de la conversación
+      $toast.add({
+        title: '🤖 Agente IA Generativa',
+        description: 'Los próximos mensajes usarán el agente especializado en IA Generativa',
+        color: 'blue',
+        timeout: 3000
+      });
+      
+    } else if (newDomain === 'ciberseguridad') {
+      console.log(`[Chat] 🛡️ Auto-seleccionando agente especializado Ciberseguridad`);
+      $toast.add({
+        title: '🛡️ Agente Ciberseguridad',
+        description: 'Los próximos mensajes usarán el agente especializado en Ciberseguridad',
+        color: 'green',
+        timeout: 3000
+      });
+      
+    } else if (newDomain === 'todos') {
+      console.log(`[Chat] 💬 Auto-seleccionando agente unificado (todos los dominios)`);
+      $toast.add({
+        title: '💬 Agente Unificado',
+        description: 'Los próximos mensajes buscarán en todos los dominios',
+        color: 'gray',
+        timeout: 3000
+      });
+    }
+  } else {
+    console.log(`[Chat] 🔄 RAG DESACTIVADO: Todos los mensajes usarán agente unificado sin RAG`);
+    $toast.add({
+      title: '🔄 Modo Sin RAG',
+      description: 'Los próximos mensajes usarán solo el conocimiento del modelo LLM',
+      color: 'yellow',
+      timeout: 3000
+    });
+  }
+}, { immediate: false });
+
 // Control de inicialización para evitar watchers duplicados
 const hasInitialized = ref(false);
 
