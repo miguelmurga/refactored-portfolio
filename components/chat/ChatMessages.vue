@@ -1,7 +1,7 @@
 <template>
   <div class="flex-1 overflow-y-auto p-4 space-y-6 bg-gray-50 dark:bg-gray-900" ref="messagesContainer">
     <!-- Estado vacío -->
-    <template v-if="messages.length === 0">
+    <template v-if="sortedMessages.length === 0">
       <div class="flex flex-col items-center justify-center h-full text-center p-6">
         <UIcon :name="serviceIcon" class="text-4xl text-gray-400 mb-4" />
         <h3 class="text-xl font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -27,7 +27,7 @@
 
     <!-- Mensajes (estilo ChatGPT) -->
     <template v-else>
-      <div v-for="(message, index) in messages" :key="`${message.id}-${index}`" class="mb-4 last:mb-0">
+      <div v-for="(message, index) in sortedMessages" :key="`${message.id}-${index}`" class="mb-4 last:mb-0">
         <!-- Tiempo de mensaje para debugging -->
         <div v-if="DEBUG_MODE" class="text-xs text-gray-400 absolute left-0 -ml-16 mt-2">
           {{ formatTimestamp(message) }}
@@ -157,11 +157,65 @@ const props = defineProps<{
   suggestions: string[];
 }>();
 
+// 🔄 COMPUTED: Ordenar mensajes localmente en el componente
+const sortedMessages = computed(() => {
+  console.log(`[ChatMessages] 🔄 COMPUTED sortedMessages called with ${props.messages.length} messages`);
+  console.log(`[ChatMessages] 📨 Raw messages:`, props.messages.map(m => ({ role: m.role, id: m.id, content: m.content?.substring(0, 30) })));
+  
+  const sorted = [...props.messages].sort((a, b) => {
+    // Priorizar created_at del backend, luego _timestamp, luego _time
+    let timestampA = 0;
+    let timestampB = 0;
+    
+    // Para mensaje A
+    if (a.created_at) {
+      timestampA = new Date(a.created_at).getTime();
+    } else if (a._timestamp) {
+      timestampA = new Date(a._timestamp).getTime();
+    } else if (a._time) {
+      timestampA = typeof a._time === 'number' ? a._time : new Date(a._time).getTime();
+    }
+    
+    // Para mensaje B
+    if (b.created_at) {
+      timestampB = new Date(b.created_at).getTime();
+    } else if (b._timestamp) {
+      timestampB = new Date(b._timestamp).getTime();
+    } else if (b._time) {
+      timestampB = typeof b._time === 'number' ? b._time : new Date(b._time).getTime();
+    }
+    
+    // Si los timestamps son iguales o muy cercanos (< 100ms), usar ID para determinismo
+    if (Math.abs(timestampA - timestampB) < 100) {
+      return Number(a.id) - Number(b.id);
+    }
+    
+    // Si no hay timestamps válidos, usar ID como fallback
+    if (!timestampA && !timestampB) {
+      return Number(a.id) - Number(b.id);
+    }
+    if (!timestampA) return 1;
+    if (!timestampB) return -1;
+    
+    return timestampA - timestampB; // Orden ascendente (más antiguo primero)
+  });
+  
+  console.log(`[ChatMessages] 🔄 ORDENADOS: ${sorted.length} mensajes`);
+  sorted.forEach((msg, idx) => {
+    const timestamp = msg.created_at || msg._timestamp || msg._time || 'Sin timestamp';
+    console.log(`[ChatMessages] ${idx+1}. Role=${msg.role}, ID=${msg.id}, Timestamp=${timestamp}, Content="${msg.content?.substring(0, 30)}..."`);
+  });
+  
+  return sorted;
+});
+
 const emit = defineEmits<{
   (e: 'use-suggestion', suggestion: string): void;
 }>();
 
 const messagesContainer = ref<HTMLElement | null>(null);
+const toast = useToast();
+const { $t } = useNuxtApp();
 
 // Modo debug para mostrar timestamps (opcional, dejar en false para producción)
 const DEBUG_MODE = false;
@@ -222,6 +276,55 @@ function copyToClipboard(text: string) {
   alert('Texto copiado al portapapeles');
 }
 
+// 🚨 ALERTA: Mostrar advertencia sobre conversaciones largas
+let alertShown = false; // Evitar mostrar múltiples veces
+function showLongConversationAlert(messageCount: number) {
+  console.log(`[ChatMessages] 🚨 showLongConversationAlert called with ${messageCount} messages, alertShown=${alertShown}`);
+  
+  if (alertShown || messageCount <= 4) {
+    console.log(`[ChatMessages] 🚨 Alert skipped: alertShown=${alertShown}, messageCount=${messageCount}`);
+    return;
+  }
+  
+  try {
+    console.log(`[ChatMessages] 🚨 Showing toast notification...`);
+    console.log(`[ChatMessages] 🚨 toast object:`, toast);
+    console.log(`[ChatMessages] 🚨 $t function:`, $t);
+    
+    // Test simple primero
+    toast.add({
+      title: '⚠️ Conversación extensa',
+      description: 'Las conversaciones largas pueden volverse incoherentes o menos confiables. Más info: arxiv.org/pdf/2505.06120',
+      icon: 'i-heroicons-exclamation-triangle',
+      color: 'amber',
+      timeout: 8000
+    });
+    alertShown = true;
+    
+    // Reset después de 10 segundos para permitir mostrar de nuevo si se navega
+    setTimeout(() => {
+      alertShown = false;
+      console.log(`[ChatMessages] 🚨 Alert reset - can show again`);
+    }, 10000);
+    
+    console.log(`[ChatMessages] ✅ Alert shown for ${messageCount} messages`);
+  } catch (error) {
+    console.log(`[ChatMessages] ❌ Error showing alert:`, error);
+    console.log(`[ChatMessages] ❌ Error stack:`, error.stack);
+  }
+}
+
+// Watch específico para detectar cuando se superen los 4 mensajes
+watch(() => sortedMessages.value.length, (newLength, oldLength) => {
+  console.log(`[ChatMessages] 👀 Message count changed: ${oldLength} -> ${newLength}`);
+  if (newLength > 4 && (oldLength === undefined || oldLength <= 4)) {
+    console.log(`[ChatMessages] 🎯 Threshold crossed! Showing alert for ${newLength} messages`);
+    nextTick(() => {
+      showLongConversationAlert(newLength);
+    });
+  }
+}, { immediate: true });
+
 // Scroll al final de los mensajes con mejor robustez
 function scrollToBottom() {
   // Intentamos scroll inmediato
@@ -245,11 +348,19 @@ function scrollToBottom() {
 }
 
 // Auto-scroll cuando cambian los mensajes o el estado de escritura
-watch(() => [props.messages, props.isTyping], () => {
+watch(() => [sortedMessages.value, props.isTyping], () => {
+  // 🚨 VERIFICAR ALERTA PARA CONVERSACIONES LARGAS
+  if (sortedMessages.value.length > 4) {
+    console.log(`[ChatMessages] 🚨 ${sortedMessages.value.length} mensajes detectados - mostrando alerta`);
+    // Delay para asegurar que no se muestre múltiples veces
+    setTimeout(() => {
+      showLongConversationAlert(sortedMessages.value.length);
+    }, 500);
+  }
   // Verificar el orden de los mensajes (solo en modo debug)
-  if (DEBUG_MODE && props.messages.length > 1) {
-    console.log(`[ChatMessages] Verificando orden de ${props.messages.length} mensajes:`);
-    props.messages.forEach((msg, idx) => {
+  if (DEBUG_MODE && sortedMessages.value.length > 1) {
+    console.log(`[ChatMessages] Verificando orden de ${sortedMessages.value.length} mensajes:`);
+    sortedMessages.value.forEach((msg, idx) => {
       const timestamp = msg._time || (msg._timestamp ? new Date(msg._timestamp).getTime() : 0) || 
                        (msg.created_at ? new Date(msg.created_at).getTime() : 0);
       console.log(`  ${idx+1}. ${msg.role}: ${formatTimestamp(msg)} (${timestamp || 'sin timestamp'})`);
@@ -278,10 +389,10 @@ onMounted(() => {
   console.log('[ChatMessages] Component mounted at', new Date().toISOString());
   
   // Agregar un mensaje de log para ayudar a depurar
-  if (props.messages.length > 0) {
-    console.log(`[ChatMessages] Mounted with ${props.messages.length} messages`);
+  if (sortedMessages.value.length > 0) {
+    console.log(`[ChatMessages] Mounted with ${sortedMessages.value.length} messages`);
     // Comprobar el último mensaje para ver si es el más reciente
-    const lastMessage = props.messages[props.messages.length - 1];
+    const lastMessage = sortedMessages.value[sortedMessages.value.length - 1];
     console.log(`[ChatMessages] Last message is role=${lastMessage.role}, content="${lastMessage.content.substring(0, 30)}..."`);
   } else {
     console.log('[ChatMessages] Mounted with empty messages array');

@@ -2,6 +2,7 @@
   <div>
     <NavBar/>
     <NuxtPage/>
+    <LongConversationNotice/>
   </div>
 </template>
 

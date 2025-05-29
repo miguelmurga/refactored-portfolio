@@ -1,13 +1,3 @@
-<script setup lang="ts">
-defineProps<{
-  src: string
-  title: string
-  description: string
-}>()
-
-const isOpen = ref(false)
-</script>
-
 <template>
   <div>
     <!-- Botón para abrir visor -->
@@ -73,3 +63,13 @@ const isOpen = ref(false)
     </UModal>
   </div>
 </template>
+
+<script setup lang="ts">
+defineProps<{
+  src: string
+  title: string
+  description: string
+}>()
+
+const isOpen = ref(false)
+</script>

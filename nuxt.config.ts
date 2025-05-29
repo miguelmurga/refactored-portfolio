@@ -24,17 +24,76 @@ export default defineNuxtConfig({
     public: {
       apiUrl: process.env.NUXT_API_URL || 'http://localhost:8000/api',
       devMode: process.env.NUXT_DEV_MODE === 'true',
+      debugLogs: process.env.NUXT_DEBUG_LOGS === 'true',
     },
   },
-  // Configuración de redirecciones para mantener compatibilidad
+
+  // Configuración de redirecciones y headers
   routeRules: {
+    // Redirecciones para compatibilidad
     '/mongodb-ai-chat': { redirect: '/chat' },
-    '/.well-known/**': { cors: true, swr: 600 }, // Manejar rutas well-known con CORS y caché de 10 minutos
-    '/system-status': { swr: 60 }, // Cache system status page for 1 minute
+    
+    // Manejar rutas well-known (Chrome DevTools, etc.)
+    '/.well-known/**': { 
+      headers: { 'Cache-Control': 's-maxage=600' },
+      cors: true 
+    },
+    
+    // Cache system status page
+    '/system-status': { swr: 60 },
+    
+    // Security headers for production
+    '/**': {
+      headers: process.env.NODE_ENV === 'production' ? {
+        'X-Frame-Options': 'DENY',
+        'X-Content-Type-Options': 'nosniff',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+        'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+      } : {}
+    }
   },
   
-  // Mejorar rendimiento con compresión gzip
+  // Optimizaciones para producción
   nitro: {
     compressPublicAssets: true,
+    minify: true,
+    // Prerender páginas estáticas para mejor SEO y rendimiento
+    prerender: {
+      routes: ['/'],
+      crawlLinks: false
+    }
+  },
+
+  // Optimización de builds
+  build: {
+    transpile: process.env.NODE_ENV === 'production' ? [] : undefined
+  },
+
+  // CSS optimizations
+  css: [],
+  
+  // Optimizaciones de rendimiento
+  experimental: {
+    payloadExtraction: false, // Reduce bundle size
+    inlineSSRStyles: false, // Better for production caching
+  },
+
+  // Suppress development warnings for Chrome DevTools paths
+  vite: {
+    vue: {
+      template: {
+        compilerOptions: {
+          // Suppress warnings in development
+          isCustomElement: tag => tag.includes('well-known')
+        }
+      }
+    }
+  },
+
+  // Additional router configuration to handle edge cases
+  router: {
+    options: {
+      strict: false, // Allow trailing slashes
+    }
   },
 })

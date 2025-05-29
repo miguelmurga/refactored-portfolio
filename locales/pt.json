@@ -3,7 +3,8 @@
     "button": "Ver legado",
     "title": "Saiba mais sobre os Miguéis anteriores",
     "miguelSecond": "Miguel Segundo (Artigo acadêmico)",
-    "miguelFirst": "Miguel Primeiro (Vídeo documental)"
+    "miguelFirst": "Miguel Primeiro (Vídeo documental)",
+    "signature": "Pelo que nos une, Miguel o Terceiro"
   },
   "intro": {
     "greeting": "Olá! Sou Miguel, o Terceiro.",
@@ -51,9 +52,9 @@
     "new_chat": "Nova conversa",
     "recent_conversations": "Conversas recentes",
     "no_conversations_yet": "Nenhuma conversa ainda",
-    "long_conversation_title": "Conversa Extensa",
-    "long_conversation_description": "Esta conversa tem {count} mensagens. Conversas longas podem perder precisão e confiabilidade.",
-    "scientific_reference": "Referência científica",
+    "long_conversation_title": "⚠️ Conversa extensa",
+    "long_conversation_description": "Conversas longas podem se tornar incoerentes ou menos confiáveis.",
+    "scientific_reference": "Mais info: arxiv.org/pdf/2505.06120",
     "processing": "Processando...",
     "type_message": "Digite uma mensagem...",
     "send": "Enviar",

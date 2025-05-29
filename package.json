@@ -4,11 +4,16 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "build:prod": "NODE_ENV=production nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "generate:prod": "NODE_ENV=production nuxt generate",
     "preview": "nuxt preview",
     "start": "node .output/server/index.mjs",
-    "postinstall": "nuxt prepare"
+    "start:prod": "NODE_ENV=production node .output/server/index.mjs",
+    "postinstall": "nuxt prepare",
+    "lint": "echo 'Add linting here'",
+    "typecheck": "nuxt typecheck"
   },
   "dependencies": {
     "@nuxt/ui": "^2.18.6",

@@ -3,7 +3,8 @@
     "button": "See legacy",
     "title": "Learn more about previous Miguels",
     "miguelSecond": "Miguel the Second (Academic Article)",
-    "miguelFirst": "Miguel the First (Documentary Video)"
+    "miguelFirst": "Miguel the First (Documentary Video)",
+    "signature": "For what unites us, Michael the Third"
   },
   "intro": {
     "greeting": "Hello! I'm Miguel the Third.",
@@ -50,9 +51,9 @@
     "new_chat": "New conversation",
     "recent_conversations": "Recent conversations",
     "no_conversations_yet": "No conversations yet",
-    "long_conversation_title": "Extended Conversation",
-    "long_conversation_description": "This conversation has {count} messages. Long conversations may lose accuracy and reliability.",
-    "scientific_reference": "Scientific reference",
+    "long_conversation_title": "⚠️ Extended conversation",
+    "long_conversation_description": "Long conversations may become incoherent or less reliable.",
+    "scientific_reference": "More info: arxiv.org/pdf/2505.06120",
     "processing": "Processing...",
     "type_message": "Type a message...",
     "send": "Send",

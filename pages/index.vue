@@ -58,8 +58,8 @@
               <div
                   class="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center shadow-md border group-hover:ring-2"
                   :class="isDark
-                  ? 'bg-white border-gray-300 group-hover:ring-blue-400'
-                  : 'bg-gray-200 border-gray-400 group-hover:ring-blue-600'"
+                ? 'bg-white border-gray-300 group-hover:ring-blue-400'
+                : 'bg-gray-200 border-gray-400 group-hover:ring-blue-600'"
               >
                 <img
                     :src="item.image || '/img/static.jpg'"
@@ -135,6 +135,14 @@
         </template>
 
         <div class="space-y-4">
+          <!-- Texto adicional -->
+          <div class="mt-6 p-4 bg-gray-100 border-l-4 border-blue-500 text-sm text-gray-800">
+            <p>
+              They claimed that the child may acquire frames of a linear pattern of sentence elements and learn the stimulus-response equivalences that can be substituted within each frame; imitation was an important, if not essential, aspect of establishing stimulus-response associations.
+            </p>
+          </div>
+
+          <!-- Botón para "Miguel Segundo" -->
           <UButton
               block
               color="blue"
@@ -142,9 +150,10 @@
               to="https://www.academia.edu/28750241/Exploring_challenges_in_the_process_of_young_language_learners_a_case_study_at_CIEX_?auto=download"
               target="_blank"
           >
-            {{ $t('lineage.miguelSecond') }}
+            {{ $t('lineage.miguelSecond') }}.
           </UButton>
 
+          <!-- Botón para "Miguel Primero" -->
           <UButton
               block
               color="rose"
@@ -152,11 +161,17 @@
               to="https://www.youtube.com/watch?v=D1hvhTdPo5Q"
               target="_blank"
           >
-            {{ $t('lineage.miguelFirst') }}
+            {{ $t('lineage.miguelFirst') }}.
           </UButton>
+
+          <!-- Firma añadida -->
+          <div class="mt-4 text-center text-sm">
+            <p>{{ $t('lineage.signature') }}.</p>
+          </div>
         </div>
 
         <template #footer>
+          <!-- Botón de cierre -->
           <UButton @click="lineageModalOpen = false">
             {{ $t('close') }}
           </UButton>
@@ -175,6 +190,7 @@ interface Skill {
   image?: string;
   url?: string;
 }
+
 interface SkillCategories {
   [key: string]: Skill[];
 }
