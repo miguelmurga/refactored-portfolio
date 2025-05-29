@@ -151,7 +151,7 @@ const sections = ref([
     id: 7,
     titleKey: 'sections.conversation_history',
     descriptionKey: 'sections.conversation_history_desc',
-    link: '/ai-chat',
+    link: '/chat',
   },
   {
     id: 8,
@@ -163,7 +163,7 @@ const sections = ref([
     id: 9,
     titleKey: 'sections.learn_english',
     descriptionKey: 'sections.learn_english_desc',
-    link: 'https://ciexacapulco.com/',
+    link: '/WorkInProgressPage',
   }
 ])
 
