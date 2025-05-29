@@ -297,13 +297,14 @@
           <form @submit.prevent="sendMessage" class="relative">
             <UTextarea
               v-model="inputMessage"
-              :placeholder="$t('chat.type_message') || 'Escribe tu mensaje...'"
+              :placeholder="hasReachedMessageLimit ? '⛔ Límite de 20 mensajes alcanzado. Inicia una nueva conversación.' : ($t('chat.type_message') || 'Escribe tu mensaje...')"
               autoresize
-              class="w-full pr-20 sm:pr-24 rounded-lg border border-gray-300 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              class="w-full pr-20 sm:pr-24 rounded-lg border"
+              :class="hasReachedMessageLimit ? 'border-red-500 dark:border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-1 focus:ring-blue-500'"
               :rows="1"
               :maxRows="5"
               @keydown.enter.prevent="handleEnterKey"
-              :disabled="isTyping || isPollingMessageStatus"
+              :disabled="isTyping || isPollingMessageStatus || hasReachedMessageLimit"
             />
             <div class="absolute right-2 sm:right-3 bottom-2 sm:bottom-2.5 flex space-x-1 sm:space-x-2">
               <UButton
@@ -322,12 +323,26 @@
                 icon="i-heroicons-paper-airplane"
                 size="sm" 
                 class="rounded-lg"
-                :disabled="!inputMessage.trim() || isTyping || isPollingMessageStatus"
+                :disabled="!inputMessage.trim() || isTyping || isPollingMessageStatus || hasReachedMessageLimit"
                 type="submit"
                 aria-label="Send message"
               />
             </div>
           </form>
+          
+          <!-- Contador de mensajes y límite -->
+          <div v-if="currentMessages.length > 0" class="text-xs text-gray-500 dark:text-gray-400 text-right mt-1 mb-2">
+            <span :class="currentMessages.length >= 15 ? 'text-orange-600 dark:text-orange-400 font-medium' : 
+                          currentMessages.length >= 20 ? 'text-red-600 dark:text-red-400 font-bold' : ''">
+              {{ currentMessages.length }}/20 mensajes
+            </span>
+            <span v-if="currentMessages.length >= 15 && currentMessages.length < 20" class="ml-2 text-orange-600 dark:text-orange-400">
+              ⚠️ Acercándose al límite
+            </span>
+            <span v-else-if="currentMessages.length >= 20" class="ml-2 text-red-600 dark:text-red-400">
+              ⛔ Límite alcanzado
+            </span>
+          </div>
           
           <!-- Mensaje informativo de estado de configuración -->
           <div class="text-xs text-gray-500 dark:text-gray-400 text-right mt-2">
@@ -1099,11 +1114,54 @@ const conversations = computed(() => {
 
 // Current conversation and messages
 const currentConversation = computed(() => chatStore.currentConversation);
-const currentMessages = computed(() => chatStore.currentMessages);
+// ✅ SOLUCIÓN DEFINITIVA: Usar directamente el store que ya maneja el ordenamiento correctamente
+const currentMessages = computed(() => {
+  const messages = chatStore.currentMessages;
+  console.log(`[ChatPage] 📨 Recibiendo ${messages.length} mensajes del store en orden:`, messages.map((m, idx) => `${idx}: ${m.role}(ID:${m.id})`));
+  
+  // ✅ DEBUGGING ADICIONAL REQUERIDO (CLAUDE_DEBUGGING_HISTORY.md)
+  console.log('Mensajes para renderizar:', messages.map(m => `${m.id}:${m.role}`));
+  
+  return messages; // No re-ordenar - confiar en el store
+});
+
+// 🚨 ALERTA: Mostrar advertencia sobre conversaciones largas
+
+function showLongConversationAlert(messageCount: number) {
+  console.log(`[ChatPage] 🚨 showLongConversationAlert called with ${messageCount} messages`);
+  
+  if (messageCount <= 4) {
+    console.log(`[ChatPage] 🚨 Alert skipped: only ${messageCount} messages`);
+    return;
+  }
+  
+  try {
+    console.log(`[ChatPage] 🚨 Dispatching global event for LongConversationNotice...`);
+    window.dispatchEvent(new CustomEvent('showLongConversationNotice', {
+      detail: { messageCount, source: 'chatPage' }
+    }));
+    
+    console.log(`[ChatPage] ✅ Global event dispatched for ${messageCount} messages`);
+  } catch (error) {
+    console.log(`[ChatPage] ❌ Error dispatching event:`, error);
+  }
+}
+
 // Manejar el caso cuando chatStore.isTyping no está definido
 const isTyping = computed(() => {
   return chatStore && typeof chatStore.isTyping !== 'undefined' ? chatStore.isTyping : false;
 });
+
+// 🚨 WATCH: Detectar cuando se superen los 4 mensajes (PERSISTENTE - cada navegación)
+watch(() => currentMessages.value.length, (newLength, oldLength) => {
+  console.log(`[ChatPage] 👀 Message count changed: ${oldLength} -> ${newLength}`);
+  if (newLength > 4) {
+    console.log(`[ChatPage] 🎯 Showing persistent alert for ${newLength} messages`);
+    nextTick(() => {
+      showLongConversationAlert(newLength);
+    });
+  }
+}, { immediate: true });
 
 // RAG service check - IMPORTANTE: Esta propiedad controla la visibilidad de muchos controles en la UI
 const isRAGService = computed(() => {
@@ -1126,6 +1184,11 @@ const isRAGService = computed(() => {
   
   // Siempre devolver true si hay una conversación activa para garantizar la consistencia de la UI
   return true;
+});
+
+// 🚫 Verificar si se ha alcanzado el límite de 20 mensajes
+const hasReachedMessageLimit = computed(() => {
+  return currentMessages.value.length >= 20;
 });
 
 // Edición de título de conversación
@@ -1329,6 +1392,20 @@ async function sendMessage() {
   // Verificar condiciones básicas
   const message = inputMessage.value.trim();
   if (!message || isTyping.value || isPollingMessageStatus.value || !currentConversation.value) return;
+  
+  // 🚫 LÍMITE DE 20 MENSAJES - Bloquear envío si se alcanza el límite
+  const messageCount = currentMessages.value.length;
+  if (messageCount >= 20) {
+    const { $toast } = useNuxtApp();
+    $toast.add({
+      title: '⛔ Límite de conversación alcanzado',
+      description: 'Esta conversación ha alcanzado el límite de 20 mensajes. Por favor, inicia una nueva conversación.',
+      color: 'red',
+      timeout: 5000
+    });
+    console.log(`[Chat] 🚫 Envío bloqueado: conversación con ${messageCount} mensajes (límite: 20)`);
+    return;
+  }
   
   // Reiniciar campo de entrada
   inputMessage.value = '';

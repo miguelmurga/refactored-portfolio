@@ -92,6 +92,53 @@ export const useChatStore = defineStore('chat', () => {
     }
     
     /**
+     * 🔄 FUNCIÓN AUXILIAR: Reordenar mensajes usando la lógica estándar
+     * Para mantener consistencia entre todos los lugares donde se añaden mensajes
+     */
+    function sortMessagesByTimestampAndId(messages: ChatMessage[]): ChatMessage[] {
+        return [...messages].sort((a, b) => {
+            let timestampA = 0;
+            let timestampB = 0;
+            
+            // Para mensaje A
+            if (a.created_at) {
+                timestampA = new Date(a.created_at).getTime();
+            } else if (a._timestamp) {
+                timestampA = new Date(a._timestamp).getTime();
+            } else if (a._time) {
+                timestampA = typeof a._time === 'number' ? a._time : new Date(a._time).getTime();
+            }
+            
+            // Para mensaje B
+            if (b.created_at) {
+                timestampB = new Date(b.created_at).getTime();
+            } else if (b._timestamp) {
+                timestampB = new Date(b._timestamp).getTime();
+            } else if (b._time) {
+                timestampB = typeof b._time === 'number' ? b._time : new Date(b._time).getTime();
+            }
+            
+            // Si los timestamps son iguales, ordenar por ID
+            if (timestampA === timestampB || Math.abs(timestampA - timestampB) < 100) {
+                const idA = a.id && !isNaN(Number(a.id)) ? Number(a.id) : 0;
+                const idB = b.id && !isNaN(Number(b.id)) ? Number(b.id) : 0;
+                return idA - idB;
+            }
+            
+            // Si no hay timestamps válidos, usar ID como fallback
+            if (!timestampA && !timestampB) {
+                const idA = a.id && !isNaN(Number(a.id)) ? Number(a.id) : 0;
+                const idB = b.id && !isNaN(Number(b.id)) ? Number(b.id) : 0;
+                return idA - idB;
+            }
+            if (!timestampA) return 1;
+            if (!timestampB) return -1;
+            
+            return timestampA - timestampB; // Orden ascendente
+        });
+    }
+
+    /**
      * 🔄 FORZAR ACTUALIZACIÓN COMPLETA de la UI de mensajes
      * Para resolver problemas de orden en tiempo real
      */
@@ -117,11 +164,13 @@ export const useChatStore = defineStore('chat', () => {
         if (typeof window !== 'undefined') {
             try {
                 // Usar useToast de Nuxt UI con traducciones
-                const { $toast, $t } = useNuxtApp();
-                if ($toast && $t) {
-                    $toast.add({
+                const toast = useToast();
+                const { $t } = useNuxtApp();
+                
+                if (toast && $t) {
+                    toast.add({
                         title: $t('chat.long_conversation_title'),
-                        description: `${$t('chat.long_conversation_description', { count: messageCount })} ${$t('chat.scientific_reference')}: https://arxiv.org/pdf/2505.06120`,
+                        description: `${$t('chat.long_conversation_description')} ${$t('chat.scientific_reference')}`,
                         icon: 'i-heroicons-exclamation-triangle',
                         color: 'amber',
                         timeout: 8000
@@ -176,6 +225,19 @@ export const useChatStore = defineStore('chat', () => {
         );
         
         if (messageIndex !== -1) {
+            // 🚨 DEBUGGING: Verificar ID del mensaje real
+            console.log(`[REPLACE] 🔍 Reemplazando mensaje temporal ${tempId} con:`, {
+                realMessageId: realMessage.id,
+                realMessageRole: realMessage.role,
+                hasValidId: realMessage.id && realMessage.id !== 'undefined'
+            });
+            
+            // ✅ CRÍTICO: Asegurar que el mensaje real tenga un ID válido
+            if (!realMessage.id || realMessage.id === 'undefined') {
+                console.warn(`[REPLACE] ⚠️ Mensaje real sin ID válido, manteniendo tempId: ${tempId}`);
+                realMessage.id = tempId; // Mantener el ID temporal si no hay uno válido
+            }
+            
             // ✅ INSTRUCCIÓN 1: Agregar conversation_id a mensaje de reemplazo
             const messageWithConversationId = addConversationIdToMessage(realMessage, currentConversation.value.id);
             
@@ -192,8 +254,10 @@ export const useChatStore = defineStore('chat', () => {
                 _local_status: 'sent' // Marcar como enviado exitosamente
             };
             
-            console.log(`[Chat] Replaced temp message ${tempId} with real message ${realMessage.id}`);
+            console.log(`[REPLACE] ✅ Reemplazado: ${tempId} → ${messageWithConversationId.id}`);
             saveConversationsToCache();
+        } else {
+            console.warn(`[REPLACE] ⚠️ No se encontró mensaje temporal con ID: ${tempId}`);
         }
     }
     
@@ -238,17 +302,15 @@ export const useChatStore = defineStore('chat', () => {
     });
 
     /**
-     * ✅ INSTRUCCIÓN 4: Computed property que filtra mensajes por conversación
-     * Devuelve los mensajes de la conversación actual en el orden cronológico correcto
-     * 
-     * 🎯 PRINCIPIO FUNDAMENTAL: El backend envía los mensajes en orden cronológico correcto
-     * NO reordenar - usar el array del backend como fuente única de verdad
+     * ✅ FIXED: Computed property que devuelve mensajes SIN reordenar
+     * El backend ya envía los mensajes en el orden correcto
      */
     const currentMessages = computed(() => {
-        // 🔄 TRIGGER: Solo leer para crear dependencia reactiva (NO modificar)
-        const _ = messagesUpdateTrigger.value; // Solo leer, nunca escribir en computed
+        // 🔄 TRIGGER: Forzar reactividad completa
+        const _ = messagesUpdateTrigger.value;
+        const conversationsTrigger = conversations.value.length; // Dependencia de conversaciones
         
-        // ✅ INSTRUCCIÓN 8: Verificar que currentConversationId esté establecido
+        // ✅ Verificar que currentConversationId esté establecido
         if (!currentConversationId.value) {
             console.log('[FILTER] No current conversation ID, returning empty messages');
             return [];
@@ -256,24 +318,14 @@ export const useChatStore = defineStore('chat', () => {
         
         console.log(`[FILTER] Processing messages for conversation ${currentConversationId.value} (trigger: ${messagesUpdateTrigger.value})`);
         
-        // ✅ INSTRUCCIÓN 3: Usar getMessagesForConversation en lugar de acceso directo
+        // ✅ Usar getMessagesForConversation en lugar de acceso directo
         const messages = getMessagesForConversation(currentConversationId.value);
         
-        if (messages.length > 0) {
-            console.log(`[FILTER] Showing ${messages.length} messages for conversation ${currentConversationId.value}`);
-            
-            // 🔍 DEBUGGING: Mostrar orden actual de mensajes CON TIMESTAMPS
-            console.log(`[FILTER] 🕒 ORDEN COMPLETO DE MENSAJES PARA CONVERSACIÓN ${currentConversationId.value}:`);
-            messages.forEach((msg, idx) => {
-                const timestamp = msg.created_at || msg._timestamp || 'Sin timestamp';
-                console.log(`[FILTER] ${idx+1}. Role=${msg.role}, ID=${msg.id}, Timestamp=${timestamp}, Content="${msg.content?.substring(0, 50)}..."`);
-            });
-            console.log(`[FILTER] 🕒 FIN DEL ORDEN DE MENSAJES`);
-        }
+        // ✅ DEBUGGING ADICIONAL REQUERIDO (CLAUDE_DEBUGGING_HISTORY.md)
+        console.log('Mensajes del backend (orden original):', messages.map(m => `${m.id}:${m.role}`));
         
-        // ✅ NO REORDENAR - El backend ya envía los mensajes en orden cronológico correcto
-        // Simplemente devolver los mensajes tal como los envió el backend
-        return messages;
+        console.log(`[FILTER] 🎯 Returning ${messages.length} messages in EXACT backend order (NO sorting)`);
+        return messages; // ✅ NO REORDENAR - El backend ya envía en orden correcto
     });
 
     // Acciones
@@ -466,12 +518,20 @@ export const useChatStore = defineStore('chat', () => {
                             });
                         }
                         
+                        // 🔍 DEBUGGING: Mostrar orden que viene del backend
+                        if (Array.isArray(conv.messages) && conv.messages.length > 0) {
+                            console.log(`[LOAD] 🎯 BACKEND ENVIÓ CONVERSACIÓN ${conv.id} con mensajes en este orden:`);
+                            conv.messages.forEach((msg, idx) => {
+                                console.log(`[LOAD] ${idx+1}. ID=${msg.id}, Role=${msg.role}, Content="${msg.content?.substring(0, 30)}..."`);
+                            });
+                        }
+
                         return {
                             ...conv,
                             id: conv.id,
                             title: conv.title || 'Sin título',
                             service: conv.service || 'unified_agent',
-                            messages: Array.isArray(conv.messages) ? conv.messages : [], // ✅ Preservar orden del backend
+                            messages: Array.isArray(conv.messages) ? [...conv.messages] : [], // ✅ Preservar EXACTAMENTE el orden del backend
                             lastUpdated: new Date(conv.lastUpdated || conv.last_updated || Date.now()).toISOString(),
                             language: conv.language || 'es'
                         };
@@ -582,13 +642,7 @@ export const useChatStore = defineStore('chat', () => {
             console.log(`[Chat] Current conversation ID ${id} saved to localStorage`);
         }
         
-        // 🚨 VERIFICAR ALERTA AL SELECCIONAR CONVERSACIÓN
-        if (selectedConversation.messages && selectedConversation.messages.length > 4) {
-            // Pequeño delay para asegurar que la UI esté lista
-            setTimeout(() => {
-                checkLongConversationAlert(selectedConversation.messages.length);
-            }, 500);
-        }
+        // 🚨 ALERTA: Las conversaciones largas se manejan en ChatMessages.vue
         
         // IMPORTANTE: Configurar opciones globales según los datos de esta conversación
         // Esto es necesario para que los selectores de servicio, idioma, etc. muestren los valores correctos
@@ -797,15 +851,23 @@ export const useChatStore = defineStore('chat', () => {
             _temp_id: tempId // Guardar el ID temporal para poder reemplazarlo después
         }, currentConversation.value.id);
 
-        // Añadir localmente
+        // ✅ FIX CRÍTICO: Aplicar la misma lógica de reordenamiento al mensaje del usuario
         if (currentConversation.value) {
             currentConversation.value.messages.push(userMessage);
+            
+            // 🔄 REORDENAR INMEDIATAMENTE usando la función auxiliar estándar
+            currentConversation.value.messages = sortMessagesByTimestampAndId(currentConversation.value.messages);
             currentConversation.value.lastUpdated = new Date().toISOString();
 
             // Actualizar título si es el primer mensaje
             if (currentConversation.value.messages.length === 1) {
                 currentConversation.value.title = content.slice(0, 30) + (content.length > 30 ? '...' : '');
             }
+            
+            console.log(`[Chat] ✅ Mensajes reordenados después de añadir mensaje del usuario`);
+            
+            // 🔄 FORZAR REACTIVIDAD inmediatamente después de añadir mensaje
+            messagesUpdateTrigger.value++;
             
             // Guardar en caché inmediatamente para preservar el mensaje del usuario
             // incluso si la respuesta del servidor falla
@@ -988,10 +1050,7 @@ export const useChatStore = defineStore('chat', () => {
                     // 🔄 FORZAR ACTUALIZACIÓN FINAL DE LA UI
                     await forceMessagesUpdate();
                     
-                    // 🚨 ALERTA: Conversaciones largas pueden perder precisión
-                    if (messagesWithConversationId.length > 4) {
-                        checkLongConversationAlert(messagesWithConversationId.length);
-                    }
+                    // 🚨 ALERTA: Las conversaciones largas se manejan en ChatMessages.vue
                     
                     return {
                         id: response.message_id || messagesWithConversationId[messagesWithConversationId.length - 1]?.id,
@@ -1027,10 +1086,19 @@ export const useChatStore = defineStore('chat', () => {
                         _time: Date.now()
                     }, currentConversation.value.id);
 
-                    // Añadir localmente
+                    // ✅ FIX CRÍTICO: No usar .push() - reordenar toda la conversación
                     if (currentConversation.value) {
+                        // Añadir el mensaje del asistente
                         currentConversation.value.messages.push(assistantMessage);
+                        
+                        // 🔄 REORDENAR INMEDIATAMENTE usando la función auxiliar estándar
+                        currentConversation.value.messages = sortMessagesByTimestampAndId(currentConversation.value.messages);
                         currentConversation.value.lastUpdated = new Date().toISOString();
+                        
+                        console.log(`[Chat] ✅ Mensajes reordenados después de añadir respuesta individual`);
+                        
+                        // 🔄 FORZAR REACTIVIDAD
+                        messagesUpdateTrigger.value++;
                         
                         // Actualizar caché con el nuevo mensaje
                         saveConversationsToCache();
@@ -1082,6 +1150,9 @@ export const useChatStore = defineStore('chat', () => {
 
         if (currentConversation.value) {
             currentConversation.value.messages.push(userMessage);
+            
+            // 🔄 REORDENAR INMEDIATAMENTE para mantener orden cronológico
+            currentConversation.value.messages = sortMessagesByTimestampAndId(currentConversation.value.messages);
             currentConversation.value.lastUpdated = now.toISOString();
             
             // Actualizar título si es el primer mensaje
@@ -1118,6 +1189,9 @@ export const useChatStore = defineStore('chat', () => {
 
         if (currentConversation.value) {
             currentConversation.value.messages.push(assistantMessage);
+            
+            // 🔄 REORDENAR INMEDIATAMENTE para mantener orden cronológico
+            currentConversation.value.messages = sortMessagesByTimestampAndId(currentConversation.value.messages);
             currentConversation.value.lastUpdated = now.toISOString();
             
             // Guardar en caché para preservar el mensaje
@@ -1234,6 +1308,12 @@ export const useChatStore = defineStore('chat', () => {
                     });
                     console.log(`[Chat] 🎯 FIN DEL ORDEN DEL SERVIDOR`);
                     
+                    // 🔍 DEBUGGING: Ver si los IDs vienen del backend
+                    console.log(`[Chat] 🆔 ANÁLISIS DE IDs EN RESPUESTA ASYNC:`);
+                    response.messages.forEach((msg, idx) => {
+                        console.log(`[Chat] ${idx+1}. ID del backend: ${msg.id} (tipo: ${typeof msg.id})`);
+                    });
+                    
                     // 🧹 LIMPIAR: Remover cualquier mensaje temporal antes de reemplazar (ASYNC)
                     console.log(`[Chat] 🧹 Limpiando mensajes temporales antes del reemplazo (ASYNC)`);
                     console.log(`[Chat] Mensajes antes de limpiar: ${currentConversation.value.messages.length}`);
@@ -1244,15 +1324,50 @@ export const useChatStore = defineStore('chat', () => {
                         console.log(`[Chat] 🗑️ Eliminando ${tempMessagesBefore.length} mensajes temporales (ASYNC):`, tempMessagesBefore.map(m => ({ id: m.id, role: m.role, temp_id: m._temp_id })));
                     }
                     
-                    // ✅ INSTRUCCIÓN 1: Agregar conversation_id a todos los mensajes del servidor
-                    const messagesWithConversationId = response.messages.map(msg => {
-                        const messageWithId = addConversationIdToMessage(msg, currentConversation.value!.id);
+                    // ✅ PRESERVAR IDs EXISTENTES: El backend a veces no envía IDs en responses async
+                    const existingMessages = currentConversation.value.messages;
+                    console.log(`[Chat] 🔧 PRESERVANDO IDs: ${existingMessages.length} mensajes existentes`);
+                    
+                    const messagesWithConversationId = response.messages.map((msg, index) => {
+                        // 🔧 FIX: Preservar ID existente si el backend no lo envía
+                        const existingMsg = existingMessages[index];
+                        const preservedId = msg.id || existingMsg?.id || (index + 1);
+                        
+                        console.log(`[Chat] Mensaje ${index+1}: Backend ID=${msg.id}, Existente ID=${existingMsg?.id}, Preservado=${preservedId}`);
+                        
+                        const messageWithId = addConversationIdToMessage({
+                            ...msg,
+                            id: preservedId // ✅ Asegurar que siempre hay ID
+                        }, currentConversation.value!.id);
+                        
                         return {
                             ...messageWithId,
                             // Añadir timestamp local si no existe
-                            _timestamp: msg._timestamp || msg.created_at || new Date().toISOString()
+                            _timestamp: msg._timestamp || msg.created_at || existingMsg?._timestamp || new Date().toISOString()
                         };
                     });
+                    
+                    // 🔧 WORKAROUND: Si el backend devuelve en orden incorrecto, intentar reordenar
+                    // Detectar si el orden está mal (primer mensaje es assistant en lugar de user)
+                    if (messagesWithConversationId.length >= 2 && 
+                        messagesWithConversationId[0].role === 'assistant' && 
+                        messagesWithConversationId[1].role === 'user') {
+                        
+                        console.log(`[Chat] 🔧 DETECTADO ORDEN INCORRECTO - aplicando workaround`);
+                        
+                        // Re-emparejar messages manteniendo el patrón user→assistant
+                        const reorderedMessages = [];
+                        const userMessages = messagesWithConversationId.filter(m => m.role === 'user');
+                        const assistantMessages = messagesWithConversationId.filter(m => m.role === 'assistant');
+                        
+                        for (let i = 0; i < Math.max(userMessages.length, assistantMessages.length); i++) {
+                            if (userMessages[i]) reorderedMessages.push(userMessages[i]);
+                            if (assistantMessages[i]) reorderedMessages.push(assistantMessages[i]);
+                        }
+                        
+                        console.log(`[Chat] 🔧 REORDENADO: ${reorderedMessages.length} mensajes en patrón user→assistant`);
+                        messagesWithConversationId.splice(0, messagesWithConversationId.length, ...reorderedMessages);
+                    }
                     
                     // 🔄 ESTRATEGIA RADICAL: Recrear completamente la conversación para forzar reactividad (ASYNC)
                     const updatedConversation = {
@@ -1298,10 +1413,7 @@ export const useChatStore = defineStore('chat', () => {
                     // 🔄 FORZAR ACTUALIZACIÓN FINAL DE LA UI (ASYNC)
                     await forceMessagesUpdate();
                     
-                    // 🚨 ALERTA: Conversaciones largas pueden perder precisión (ASYNC)
-                    if (messagesWithConversationId.length > 4) {
-                        checkLongConversationAlert(messagesWithConversationId.length);
-                    }
+                    // 🚨 ALERTA: Las conversaciones largas se manejan en ChatMessages.vue
                     
                     return {
                         id: messageId,

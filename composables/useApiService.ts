@@ -711,6 +711,9 @@ export function useApiService() {
             console.log(`[API] → RAG: ${useRag ? 'ON' : 'OFF'}`);
             console.log(`[API] → Dominio: ${domain}`);
             
+            // ✅ DEBUGGING ADICIONAL REQUERIDO (CLAUDE_DEBUGGING_HISTORY.md)
+            console.log('DEBUG routing:', { useRag, domain, service });
+            
             if (useRag && domain === 'ia_generativa') {
                 // IA GENERATIVA con RAG → usar endpoint especializado
                 endpoint = `${apiUrl}/llm-expert/`;
@@ -729,6 +732,9 @@ export function useApiService() {
                 serviceId = 'llm';
                 console.log(`[API] 💬 AGENTE: Chat General ${useRag ? 'CON' : 'SIN'} RAG → ${endpoint}`);
             }
+            
+            // ✅ DEBUGGING ADICIONAL: Verificar que domain llegue correctamente
+            console.log('Agente seleccionado:', { service: serviceId, domain, endpoint });
             
             // ✅ VERIFICACIÓN DE SEGURIDAD
             if (!endpoint) {
