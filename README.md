@@ -204,7 +204,6 @@ Las contribuciones son bienvenidas. Para cambios importantes:
 
 - **GitHub**: [@miguelmurga](https://github.com/miguelmurga)
 - **LinkedIn**: [Miguel Murga](https://linkedin.com/in/miguelmurga)
-- **Email**: [Contacto directo](mailto:contacto@miguelmurga.com)
 
 ## 📝 Licencia
 
