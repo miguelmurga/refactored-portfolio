@@ -375,7 +375,7 @@ const mainServices = [
     color: 'bg-gray-600',
     model: 'DeepSeek-Coder',
     reasoner: 'Modelo de lenguaje general. Único endpoint que permite configurar RAG (use_rag: true/false).',
-    endpoint: '/api/chat/',
+    endpoint: '/api/ai-expert/',
     ragFixed: false, // RAG configurable
     ragAlwaysOn: false
   }
