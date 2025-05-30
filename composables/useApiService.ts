@@ -162,6 +162,11 @@ export function useApiService() {
                     
                     // 2. Hacer la petición
                     console.log(`[API] ${options.method || 'GET'} ${url} con token: ${session.token.substring(0, 8)}...`);
+                    
+                    // 🔍 DEBUGGING: Verificar URL final antes del fetch
+                    console.log(`[FETCH-DEBUG] About to fetch URL: ${url}`);
+                    console.log(`[FETCH-DEBUG] Fetch options:`, JSON.stringify(options, null, 2));
+                    
                     const response = await fetch(url, options);
                     
                     // 3. Interceptor de respuesta - Manejar respuestas
@@ -281,6 +286,23 @@ export function useApiService() {
                     }
                 } catch (fetchError) {
                     console.error('[API] Network or fetch error:', fetchError);
+                    
+                    // 🔍 DEBUGGING: Análisis detallado del error
+                    if (fetchError instanceof TypeError && fetchError.message.includes('Failed to fetch')) {
+                        console.error('[FETCH-ERROR] Failed to fetch detected');
+                        console.error('[FETCH-ERROR] URL attempted:', url);
+                        console.error('[FETCH-ERROR] This might be due to:');
+                        console.error('[FETCH-ERROR] 1. Backend not running on specified port');
+                        console.error('[FETCH-ERROR] 2. CORS issues');
+                        console.error('[FETCH-ERROR] 3. Browser forcing HTTPS upgrade');
+                        console.error('[FETCH-ERROR] 4. Network connectivity issues');
+                        
+                        // Verificar si el URL se está cambiando a HTTPS
+                        if (url.startsWith('http://') && window.location.protocol === 'https:') {
+                            console.error('[FETCH-ERROR] DETECTED: Frontend is HTTPS but backend is HTTP');
+                            console.error('[FETCH-ERROR] Browser may be blocking mixed content');
+                        }
+                    }
                     
                     // Reintentar en caso de error de red
                     if (retryCount < maxRetries) {
@@ -521,6 +543,13 @@ export function useApiService() {
             const url = `${apiUrl}/conversations/`;
             console.log(`[API] Getting user conversations from: ${url}`);
             console.log(`[API] Using session token: ${session.token.substring(0, 8)}...`);
+            
+            // 🔍 DEBUGGING: Verificar URL final construida
+            console.log(`[API-DEBUG] Final URL being used: ${url}`);
+            console.log(`[API-DEBUG] apiUrl variable: ${apiUrl}`);
+            console.log(`[API-DEBUG] URL protocol: ${new URL(url).protocol}`);
+            console.log(`[API-DEBUG] URL hostname: ${new URL(url).hostname}`);
+            console.log(`[API-DEBUG] URL port: ${new URL(url).port}`);
             
             const response = await httpClient.get(url, {
                 headers: {
