@@ -32,18 +32,19 @@
             :name="config.use_reasoner ? 'i-heroicons-check-circle' : 'i-heroicons-minus-circle'" 
             class="w-3.5 h-3.5 opacity-80" 
           />
-          <span>{{ $t('rag.reasoner') || 'Razonador' }}</span>
+          <span>{{ $t('rag.reasoner') }}</span>
         </div>
 
         <!-- Domain Pill - Always available when RAG is enabled -->
-        <div v-if="config.use_rag" class="px-2 py-0.5 rounded-full text-xs bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 flex items-center gap-1 cursor-pointer" @click="showDomainSelector = !showDomainSelector">
+        <div v-if="config.use_rag" class="relative px-2 py-0.5 rounded-full text-xs bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 flex items-center gap-1 cursor-pointer" @click="toggleDomainSelector">
           <UIcon name="i-heroicons-folder" class="w-3.5 h-3.5 opacity-80" />
           <span>{{ getDomainLabel(config.domain) }}</span>
           <UIcon name="i-heroicons-chevron-down" class="w-3 h-3 opacity-80" />
         </div>
 
         <!-- Domain dropdown - Always available -->
-        <div v-if="showDomainSelector" ref="selectorRef" class="absolute top-8 left-0 bg-white dark:bg-gray-800 shadow-lg rounded-md border border-gray-200 dark:border-gray-700 z-10 w-48">
+        <div v-if="showDomainSelector" ref="selectorRef" class="fixed top-auto left-auto bg-white dark:bg-gray-800 shadow-lg rounded-md border border-gray-200 dark:border-gray-700 w-48" 
+             style="z-index: 9999; position: absolute; top: 100%; left: 0; margin-top: 4px;">
           <div class="p-1">
             <div 
               v-for="option in domainOptions" 
@@ -72,7 +73,7 @@
           class="flex items-center gap-1"
         >
           <UIcon name="i-heroicons-adjustments-horizontal" class="w-3.5 h-3.5" />
-          <span class="hidden sm:inline text-xs">{{ $t('rag.advanced') || 'Avanzado' }}</span>
+          <span class="hidden sm:inline text-xs">{{ $t('rag.advanced') }}</span>
         </UButton>
       </div>
     </div>
@@ -126,9 +127,9 @@ const languageOptions = [
 ];
 
 const domainOptions = [
-  { value: 'todos', label: t('rag.all_domains') || 'Todos los dominios' },
-  { value: 'ciberseguridad', label: t('rag.cybersecurity') || 'Ciberseguridad' },
-  { value: 'ia_generativa', label: t('rag.generative_ai') || 'IA Generativa' }
+  { value: 'todos', label: t('rag.all_domains') },
+  { value: 'ciberseguridad', label: t('rag.cybersecurity') },
+  { value: 'ia_generativa', label: t('rag.generative_ai') }
 ];
 
 // Get domain label from value
@@ -141,6 +142,11 @@ function getDomainLabel(value: string): string {
 function selectDomain(value: string) {
   emit('update:config', { ...props.config, domain: value });
   showDomainSelector.value = false;
+}
+
+// Toggle domain selector with proper state management
+function toggleDomainSelector() {
+  showDomainSelector.value = !showDomainSelector.value;
 }
 
 // Toggle functions - all services are modular

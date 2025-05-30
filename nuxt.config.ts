@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiUrl: process.env.NUXT_API_URL || 'http://localhost:8000/api',
+      apiUrl: process.env.NUXT_API_URL || 'http://127.0.0.1:8000/api',
       devMode: process.env.NUXT_DEV_MODE === 'true',
       debugLogs: process.env.NUXT_DEBUG_LOGS === 'true',
     },

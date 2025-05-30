@@ -34,6 +34,7 @@ export function useApiService() {
     
     // Obtener la URL del backend desde la configuración de runtime
     const config = useRuntimeConfig();
+    
     // Determinar si estamos en desarrollo o producción
     const isDev = process.env.NODE_ENV === 'development' || config.public.devMode === true;
     
